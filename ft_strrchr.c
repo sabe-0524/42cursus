@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 18:29:53 by sabe              #+#    #+#             */
-/*   Updated: 2025/02/09 18:40:23 by sabe             ###   ########.fr       */
+/*   Updated: 2025/02/18 15:43:15 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int	count;
+	int		count;
+	char	ch;
 
 	count = (int)ft_strlen((char *)s);
+	ch = (char)c;
 	while (count >= 0)
 	{
-		if (s[count] == c)
+		if (s[count] == ch)
 			return ((char *)(s + count));
 		count--;
 	}

@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 18:13:43 by sabe              #+#    #+#             */
-/*   Updated: 2025/02/09 18:29:38 by sabe             ###   ########.fr       */
+/*   Updated: 2025/02/18 15:42:09 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int	count;
+	int		count;
+	char	ch;
 
 	count = 0;
+	ch = (char)c;
 	while (1)
 	{
-		if (s[count] == c)
+		if (s[count] == ch)
 			return ((char *)(s + count));
 		else if (s[count] == '\0')
 			return (NULL);

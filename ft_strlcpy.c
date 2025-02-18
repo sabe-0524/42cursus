@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:31:59 by sabe              #+#    #+#             */
-/*   Updated: 2025/02/09 17:03:26 by sabe             ###   ########.fr       */
+/*   Updated: 2025/02/18 15:51:46 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	count;
 
+	if (dstsize == 0)
+		return (ft_strlen(src));
 	count = 0;
 	while (count < dstsize - 1 && src[count] != '\0')
 	{

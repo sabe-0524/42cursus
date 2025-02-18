@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:21:50 by sabe              #+#    #+#             */
-/*   Updated: 2025/02/18 14:28:54 by sabe             ###   ########.fr       */
+/*   Updated: 2025/02/18 14:46:53 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		if (s1[count] == '\0' && s2[count] == '\0')
 			break ;
 		if (s1[count] != s2[count])
-			return (s1[count] - s2[count]);
+			return ((unsigned char)s1[count] - (unsigned char)s2[count]);
 		count++;
 	}
 	return (0);

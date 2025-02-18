@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:23:44 by sabe              #+#    #+#             */
-/*   Updated: 2025/02/09 16:33:16 by sabe             ###   ########.fr       */
+/*   Updated: 2025/02/18 15:33:20 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	*ft_memmove(void *dst, const void *src, size_t n)
 	{
 		while (count < n)
 		{
-			ptr[n - count] = ptr_src[n - count];
+			ptr[n - count - 1] = ptr_src[n - count - 1];
 			count++;
 		}
 	}
