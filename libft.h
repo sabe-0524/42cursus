@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:03:26 by sabe              #+#    #+#             */
-/*   Updated: 2025/02/18 16:53:17 by sabe             ###   ########.fr       */
+/*   Updated: 2025/02/18 18:07:38 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 // # include <stdio.h>
+# include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
 
