@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:03:26 by sabe              #+#    #+#             */
-/*   Updated: 2025/02/18 15:29:51 by sabe             ###   ########.fr       */
+/*   Updated: 2025/02/18 16:53:17 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_list
 }					t_list;
 
 // libc
-int					ft_atoi(char *str);
+int					ft_atoi(const char *str);
 void				ft_bzero(void *b, size_t len);
 void				*ft_calloc(size_t n, size_t size);
 int					ft_isalnum(int c);
