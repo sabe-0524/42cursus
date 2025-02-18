@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:03:26 by sabe              #+#    #+#             */
-/*   Updated: 2025/02/09 18:38:52 by sabe             ###   ########.fr       */
+/*   Updated: 2025/02/18 14:28:26 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ size_t				ft_strlcat(char *restrict dst, const char *restrict src,
 						size_t size);
 size_t				ft_strlcpy(char *dst, const char *src, size_t size);
 size_t				ft_strlen(const char *s);
-int					ft_strncmp(unsigned char *s1, unsigned char *s2, size_t n);
+int					ft_strncmp(const char *s1, const char *s2, size_t n);
 char				*ft_strnstr(char *big, char *little, size_t len);
 char				*ft_strrchr(const char *s, int c);
 int					ft_tolower(int c);
