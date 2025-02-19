@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:03:26 by sabe              #+#    #+#             */
-/*   Updated: 2025/02/18 18:07:38 by sabe             ###   ########.fr       */
+/*   Updated: 2025/02/19 16:30:12 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int					get_start(char *s1, char *set);
 int					get_end(char *s1, char *set);
-char				*ft_strtrim(char *s1, char *set);
+char				*ft_strtrim(char const *s1, char const *set);
 char				*ft_substr(char const *s, unsigned int start, size_t size);
 
 // Bonus
