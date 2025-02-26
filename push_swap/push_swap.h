@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 21:14:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/02/23 21:21:24 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/02/23 21:54:02 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,17 @@ typedef struct s_command
     int		rrr;
 } t_command;
 
-typedef struct s_stack
+typedef struct s_node
 {
     int content;
     struct s_stack *next;
     struct s_stack *prev;
     t_command command;
+} t_node;
+
+typedef struct s_stack
+{
+    t_node *top;
 } t_stack;
 
 #endif
