@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 12:40:48 by sabe              #+#    #+#             */
-/*   Updated: 2025/02/26 18:42:19 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/08 18:03:26 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/19 17:19:04 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define LIBFT_H
 
 // # include <stdio.h>
+# include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdint.h>
 
 typedef struct s_list
 {
@@ -24,11 +24,10 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-int					ft_abs(int nb);
 // libc
 int					ft_atoi(const char *str);
 void				ft_bzero(void *b, size_t len);
-void				*ft_calloc(size_t count, size_t size);
+void				*ft_calloc(size_t n, size_t size);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);
@@ -40,12 +39,12 @@ void				*ft_memcpy(void *dest, const void *src, size_t n);
 void				*ft_memmove(void *dest, const void *src, size_t n);
 void				*ft_memset(void *buf, int ch, size_t n);
 char				*ft_strchr(const char *s, int c);
-char				*ft_strdup(const char *str);
-size_t				ft_strlcat(char *dest, const char *src, size_t size);
+char				*ft_strdup(const char *string);
+size_t				ft_strlcat(char *dst, const char *src, size_t size);
 size_t				ft_strlcpy(char *dst, const char *src, size_t size);
 size_t				ft_strlen(const char *s);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
-char				*ft_strnstr(const char *big, const char *little,
+char				*ft_strnstr(const char *haystack, const char *needle,
 						size_t len);
 char				*ft_strrchr(const char *s, int c);
 int					ft_tolower(int c);
@@ -77,7 +76,6 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstlast(t_list *lst);
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
-
 t_list				*ft_lstnew(void *content);
 int					ft_lstsize(t_list *lst);
 

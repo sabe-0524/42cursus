@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
+#    By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/23 21:09:48 by abesouichir       #+#    #+#              #
-#    Updated: 2025/02/26 19:04:31 by sabe             ###   ########.fr        #
+#    Updated: 2025/03/01 22:08:45 by abesouichir      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -L./libft -lft
 NAME = push_swap
-SRCS = main.c handle_stack.c
+SRCS = \
+  main.c handle_stack.c command_r.c command_rr.c command_s.c \
+  command_p.c
 OBJS = $(SRCS:.c=.o)
 INCLUDES = -I. -I./libft
 

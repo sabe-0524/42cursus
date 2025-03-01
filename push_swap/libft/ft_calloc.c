@@ -5,43 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 12:20:19 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/22 12:13:30 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/18 17:51:10 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/18 18:07:09 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <limits.h>
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	size_t	total_size;
-	void	*buf;
+	void	*ptr;
 
-	total_size = count * size;
-	if (size != 0 && (count >= SIZE_MAX / size || total_size >= SIZE_MAX))
+	if (size != 0 && count > SIZE_MAX / size)
 		return (NULL);
-	buf = malloc(sizeof(void) * (size * count));
-	if (!buf)
+	ptr = malloc(count * size);
+	if (!ptr)
 		return (NULL);
-	ft_bzero(buf, size * count);
-	return (buf);
+	ft_bzero(ptr, count * size);
+	return (ptr);
 }
-
-// #include <stdio.h>
-// int main(void)
-// {
-//     char    *ans;
-
-//     // ans = (char *)ft_calloc(1000000, 10000);
-// //    ans = (char *)calloc(0,0);
-//     ans = (char *)calloc(0,0);
-//     printf("%s\n", ans);
-//     free(ans);
-//     return (0);
-// }
-
-// // __attribute__((destructor))
-// // static void destructor() {
-// //     system("leaks -q a.out");
-// // }

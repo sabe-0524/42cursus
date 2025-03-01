@@ -5,52 +5,39 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 12:47:20 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/28 16:32:19 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/19 15:43:00 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/19 16:10:33 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_min(size_t num1, size_t num2)
+static size_t	ft_min(size_t len1, size_t len2)
 {
-	if (num1 < num2)
-		return (num1);
+	if ((int)len2 < 0)
+		return (0);
+	else if (len1 > len2)
+		return (len2);
 	else
-		return (num2);
+		return (len1);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int		num;
-	char	*ans;
-	size_t	i;
+	size_t	min_len;
+	char	*ptr;
+	size_t	count;
 
-	i = 0;
-	if (!s)
+	count = 0;
+	min_len = ft_min(len, ft_strlen(s) - start);
+	ptr = (char *)malloc(sizeof(char) * (min_len + 1));
+	if (!ptr)
 		return (NULL);
-	if (start >= ft_strlen(s))
-		return (ft_strdup(""));
-	num = ft_min(ft_strlen(s) - start, len);
-	ans = malloc(sizeof(char) * (num + 1));
-	if (!ans)
-		return (NULL);
-	while (s[start + i] != 0 && i < len)
+	while (count < min_len)
 	{
-		ans[i] = s[start + i];
-		i++;
+		ptr[count] = s[start + count];
+		count++;
 	}
-	ans[i] = 0;
-	return (ans);
+	ptr[count] = '\0';
+	return (ptr);
 }
-
-// #include <stdio.h>
-
-// int	main(void)
-// {
-// 	char *s = "hola";
-// 	char *ans = ft_substr(s, (unsigned int)0, -1);
-// 	printf("%s", ans);
-// 	free(ans);
-// 	return (0);
-// }

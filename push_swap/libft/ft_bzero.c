@@ -5,21 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 12:20:01 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/22 12:27:07 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/09 15:51:43 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/18 18:01:20 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *buf, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-	unsigned char	*ptr;
-
-	ptr = (unsigned char *)buf;
-	while (n > 0)
-	{
-		*ptr++ = 0;
-		n--;
-	}
+	ft_memset(s, 0, n);
 }

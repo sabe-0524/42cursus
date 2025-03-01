@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 12:45:30 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/29 12:30:26 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/09 15:24:27 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/09 16:05:45 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,17 @@
 
 size_t	ft_strlen(const char *str)
 {
-	size_t	i;
+	size_t	count;
 
-	i = 0;
-	while (str[i] != 0)
-		i++;
-	return (i);
+	count = 0;
+	while (str[count] != '\0')
+		count++;
+	return (count);
 }
+
+// #include <stdio.h>
+
+// int	main(void)
+// {
+// 	printf("%zu\n", ft_strlen("abc"));
+// }

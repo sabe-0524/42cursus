@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 21:14:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/02/26 19:00:05 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/01 22:09:07 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct s_command
 typedef struct s_node
 {
 	int				content;
-	struct s_stack	*next;
-	struct s_stack	*prev;
+	struct s_node	*next;
+	struct s_node	*prev;
 	t_command		command;
 }					t_node;
 
@@ -41,5 +41,19 @@ typedef struct s_stack
 {
 	t_node			*top;
 }					t_stack;
+
+t_node	*create_node(int content);
+t_stack	*create_stack(int argc, char **argv);
+void ra(t_stack *stack);
+void rb(t_stack *stack);
+void rr(t_stack *stack_a, t_stack *stack_b);
+void rra(t_stack *stack);
+void rrb(t_stack *stack);
+void rrr(t_stack *stack_a, t_stack *stack_b);
+void sa(t_stack *stack);
+void sb(t_stack *stack);
+void ss(t_stack *stack_a, t_stack *stack_b);
+void pa(t_stack *stack_a, t_stack *stack_b);
+void pb(t_stack *stack_a, t_stack *stack_b);
 
 #endif

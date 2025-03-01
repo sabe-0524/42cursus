@@ -5,25 +5,40 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 17:59:45 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/22 12:13:49 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/18 14:30:42 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/18 15:38:47 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *buf, int ch, size_t n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
+	size_t			count;
 	unsigned char	*ptr;
-	size_t			i;
+	unsigned char	ch;
 
-	ptr = (unsigned char *)buf;
-	i = 0;
-	while (i < n)
+	count = 0;
+	ch = (unsigned char)c;
+	ptr = (unsigned char *)s;
+	while (count < n)
 	{
-		if (ptr[i] == (unsigned char)ch)
-			return ((void *)(buf + i));
-		i++;
+		if (ptr[count] == ch)
+			return ((void *)(ptr + count));
+		count++;
 	}
 	return (NULL);
 }
+
+// #include <stdio.h>
+// #include <string.h>
+
+// int	main(void)
+// {
+// 	char	*p;
+
+// 	char str[] = "abcdef\0ghij"; /* 途中に空文字のある文字列 */
+// 	p = memchr(str, 'h', 12);
+// 	printf("検索文字は文字列の%d番目\n", p - str);
+// 	return (0);
+// }

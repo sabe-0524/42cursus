@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 12:52:46 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/22 12:25:54 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/20 20:32:05 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/20 20:37:36 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,14 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_list	*lst_sub;
-	t_list	*next_node;
+	t_list	*next;
 
-	if (lst == NULL || del == NULL || *lst == NULL)
+	if (!lst || !(*lst) || !del)
 		return ;
-	lst_sub = *lst;
-	while (lst_sub != NULL)
+	while (*lst != NULL)
 	{
-		next_node = lst_sub->next;
-		del(lst_sub->content);
-		free(lst_sub);
-		lst_sub = next_node;
+		next = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = next;
 	}
-	*lst = NULL;
 }

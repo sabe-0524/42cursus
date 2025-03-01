@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 11:36:55 by sabe              #+#    #+#             */
-/*   Updated: 2024/05/04 12:02:59 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/20 19:51:08 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/20 19:59:22 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 t_list	*ft_lstnew(void *content)
 {
-	t_list	*new_node;
+	t_list	*new;
 
-	new_node = malloc(sizeof(t_list));
-	if (!new_node)
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
 		return (NULL);
-	new_node->content = content;
-	new_node->next = NULL;
-	return (new_node);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 11:50:43 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/29 21:21:18 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/19 20:45:32 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/19 20:46:52 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	int	i;
+	size_t	count;
 
-	if (!s)
-		return ;
-	i = 0;
-	while (s[i] != 0)
+	count = 0;
+	while (s[count])
 	{
-		write(fd, &s[i], 1);
-		i++;
+		write(fd, &s[count], 1);
+		count++;
 	}
 }

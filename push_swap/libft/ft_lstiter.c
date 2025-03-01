@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 13:06:09 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/22 12:25:19 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/20 20:37:57 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/20 20:56:18 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (lst == NULL || f == NULL)
+	if (!lst || !f)
 		return ;
 	while (lst != NULL)
 	{

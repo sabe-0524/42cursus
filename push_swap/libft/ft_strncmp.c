@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 12:49:57 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/22 12:14:31 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/18 14:21:50 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/18 14:46:53 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t	i;
+	size_t	count;
 
-	i = 0;
-	if ((s1 == NULL || s2 == NULL) && n == 0)
-		return (0);
-	while ((s1[i] != '\0' || s2[i] != '\0') && i < n)
+	count = 0;
+	while (count < n)
 	{
-		if ((unsigned char)s1[i] != (unsigned char)s2[i])
-			return ((int)(unsigned char)s1[i] - (int)(unsigned char)s2[i]);
-		i++;
+		if (s1[count] == '\0' && s2[count] == '\0')
+			break ;
+		if (s1[count] != s2[count])
+			return ((unsigned char)s1[count] - (unsigned char)s2[count]);
+		count++;
 	}
 	return (0);
 }
@@ -31,11 +31,15 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 // #include <stdio.h>
 // #include <string.h>
 
-// int	main(void)
+// int main(void)
 // {
-// 	char	*s1 = NULL;
-// 	char	*s2 = NULL;
-// 	printf("%d\n", ft_strncmp(s1,s2,1));
-// 	printf("%d\n", strncmp(s1, s2, 1));
-// 	return (0);
+//     char str[] = "ABC";
+//     printf("ABC: ABD   = %d\n", strncmp(str, "ABD", 2));
+//     printf("ABC: ABC   = %d\n", strncmp(str, "ABC", 2));
+//     printf("ABC: AAA   = %d\n", strncmp(str, "AAA", 2));
+//     printf("ABC: ABCD  = %d\n", strncmp(str, "ABCD", 2));
+//     printf("ABC: AB    = %d\n", strncmp(str, "AB", 2));
+//     printf("ABC: B     = %d\n", strncmp(str, "B", 2));
+//     printf("ABC: A     = %d\n", strncmp(str, "A", 2));
+//     return (0);
 // }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 12:10:02 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/22 12:25:01 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/20 20:17:12 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/20 20:40:29 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	if (lst == NULL)
+	if (!lst)
 		return (NULL);
 	while (lst->next != NULL)
 		lst = lst->next;
