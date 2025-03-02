@@ -5,98 +5,101 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 12:39:52 by sabe              #+#    #+#             */
-/*   Updated: 2024/05/05 15:53:53 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/19 17:02:56 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/19 18:23:36 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-int	count_words(char const *str, char c)
+static size_t	count_words(const char *s, char c)
 {
-	int	i;
-	int	count;
-
-	i = 1;
-	count = 0;
-	if (str[0] != c && str[0] != '\0')
-		count++;
-	while (str[0] != '\0' && str[i] != '\0')
-	{
-		if (str[i - 1] == c && str[i] != c)
-			count++;
-		i++;
-	}
-	return (count);
-}
-
-size_t	count_len(char const *str, char c, int i)
-{
+	size_t	i;
 	size_t	count;
+	int		in_word;
 
+	i = 0;
 	count = 0;
-	while (str[i] != '\0' && str[i] != c)
+	in_word = 0;
+	while (s[i])
 	{
-		count++;
+		if (s[i] != c && !in_word)
+		{
+			in_word = 1;
+			count++;
+		}
+		else if (s[i] == c)
+			in_word = 0;
 		i++;
 	}
 	return (count);
 }
 
-char	**free_all(char **array, int index)
+static size_t	word_length(const char *s, char c, size_t start)
 {
-	int	i;
+	size_t	len;
 
-	i = -1;
-	while (++i < index)
-		free(array[i]);
-	free(array);
+	len = 0;
+	while (s[start + len] && s[start + len] != c)
+		len++;
+	return (len);
+}
+
+static char	**free_split(char **arr, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 	return (NULL);
 }
 
-char	**ft_split(char const *str, char c)
+static char	*get_next_word(const char *s, char c, size_t *index)
 {
-	char	**array;
-	size_t	i;
-	int		index;
+	size_t	len;
+	char	*word;
+	size_t	j;
 
-	i = 0;
-	index = 0;
-	if (!str)
+	len = word_length(s, c, *index);
+	word = ft_calloc(len + 1, sizeof(char));
+	if (!word)
 		return (NULL);
-	array = malloc(sizeof(char *) * (count_words(str, c) + 1));
-	if (!array)
-		return (NULL);
-	while (str[i] != '\0' && index < count_words(str, c))
-	{
-		while (str[i] == c && str[i] != '\0')
-			i++;
-		array[index] = malloc(sizeof(char) * (count_len(str, c, i) + 1));
-		if (!array[index])
-			return (free_all(array, index));
-		ft_strlcpy(array[index], str + i, count_len(str, c, i) + 1);
-		i += count_len(str, c, i);
-		index++;
-	}
-	array[index] = NULL;
-	return (array);
+	j = 0;
+	while (j < len)
+		word[j++] = s[(*index)++];
+	return (word);
 }
 
-// int	main(void)
-// {
-// 	char	*str;
-// 	char	**ans;
+char	**ft_split(const char *s, char c)
+{
+	size_t	index;
+	size_t	i;
+	char	**result;
 
-// 	str = "";
-// 	ans = ft_split(str, ' ');
-// 	printf("%s\n", ans[0]);
-// 	free(ans[0]);
-// 	free(ans);
-// 	return (0);
-// }
-
-// __attribute__((destructor)) static void destructor()
-// {
-// 	system("leaks -q a.out");
-// }
+	index = 0;
+	i = 0;
+	if (!s)
+		return (NULL);
+	result = malloc(sizeof(char *) * (count_words(s, c) + 1));
+	if (!result)
+		return (NULL);
+	while (s[index])
+	{
+		if (s[index] != c)
+		{
+			result[i] = get_next_word(s, c, &index);
+			if (!result[i])
+				return (free_split(result, i));
+			i++;
+		}
+		else
+			index++;
+	}
+	result[i] = NULL;
+	return (result);
+}

@@ -5,33 +5,56 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 12:37:41 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/22 12:13:50 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/09 16:01:44 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/09 16:18:58 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *buf1, const void *buf2, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned char	*ptr1;
-	unsigned char	*ptr2;
+	char	*ptr;
+	char	*ptr_src;
+	size_t	count;
 
-	if (buf1 == 0 && buf2 == 0)
-		return (NULL);
-	ptr1 = (unsigned char *)buf1;
-	ptr2 = (unsigned char *)buf2;
-	while (n-- > 0)
-		*ptr1++ = *ptr2++;
-	return (buf1);
+	count = 0;
+	ptr = (char *)dst;
+	ptr_src = (char *)src;
+	while (count < n)
+	{
+		ptr[count] = ptr_src[count];
+		count++;
+	}
+	return (dst);
 }
 
 // #include <stdio.h>
-// int main(void)
+// #include <string.h>
+
+// #define BUF_SIZE 16
+
+// int	main(void)
 // {
-//     char    buf1[5] = "";
-//     char    buf2[5] = "";
-//     ft_memcpy(buf1, buf2, 0);
-//     printf("%s", buf1);
-//     return (0);
+// 	char	buf1[BUF_SIZE];
+// 	char	buf2[BUF_SIZE];
+
+// 	// 変数定義
+// 	// 変数初期化
+// 	memset(buf1, '\0', BUF_SIZE);
+// 	memset(buf2, '\0', BUF_SIZE);
+// 	// メモリ領域を特定の文字で埋める
+// 	memset(buf1, 'b', 4); // buf1の最初の4バイトをaにする
+// 	memset(buf1, 'a', 2); // buf1の最初の2バイトをbにする
+// 	// 配列の内容を表示
+// 	printf("配列の要素を表示(コピー前)。\n");
+// 	printf("buf1:%s\n", buf1);
+// 	printf("buf2:%s\n", buf2);
+// 	// メモリをコピーする
+// 	ft_memcpy(buf2, buf1, 3); // buf1の先頭3バイトをbuf2にコピーする
+// 	// 配列の内容を表示
+// 	printf("配列の要素を表示(コピー後)。\n");
+// 	printf("buf1:%s\n", buf1);
+// 	printf("buf2:%s\n", buf2);
+// 	return (0);
 // }

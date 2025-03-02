@@ -5,88 +5,54 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 10:54:43 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/22 12:13:37 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/19 18:32:03 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/19 18:48:30 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_abs(int nb)
+static int	count_digit(int n)
 {
-	if (nb < 0)
-		return (-nb);
+	int	digit;
+
+	digit = 0;
+	if (n <= 0)
+		digit++;
+	while (n != 0)
+	{
+		digit++;
+		n /= 10;
+	}
+	return (digit);
+}
+
+static int	ft_abs(int n)
+{
+	if (n < 0)
+		return (-1 * n);
 	else
-		return (nb);
-}
-
-int	count_digit(int nb)
-{
-	int	count;
-
-	count = 0;
-	if (nb < 0)
-		count++;
-	while (nb >= 10 || nb <= -10)
-	{
-		nb /= 10;
-		count++;
-	}
-	count++;
-	return (count);
-}
-
-void	ft_reverse(char *str)
-{
-	int		len;
-	char	tmp;
-	int		i;
-
-	len = ft_strlen(str);
-	i = 0;
-	while (i < len / 2)
-	{
-		tmp = str[i];
-		str[i] = str[len - i - 1];
-		str[len - i - 1] = tmp;
-		i++;
-	}
+		return (n);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*ans;
-	int		len;
-	int		i;
+	int		digit;
+	char	*ptr;
 
-	len = count_digit(n) - 1;
-	i = 0;
-	ans = malloc(sizeof(char) * (count_digit(n) + 1));
-	if (!ans)
+	digit = count_digit(n);
+	ptr = (char *)malloc(sizeof(char) * (digit + 1));
+	if (!ptr)
 		return (NULL);
-	ans[len + 1] = 0;
+	ptr[digit--] = '\0';
+	if (n == 0)
+		ptr[0] = '0';
 	if (n < 0)
+		ptr[0] = '-';
+	while (n != 0)
 	{
-		ans[len] = '-';
-		len--;
-	}
-	while (i <= len)
-	{
-		ans[i] = ft_abs(n % 10) + '0';
+		ptr[digit--] = '0' + ft_abs((n % 10));
 		n /= 10;
-		i++;
 	}
-	ft_reverse(ans);
-	return (ans);
+	return (ptr);
 }
-
-// #include <stdio.h>
-
-// int main(void)
-// {
-//   int n = 0;
-//   char  *ans = ft_itoa(n);
-//   printf("%s", ans);
-//   free(ans);
-//   return (0);
-// }

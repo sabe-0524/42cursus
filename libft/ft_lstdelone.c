@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 12:31:28 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/22 12:25:30 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/20 20:27:49 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/20 20:56:28 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	if (lst == NULL || del == NULL)
+	if (!lst || !del)
 		return ;
 	del(lst->content);
+	lst->next = NULL;
 	free(lst);
 }

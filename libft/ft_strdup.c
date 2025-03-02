@@ -5,37 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 12:42:11 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/22 12:14:16 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/19 15:36:18 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/19 16:09:58 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *str)
+char	*ft_strdup(const char *s1)
 {
-	int		i;
-	char	*ans;
+	char	*ptr;
+	size_t	count;
 
-	i = 0;
-	ans = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
-	if (!ans)
+	ptr = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!ptr)
 		return (NULL);
-	while (str[i] != '\0')
+	count = 0;
+	while (s1[count] != '\0')
 	{
-		ans[i] = str[i];
-		i++;
+		ptr[count] = s1[count];
+		count++;
 	}
-	ans[i] = '\0';
-	return (ans);
+	ptr[count] = '\0';
+	return (ptr);
 }
-
-// #include <stdio.h>
-// int main(void)
-// {
-//     char    *str = "";
-//     char    *ans = ft_strdup(str);
-//     printf("%s", ans);
-//     free(ans);
-//     return (0);
-// }

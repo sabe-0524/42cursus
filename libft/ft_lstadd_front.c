@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 11:51:27 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/29 12:31:11 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/20 19:59:44 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/20 20:56:40 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (lst == NULL || new == NULL)
+	if (!lst || !new)
 		return ;
 	new->next = *lst;
 	*lst = new;

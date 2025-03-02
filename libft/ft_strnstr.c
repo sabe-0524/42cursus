@@ -5,93 +5,64 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 12:50:40 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/22 12:14:32 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/18 14:51:42 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/18 16:46:30 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// char	*ft_strnstr(const char *str, const char *to_find, size_t n)
-// {
-// 	size_t	i;
-// 	size_t	j;
-
-// 	i = 0;
-// 	j = 0;
-// 	if (str == NULL && n == 0)
-// 		return (NULL);
-// 	if (str[i] == 0 && to_find[i] == 0 && n == 0)
-// 		return ("");
-// 	if (str == NULL && to_find == NULL)
-// 		return ((char *)str);
-// 	while (str[i] != '\0' && i + ft_strlen(to_find) <= n)
-// 	{
-// 		j = 0;
-// 		while (str[i + j] == to_find[j] && str[i + j] != '\0' && i + j < n)
-// 			j++;
-// 		if (to_find[j] == '\0')
-// 			return ((char *)(str + i));
-// 		i++;
-// 	}
-// 	return (NULL);
-// }
-
-// #include "libft.h"
-
-// char *ft_strnstr(const char *str, const char *to_find, size_t n)
-// {
-//     size_t i;
-//     size_t j;
-
-//     if (!str || !to_find)
-//         return (NULL);
-
-//     i = 0;
-//     while (str[i] != '\0' && i < n)
-//     {
-//         j = 0;
-//         while (to_find[j] != '\0' && str[i + j] == to_find[j] && (i + j) < n)
-//             j++;
-//         if (to_find[j] == '\0')
-//             return ((char *)&str[i]);
-//         i++;
-//     }
-//     return (NULL);
-// }
-
-char	*ft_strnstr(const char *str, const char *to_find, size_t n)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	i;
-	size_t	j;
+	size_t	count1;
+	size_t	count2;
 
-	i = 0;
-	j = 0;
-	if (str == NULL && n == 0)
-		return ((char *)str);
-	if (str[i] == '\0' && to_find[i] == '\0')
-		return ((char *)str);
-	while (str[i] != '\0')
+	if (needle[0] == '\0')
+		return ((char *)haystack);
+	count1 = 0;
+	while (haystack[count1] != '\0')
 	{
-		j = 0;
-		while (str[i + j] == to_find[j] && str[i + j] != '\0' && (i + j) < n)
-			j++;
-		if (to_find[j] == '\0')
-			return ((char *)(str + i));
-		i++;
+		count2 = 0;
+		while (needle[count2] != '\0')
+		{
+			if (count1 + count2 >= len)
+				return (NULL);
+			if (haystack[count1 + count2] != needle[count2])
+				break ;
+			count2++;
+		}
+		if (needle[count2] == '\0')
+			return ((char *)(haystack + count1));
+		count1++;
 	}
 	return (NULL);
 }
 
-// #include <stdio.h>
+// #include <stdbool.h>
+// #undef NDEBUG
+// #include <assert.h>
 // #include <string.h>
+
+// const char	*haystack = "Lorem ipsum dolor sit amet";
+
+// static void	test(const char *haystack, const char *needle, size_t len,
+// bool res)
+// {
+// 	char	*str;
+
+// 	if (len == 0)
+// 		len = strlen(haystack);
+// 	str = ft_strnstr(haystack, needle, len);
+// 	assert(res == (str != NULL));
+// }
+
 // int	main(void)
 // {
-// 	char	*str = NULL;
-// 	char	*to_find = "";
-// 	char	*ans = ft_strnstr(str, to_find, 0);
-// 	char	*ans2 = strnstr(str, to_find, 0);
-// 	printf("%s\n", ans);
-// 	printf("%s\n", ans2);
-// 	return (0);
+// 	test(haystack, "Lorem", 0, true);
+// 	test(haystack, "Sea Otters", 0, false);
+// 	test(haystack, "", 0, true);
+// 	test(haystack, "Lorem ipsum dolor sit amet, but bigger", 0, false);
+// 	test(haystack, haystack, 0, true);
+// 	test(haystack, "amet", 0, true);
+// 	test(haystack, "dolor", 5, false);
 // }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 11:22:48 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/22 12:51:59 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/19 18:51:51 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/19 19:01:55 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,17 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char			*ans;
+	char			*ptr;
 	unsigned int	i;
 
-	if (!s || !f)
-		return (NULL);
 	i = 0;
-	ans = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (!ans)
+	ptr = (char *)ft_calloc(sizeof(char), ft_strlen(s) + 1);
+	if (!ptr)
 		return (NULL);
-	while (s[i] != 0)
+	while (s[i] != '\0')
 	{
-		ans[i] = f(i, s[i]);
+		ptr[i] = f(i, s[i]);
 		i++;
 	}
-	ans[i] = 0;
-	return (ans);
+	return (ptr);
 }

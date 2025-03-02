@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 12:22:17 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/22 12:13:35 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/09 14:50:11 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/09 15:05:32 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,3 +19,13 @@ int	ft_isdigit(int c)
 	else
 		return (0);
 }
+
+// #include <stdio.h>
+
+// int	main(void)
+// {
+// 	printf("%d\n", ft_isdigit('0') == 1);
+// 	printf("%d\n", ft_isdigit('9') == 1);
+// 	printf("%d\n", ft_isdigit('5') == 1);
+// 	printf("%d\n", ft_isdigit('-') == 0);
+// }

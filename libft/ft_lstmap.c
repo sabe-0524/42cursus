@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 13:27:41 by sabe              #+#    #+#             */
-/*   Updated: 2024/05/04 17:55:58 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/20 20:41:05 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/20 20:56:33 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,22 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new_list;
+	t_list	*new_lst;
 	t_list	*new_node;
-	t_list	*tmp;
 
-	if (f == NULL || lst == NULL)
+	if (!lst || !f || !del)
 		return (NULL);
-	new_list = NULL;
+	new_lst = NULL;
 	while (lst != NULL)
 	{
-		tmp = f(lst->content);
-		new_node = ft_lstnew(tmp);
-		if (new_node == NULL)
+		new_node = ft_lstnew(f(lst->content));
+		if (!new_node)
 		{
-			del(tmp);
-			ft_lstclear(&new_list, del);
+			ft_lstclear(&new_lst, del);
 			return (NULL);
 		}
-		ft_lstadd_back(&new_list, new_node);
+		ft_lstadd_back(&new_lst, new_node);
 		lst = lst->next;
 	}
-	return (new_list);
+	return (new_lst);
 }

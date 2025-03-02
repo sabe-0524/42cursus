@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 12:47:01 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/22 12:14:38 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/09 18:06:16 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/09 18:09:05 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 int	ft_toupper(int c)
 {
 	if ('a' <= c && c <= 'z')
-		c -= 32;
-	return (c);
+		return (c - 32);
+	else
+		return (c);
 }
 
 // #include <stdio.h>
 
-// int main(void)
+// int	main(void)
 // {
-//     char c = 'd';
-//     printf("%c", ft_toupper(c));
-//     return (0);
+// 	printf("%c\n", ft_toupper('a'));
+// 	printf("%c\n", ft_toupper('z'));
+// 	printf("%c\n", ft_toupper('A'));
+// 	printf("%c\n", ft_toupper('-'));
 // }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 11:59:34 by sabe              #+#    #+#             */
-/*   Updated: 2024/04/22 12:24:08 by sabe             ###   ########.fr       */
+/*   Created: 2025/02/20 20:12:41 by sabe              #+#    #+#             */
+/*   Updated: 2025/02/20 20:16:51 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	int	i;
+	int		size;
+	t_list	*lst_cp;
 
-	if (lst == NULL)
+	size = 0;
+	lst_cp = lst;
+	if (!lst)
 		return (0);
-	i = 1;
-	while (lst->next != NULL)
+	while (lst_cp->next != NULL)
 	{
-		i++;
-		lst = lst->next;
+		size++;
+		lst_cp = lst_cp->next;
 	}
-	return (i);
+	return (size + 1);
 }
