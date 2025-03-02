@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 15:56:26 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/02 19:53:54 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/02 21:37:11 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,15 @@ int count_if_min(t_node *node_a, t_stack *stack, int stack_len)
 {
   t_node *node_b;
   int max;
-  int is_first;
   int max_index;
   int i;
 
   i = 0;
   node_b = stack->top;
   max = node_b->content;
-  is_first = 1;
-  while (is_first || node_b != stack->top)
+  max_index = 0;
+  while (!i || node_b != stack->top)
   {
-    is_first = 0;
     if (node_a->content > node_b->content)
       return (0);
     if (max < node_b->content)
