@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 21:14:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/02 16:07:36 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/02 19:50:30 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,11 @@ int count_stack(t_stack *stack);
 void assign_rb_rrb(t_node *node_a, int stack_len, int rb);
 int count_if_min(t_node *node_a, t_stack *stack, int stack_len);
 void count_r(t_stack *stack_a, t_stack *stack_b);
+void  sort_under_three(t_stack *stack);
+void  delete_except_ra_rb(t_node *node);
+void delete_except_ra_rrb(t_node *node);
+void delete_except_rra_rb(t_node *node);
+void  delete_except_rra_rrb(t_node *node);
+void total_score(t_node *node);
 
 #endif

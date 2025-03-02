@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 15:56:26 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/02 16:16:53 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/02 19:53:54 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,42 @@ int count_if_min(t_node *node_a, t_stack *stack, int stack_len)
   }
   assign_rb_rrb(node_a, stack_len, max_index);
   return (1);
+}
+
+int min_four(int a, int b, int c, int d)
+{
+    int min;
+
+    min = a;
+    if (min > b)
+        min = b;
+    if (min > c)
+        min = c;
+    if (min > d)
+        min = d;
+    return (min);
+}
+
+void total_score(t_node *node)
+{
+    int ra_rb;
+    int ra_rrb;
+    int rra_rb;
+    int rra_rrb;
+    int all;
+
+    ra_rb = node->command.ra + node->command.rb - node->command.rr;
+    ra_rrb = node->command.ra + node->command.rrb;
+    rra_rb = node->command.rra + node->command.rb;
+    rra_rrb = node->command.rra + node->command.rrb - node->command.rrr;
+    all = min_four(ra_rb, ra_rrb, rra_rb, rra_rrb);
+    node->command.all = all;
+    if (all == ra_rb)
+        delete_except_ra_rb(node);
+    else if (all == ra_rrb)
+        delete_except_ra_rrb(node);
+    else if (all == rra_rb)
+        delete_except_rra_rb(node);
+    else
+        delete_except_rra_rrb(node);
 }
