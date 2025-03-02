@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 21:14:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/01 22:09:07 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/02 16:07:36 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 # include "libft.h"
 
 typedef struct s_command
@@ -55,5 +56,9 @@ void sb(t_stack *stack);
 void ss(t_stack *stack_a, t_stack *stack_b);
 void pa(t_stack *stack_a, t_stack *stack_b);
 void pb(t_stack *stack_a, t_stack *stack_b);
+int count_stack(t_stack *stack);
+void assign_rb_rrb(t_node *node_a, int stack_len, int rb);
+int count_if_min(t_node *node_a, t_stack *stack, int stack_len);
+void count_r(t_stack *stack_a, t_stack *stack_b);
 
 #endif
