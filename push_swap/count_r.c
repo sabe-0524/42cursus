@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 12:07:51 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/02 16:29:30 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/02 16:41:29 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,21 @@ void count_rb_rrb(t_node *node_a, t_stack *stack, int stack_len)
     assign_rb_rrb(node_a, stack_len, rb);
 }
 
+void  count_rr_and_rrr(t_node *node_a)
+{
+    int rr;
+    int rrr;
+
+    rr = ft_min(node_a->command.ra, node_a->command.rb);
+    node_a->command.rr = rr;
+    node_a->command.ra -= rr;
+    node_a->command.rb -= rr;
+    rrr = ft_min(node_a->command.rra, node_a->command.rrb);
+    node_a->command.rrr = rrr;
+    node_a->command.rra -= rrr;
+    node_a->command.rrb -= rrr;
+}
+
 void count_r(t_stack *stack_a, t_stack *stack_b)
 {
     t_node *node_a;
@@ -69,6 +84,7 @@ void count_r(t_stack *stack_a, t_stack *stack_b)
         is_first = 0;
         count_ra_rra(node_a, i, stack_a_len);
         count_rb_rrb(node_a, stack_b, stack_b_len);
+        count_rr_and_rrr(node_a);
         node_a = node_a->next;
         i++;
     }

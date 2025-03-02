@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 21:21:52 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/02 16:27:09 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/02 16:42:13 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void test_print(t_stack *stack)
     while (i < 5)
     {
         printf("%d\n", node->content);
-        printf("ra:%d rra:%d rb:%d rrb:%d\n", node->command.ra, node->command.rra, node->command.rb, node->command.rrb);
+        printf("ra:%d rra:%d rb:%d rrb:%d rr:%d, rrr:%d\n", node->command.ra, node->command.rra, node->command.rb, node->command.rrb, node->command.rr, node->command.rrr);
         node = node->next;
         i++;
     }
