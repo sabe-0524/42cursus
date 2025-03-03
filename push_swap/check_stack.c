@@ -6,13 +6,13 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 20:14:19 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/03 20:38:29 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/04 01:18:24 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void check_stack_sorted(t_stack *stack)
+int check_stack_sorted(t_stack *stack)
 {
     t_node *node;
     int is_first;
@@ -23,10 +23,9 @@ void check_stack_sorted(t_stack *stack)
     {
         is_first = 0;
         if (node->content > node->next->content || node->next == node)
-            return;
+            return (0);
         node = node->next;
     }
-    all_free(stack);
-    exit(0);
+    return (1);
 }
 

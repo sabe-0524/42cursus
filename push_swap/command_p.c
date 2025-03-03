@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 21:39:30 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/01 22:47:15 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/04 01:25:27 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void add_stack_first(t_stack *stack, t_node *node)
     stack->top = node;
 }
 
-static void push(t_stack *stack_1, t_stack *stack_2)
+void push(t_stack *stack_1, t_stack *stack_2)
 {
     t_node *tmp;
 

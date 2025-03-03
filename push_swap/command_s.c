@@ -6,13 +6,13 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 21:10:18 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/01 21:40:14 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/04 01:25:00 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void swap(t_stack *stack)
+void swap(t_stack *stack)
 {
     t_node *tmp_next;
     t_node *tmp_prev;

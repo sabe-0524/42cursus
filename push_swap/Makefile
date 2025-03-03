@@ -6,7 +6,7 @@
 #    By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/23 21:09:48 by abesouichir       #+#    #+#              #
-#    Updated: 2025/03/03 22:16:38 by abesouichir      ###   ########.fr        #
+#    Updated: 2025/03/04 01:35:01 by abesouichir      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ BSRCS = \
 	checker_bonus.c
 OBJS = $(SRCS:.c=.o)
 BOBJS = $(BSRCS:.c=.o)
-INCLUDES = -I. -I./libft
+INCLUDES = -I. -I./libft -I./get_next_line
 OBJS_COMMON = $(filter-out main.o, $(OBJS))
 
 all : $(NAME)
