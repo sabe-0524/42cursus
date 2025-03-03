@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 16:54:46 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/02 21:27:46 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/03 17:48:53 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void  sort_under_three(t_stack *stack)
             sa(stack);
         return;
     }
-    else
+    else if (stack_len == 3)
     {
         if (stack->top->content > stack->top->next->content && stack->top->content > stack->top->prev->content)
             ra(stack);

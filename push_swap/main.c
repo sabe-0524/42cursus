@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 21:21:52 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/02 21:16:49 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/03 20:39:48 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,19 @@ int	main(int argc, char **argv)
     t_stack *stack_a;
     t_stack *stack_b;
     
+    alert_error(argc, argv);
     stack_a = create_stack(argc, argv);
+    if (!stack_a)
+        exit(1);
+    check_stack_sorted(stack_a);
     stack_b = create_stack(0, NULL);
+    if (!stack_b)
+    {
+        all_free(stack_a);
+        exit(1);
+    }
     sort(stack_a, stack_b);
-    
+    all_free(stack_a);
+    free(stack_b);
     return (0);
 }

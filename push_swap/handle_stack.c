@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 21:24:29 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/01 20:47:00 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/03 20:06:27 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ t_stack	*create_stack(int argc, char **argv)
   t_stack *stack;
 	t_node *node;
 
-	i = 1;
+	i = 0;
   stack = (t_stack *)malloc(sizeof(t_stack));
   if (!stack)
       return (NULL);
-	while (i < argc)
+	while (++i < argc)
 	{
 		node = create_node(ft_atoi(argv[i]));
     if (!node)
-        return (NULL); //全フリー処理を追加
+        return (all_free(stack));
     if (i == 1)
     {
         stack->top = node;
@@ -56,7 +56,27 @@ t_stack	*create_stack(int argc, char **argv)
     }
     else
         add_stack_last(stack, node);
-    i++;
 	}
   return (stack);
+}
+
+t_stack *all_free(t_stack *stack)
+{
+    t_node *node;
+    t_node *next;
+    int is_first;
+
+    is_first = 1;
+    node = stack->top;
+    while (is_first || node != stack->top)
+    {
+        is_first = 0;
+        next = node->next;
+        node->next = NULL;
+        node->prev = NULL;
+        free(node);
+        node = next;
+    }
+    free(stack);
+    return (NULL);
 }

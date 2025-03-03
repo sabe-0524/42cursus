@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 21:14:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/02 20:35:00 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/03 20:29:49 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,9 @@ void  delete_except_rra_rrb(t_node *node);
 void total_score(t_node *node);
 t_node *get_max_node(t_stack *stack);
 void sort(t_stack *stack_a, t_stack *stack_b);
+void alert_error(int argc, char **argv);
+void check_stack_sorted(t_stack *stack);
+t_stack *all_free(t_stack *stack);
+
 
 #endif
