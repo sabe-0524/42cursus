@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 21:03:41 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/04 01:37:49 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/04 01:47:45 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,33 @@
 
 void do_command(t_stack *stack_a, t_stack *stack_b, char *line)
 {
-    if (!ft_strncmp(line, "ra", 3))
+    if (!ft_strncmp(line, "ra", 3) && stack_a->top)
         stack_a->top = stack_a->top->next;
-    if (!ft_strncmp(line, "rb", 3))
+    if (!ft_strncmp(line, "rb", 3) && stack_b->top)
         stack_b->top = stack_b->top->next;
-    if (!ft_strncmp(line, "rr", 3))
+    if (!ft_strncmp(line, "rr", 3) && stack_a->top && stack_b->top)
     {
         stack_a->top = stack_a->top->next;
         stack_b->top = stack_b->top->next;
     }
-    if (!ft_strncmp(line, "rra", 4))
+    if (!ft_strncmp(line, "rra", 4) && stack_a->top)
         stack_a->top = stack_a->top->prev;
-    if (!ft_strncmp(line, "rrb", 4))
+    if (!ft_strncmp(line, "rrb", 4) && stack_b->top)
         stack_b->top = stack_b->top->prev;
-    if (!ft_strncmp(line, "rrr", 4))
+    if (!ft_strncmp(line, "rrr", 4) && stack_a->top && stack_b->top)
     {
         stack_a->top = stack_a->top->prev;
         stack_b->top = stack_b->top->prev;
     }
-    if (!ft_strncmp(line, "pa", 3))
+    if (!ft_strncmp(line, "pa", 3) && stack_b->top)
         push(stack_b, stack_a);
-    if (!ft_strncmp(line, "pb", 3))
+    if (!ft_strncmp(line, "pb", 3) && stack_a->top)
         push(stack_a, stack_b);
-    if (!ft_strncmp(line, "sa", 3))
+    if (!ft_strncmp(line, "sa", 3) && stack_a->top)
         swap(stack_a);
-    if (!ft_strncmp(line, "sb", 3))
+    if (!ft_strncmp(line, "sb", 3) && stack_b->top)
         swap(stack_b);
-    if (!ft_strncmp(line, "ss", 3))
+    if (!ft_strncmp(line, "ss", 3) && stack_a->top && stack_b->top)
     {
         swap(stack_a);
         swap(stack_b);
