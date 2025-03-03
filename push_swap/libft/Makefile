@@ -6,45 +6,40 @@
 #    By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/09 15:06:46 by sabe              #+#    #+#              #
-#    Updated: 2025/03/02 16:35:00 by abesouichir      ###   ########.fr        #
+#    Updated: 2025/03/03 21:41:37 by abesouichir      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
-SOURCES = \
-	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
-	ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memcpy.c ft_memmove.c \
-	ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c ft_strchr.c \
-	ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c ft_atoi.c \
-	ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c \
-	ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c \
-	ft_putendl_fd.c ft_putnbr_fd.c ft_min.c ft_max.c
-BSOURCES = \
-	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
-	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
-OBJECTS = $(SOURCES:.c=.o)
-BOBJECTS = $(BSOURCES:.c=.o)
-
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
+NAME = libft.a
+SRCS = ft_memcpy.c	ft_strlcat.c ft_atoi.c	ft_memmove.c	ft_strlcpy.c ft_bzero.c	ft_memset.c	ft_strlen.c ft_calloc.c	ft_putchar_fd.c	ft_strmapi.c ft_isalnum.c	ft_putendl_fd.c	ft_strncmp.c ft_isalpha.c	ft_putnbr_fd.c	ft_strnstr.c ft_isascii.c	ft_putstr_fd.c	ft_strrchr.c ft_isdigit.c	ft_split.c	ft_strtrim.c ft_isprint.c	ft_strchr.c	ft_substr.c ft_itoa.c	ft_strdup.c	ft_tolower.c ft_memchr.c	ft_striteri.c	ft_toupper.c ft_memcmp.c	ft_strjoin.c ft_min.c ft_max.c
+SRCS_BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+OBJS = $(SRCS:.c=.o)
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
+INCLUDES = -I libft.h
 
-all: $(NAME)
+ifdef WITH_BONUS
+OBJS += $(OBJS_BONUS)
+endif
 
-$(NAME): $(OBJECTS)
-	$(AR) -r $@ $?
+$(NAME) :	$(OBJS)
+	ar rc $@ $^
 
-bonus: $(OBJECTS) $(BOBJECTS)
-	$(AR) -r $(NAME) $?
+all : $(NAME)
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $?
+bonus: 
+	make WITH_BONUS=1
 
-clean:
-	rm -f $(OBJECTS) $(BOBJECTS)
+%.o:%.c
+	$(CC) -c  $(CFLAGS) $^ -o $@ $(INCLUDES)
 
-fclean: clean
+clean :
+	rm -f $(OBJS) $(OBJS_BONUS)
+
+fclean : clean
 	rm -f $(NAME)
 
-re: fclean all
+re : fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY : all clean fclean re bonus

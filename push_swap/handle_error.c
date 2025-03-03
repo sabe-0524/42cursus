@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:49:13 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/03 20:29:32 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/03 20:45:05 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void alert_error(int argc, char **argv)
 {
     if (check_error(argc, argv) || check_duplicated(argc, argv))
     {
-        write(1, "Error\n", 6);
+        write(2, "Error\n", 6);
         exit(1);
     }
 }

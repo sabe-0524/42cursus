@@ -6,7 +6,7 @@
 #    By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/23 21:09:48 by abesouichir       #+#    #+#              #
-#    Updated: 2025/03/03 20:24:24 by abesouichir      ###   ########.fr        #
+#    Updated: 2025/03/03 22:16:38 by abesouichir      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,28 +18,41 @@ SRCS = \
   main.c handle_stack.c command_r.c command_rr.c command_s.c \
   command_p.c count_r.c count_r_util.c sort.c delete_r.c \
 	sort_util.c handle_error.c check_stack.c
+BSRCS = \
+	checker_bonus.c
 OBJS = $(SRCS:.c=.o)
+BOBJS = $(BSRCS:.c=.o)
 INCLUDES = -I. -I./libft
+OBJS_COMMON = $(filter-out main.o, $(OBJS))
 
 all : $(NAME)
 
 libft/libft.a:
 	$(MAKE) -C libft
 
+get_next_line/get_next_line.a:
+	$(MAKE) -C get_next_line
+
 $(NAME) : $(OBJS) libft/libft.a
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS)
+
+bonus: all get_next_line/get_next_line.a $(BOBJS)
+	$(CC) $(CFLAGS) -o checker $(OBJS_COMMON) $(BOBJS) -L./get_next_line -lget_next_line $(LDFLAGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 clean :
 	rm -f $(OBJS)
+	rm -f $(BOBJS)
 	$(MAKE) -C libft clean
+	$(MAKE) -C get_next_line clean
 
 fclean : clean
 	rm -f $(NAME)
+	rm -f checker
 	$(MAKE) -C libft fclean
-
+	$(MAKE) -C get_next_line fclean
 re : fclean all
 
 .PHONY : all clean fclean re

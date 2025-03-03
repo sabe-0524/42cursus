@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
+#    By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 13:00:17 by sabe              #+#    #+#              #
-#    Updated: 2024/05/07 11:51:48 by sabe             ###   ########.fr        #
+#    Updated: 2025/03/03 21:28:57 by abesouichir      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,6 @@ all : $(NAME)
 
 bonus: 
 	make WITH_BONUS=1
-
-# bonus : $(NAME) $(OBJS_BONUS)
-# 	ar rc $(NAME) $(OBJS_BONUS)
 
 %.o:%.c
 	$(CC) -c  $(CFLAGS) $^ -o $@ $(INCLUDES)
