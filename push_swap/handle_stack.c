@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 21:24:29 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/03 20:06:27 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/04 11:39:22 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_stack *all_free(t_stack *stack)
 
     is_first = 1;
     node = stack->top;
-    while (is_first || node != stack->top)
+    while ((is_first || node != stack->top) && node != NULL)
     {
         is_first = 0;
         next = node->next;

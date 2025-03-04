@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 21:21:52 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/04 01:41:20 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/04 11:38:44 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int	main(int argc, char **argv)
     }
     sort(stack_a, stack_b);
     all_free(stack_a);
-    free(stack_b);
+    all_free(stack_b);
     return (0);
 }

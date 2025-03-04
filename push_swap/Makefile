@@ -6,7 +6,7 @@
 #    By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/23 21:09:48 by abesouichir       #+#    #+#              #
-#    Updated: 2025/03/04 01:35:01 by abesouichir      ###   ########.fr        #
+#    Updated: 2025/03/04 11:51:56 by abesouichir      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS = \
   command_p.c count_r.c count_r_util.c sort.c delete_r.c \
 	sort_util.c handle_error.c check_stack.c
 BSRCS = \
-	checker_bonus.c
+	checker_bonus.c checker_utils_bonus.c
 OBJS = $(SRCS:.c=.o)
 BOBJS = $(BSRCS:.c=.o)
 INCLUDES = -I. -I./libft -I./get_next_line
