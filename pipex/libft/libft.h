@@ -6,14 +6,14 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:03:26 by sabe              #+#    #+#             */
-/*   Updated: 2025/03/02 16:34:45 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/06 14:33:42 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-// # include <stdio.h>
+# include <stdio.h>
 # include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
