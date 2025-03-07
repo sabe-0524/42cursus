@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:36:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/06 22:42:05 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/07 15:15:59 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void handle_first(char **argv, int *in_fd)
         close(pipe_fd[1]);
         command = make_command(argv, 2);
         filepath = make_filepath(command);
+        if (!filepath)
+        {
+            
+        }
         execve(filepath, command, environ);
         perror("execve");
         exit(EXIT_FAILURE);
@@ -73,7 +77,6 @@ void handle_middle(char **argv, int *in_fd, int index)
         close(pipe_fd[0]);
         command = make_command(argv, index);
         filepath = make_filepath(command);
-        fprintf(stderr, "%s\n", filepath);
         execve(filepath, command, environ);
         perror("execve");
         exit(EXIT_FAILURE);
