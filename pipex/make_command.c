@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:08:48 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/08 18:18:58 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/08 18:31:59 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ char **make_command(char **argv, int index)
     if (index == 2)
     {
         tmp = ft_strjoin(argv[index], " ");
+        if (access(argv[1], R_OK))
+        {
+            perror(argv[1]);
+            exit(EXIT_FAILURE);
+        }
         str = ft_strjoin(tmp, argv[1]);
         free(tmp);
     }
