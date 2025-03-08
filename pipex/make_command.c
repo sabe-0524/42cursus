@@ -6,11 +6,23 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:08:48 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/07 14:10:52 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/08 18:18:58 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+extern char **environ;
+
+void all_free(char **paths, int i)
+{
+    while (paths[i] != NULL)
+    {
+        free(paths[i]);
+        paths[i] = NULL;
+        i++;
+    }
+    free(paths);
+}
 
 char **make_command(char **argv, int index)
 {
@@ -32,18 +44,23 @@ char **make_command(char **argv, int index)
     return (command);
 }
 
-void all_free(char **paths)
+char *get_first(char *full_command)
 {
-    int i;
+    char **splited_command;
+    char *command;
 
-    i = 0;
-    while (paths[i] != NULL)
+    splited_command = ft_split(full_command, ' ');
+    command = splited_command[0];
+    all_free(splited_command, 1);
+    if (ft_strchr(command, '/'))
     {
-        paths[i] = NULL;
-        free(paths[i]);
-        i++;
+        if (access(command, X_OK) == 0)
+            return (command);
+        else
+            {}//エラー処理
     }
-    free(paths);
+    free(command);
+    return (NULL);
 }
 
 char *make_filepath(char **command)
@@ -62,19 +79,37 @@ char *make_filepath(char **command)
         free(tmp);
         if (access(path, X_OK) == 0)
         {
-            all_free(paths);
+            all_free(paths, 0);
             return (path);
         }
         free(path);
         i++;
     }
-    return (NULL);
+    return (NULL);//フリーしてexitすべき
 }
 
-// char *make_filepath(char **command)
-// {
-//     char *filepath;
 
-//     filepath = ft_strjoin("/bin/", command[0]);
-//     return (filepath);
-// }
+void do_command(char **argv, int index)
+{
+    char **command;
+    char *filepath;
+    char *tmp;
+
+    command = make_command(argv, index);
+    if (ft_strchr(command[0], '/'))
+    {
+        filepath = ft_strdup(command[0]);
+        if (access(filepath, X_OK) != 0)
+        {
+            //エラー処理exit
+        }
+        tmp = ft_strdup(ft_strrchr(command[0], '/') + 1);
+        free(command[0]);
+        command[0] = tmp;
+    }
+    else
+        filepath = make_filepath(command);
+    execve(filepath, command, environ);
+    perror("execve");
+    exit(EXIT_FAILURE);
+}

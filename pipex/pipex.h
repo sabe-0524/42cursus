@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:28:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/06 22:12:04 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/08 18:10:07 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@
 void handle_command(int argc, char **argv, int outfile);
 char **make_command(char **argv, int index);
 char *make_filepath(char **command);
+void do_command(char **argv, int index);
 
 #endif

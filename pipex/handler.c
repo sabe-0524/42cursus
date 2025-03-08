@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:36:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/07 15:15:59 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/08 18:10:25 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@ extern char **environ;
 
 void handle_first(char **argv, int *in_fd)
 {
-    char **command;
-    char *filepath;
     int pipe_fd[2];
 
     if (pipe(pipe_fd) == -1)
@@ -33,15 +31,7 @@ void handle_first(char **argv, int *in_fd)
         dup2(pipe_fd[1], STDOUT_FILENO);
         close(pipe_fd[0]);
         close(pipe_fd[1]);
-        command = make_command(argv, 2);
-        filepath = make_filepath(command);
-        if (!filepath)
-        {
-            
-        }
-        execve(filepath, command, environ);
-        perror("execve");
-        exit(EXIT_FAILURE);
+        do_command(argv, 2);
     }
     else
     {
@@ -52,8 +42,6 @@ void handle_first(char **argv, int *in_fd)
 
 void handle_middle(char **argv, int *in_fd, int index)
 {
-    char **command;
-    char *filepath;
     int pipe_fd[2];
 
     if (pipe(pipe_fd) == -1)
@@ -75,11 +63,7 @@ void handle_middle(char **argv, int *in_fd, int index)
         dup2(pipe_fd[1], STDOUT_FILENO);
         close(pipe_fd[1]);
         close(pipe_fd[0]);
-        command = make_command(argv, index);
-        filepath = make_filepath(command);
-        execve(filepath, command, environ);
-        perror("execve");
-        exit(EXIT_FAILURE);
+        do_command(argv, index);
     }
     else
     {
