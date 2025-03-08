@@ -6,52 +6,62 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:36:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/08 18:10:25 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/08 21:23:35 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-extern char **environ;
+
+void make_pipe(int **pipe_fd)
+{
+    *pipe_fd = (int *)malloc(sizeof(int) * 2);
+    if (!*pipe_fd)
+    {
+        perror("malloc");
+        exit(EXIT_FAILURE);
+    }
+    if (pipe(*pipe_fd) == -1)
+    {
+        perror("pipe");
+        free(*pipe_fd);
+        exit(EXIT_FAILURE);
+    }
+}
 
 void handle_first(char **argv, int *in_fd)
 {
-    int pipe_fd[2];
+    int *pipe_fd;
+    pid_t pid;
 
-    if (pipe(pipe_fd) == -1)
-    {
-        //エラー処理
-    }
-    pid_t pid = fork();
+    make_pipe(&pipe_fd);
+    pid = fork();
     if (pid < 0)
     {
-        //エラー処理
+        perror("fork");
+        free(pipe_fd);
+        exit(EXIT_FAILURE);
     }
     else if (pid == 0)
-    {
-        dup2(pipe_fd[1], STDOUT_FILENO);
-        close(pipe_fd[0]);
-        close(pipe_fd[1]);
-        do_command(argv, 2);
-    }
+        do_child(argv, 2, pipe_fd);
     else
     {
         close(pipe_fd[1]);
         *in_fd = pipe_fd[0];
+        free(pipe_fd);
     }
 }
 
 void handle_middle(char **argv, int *in_fd, int index)
 {
-    int pipe_fd[2];
+    int *pipe_fd;
+    pid_t pid;
 
-    if (pipe(pipe_fd) == -1)
+    make_pipe(&pipe_fd);
+    if ((pid = fork()) < 0)
     {
-        //エラー処理
-    }
-    pid_t pid = fork();
-    if (pid < 0)
-    {
-        //エラー処理
+        perror("fork");
+        free(pipe_fd);
+        exit(EXIT_FAILURE);
     }
     else if (pid == 0)
     {
@@ -60,10 +70,7 @@ void handle_middle(char **argv, int *in_fd, int index)
             dup2(*in_fd, STDIN_FILENO);
             close(*in_fd);
         }
-        dup2(pipe_fd[1], STDOUT_FILENO);
-        close(pipe_fd[1]);
-        close(pipe_fd[0]);
-        do_command(argv, index);
+        do_child(argv, index, pipe_fd);
     }
     else
     {
@@ -71,19 +78,20 @@ void handle_middle(char **argv, int *in_fd, int index)
             close(*in_fd);
         close(pipe_fd[1]);
         *in_fd = pipe_fd[0];
+        free(pipe_fd);
     }
-    
 }
 
 void handle_last(int *in_fd, int outfile)
 {
     char c;
     int count;
+    pid_t pid;
 
-    pid_t pid = fork();
-    if (pid < 0)
+    if ((pid = fork()) < 0)
     {
-        //エラー処理
+        perror("fork");
+        exit(EXIT_FAILURE);
     }
     else if (pid == 0)
     {
@@ -96,12 +104,10 @@ void handle_last(int *in_fd, int outfile)
             write(outfile, &c, 1);
         if (count < 0)
         {
-            //エラー処理
+            perror("read");
+            exit(EXIT_FAILURE);
         }
         exit(0);
-    }
-    else
-    {
     }
 }
 

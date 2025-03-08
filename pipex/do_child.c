@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_command.c                                     :+:      :+:    :+:   */
+/*   do_child.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:08:48 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/08 18:31:59 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/08 21:15:37 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,6 @@ char **make_command(char **argv, int index)
     return (command);
 }
 
-char *get_first(char *full_command)
-{
-    char **splited_command;
-    char *command;
-
-    splited_command = ft_split(full_command, ' ');
-    command = splited_command[0];
-    all_free(splited_command, 1);
-    if (ft_strchr(command, '/'))
-    {
-        if (access(command, X_OK) == 0)
-            return (command);
-        else
-            {}//エラー処理
-    }
-    free(command);
-    return (NULL);
-}
-
 char *make_filepath(char **command)
 {
     char **paths;
@@ -75,9 +56,9 @@ char *make_filepath(char **command)
     char *tmp;
     int i;
 
-    i = 0;
+    i = -1;
     paths = ft_split(getenv("PATH"), ':');
-    while (paths[i] != NULL)
+    while (paths[++i] != NULL)
     {
         tmp = ft_strjoin(paths[i], "/");
         path = ft_strjoin(tmp, command[0]);
@@ -88,9 +69,10 @@ char *make_filepath(char **command)
             return (path);
         }
         free(path);
-        i++;
     }
-    return (NULL);//フリーしてexitすべき
+    all_free(paths, 1);
+    perror("path");
+    exit(EXIT_FAILURE);
 }
 
 
@@ -117,4 +99,13 @@ void do_command(char **argv, int index)
     execve(filepath, command, environ);
     perror("execve");
     exit(EXIT_FAILURE);
+}
+
+void do_child(char **argv, int index, int *pipe_fd)
+{
+    dup2(pipe_fd[1], STDOUT_FILENO);
+    close(pipe_fd[0]);
+    close(pipe_fd[1]);
+    free(pipe_fd);
+    do_command(argv, index);
 }

@@ -6,7 +6,7 @@
 #    By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/06 21:15:42 by abesouichir       #+#    #+#              #
-#    Updated: 2025/03/06 21:17:38 by abesouichir      ###   ########.fr        #
+#    Updated: 2025/03/08 21:14:36 by abesouichir      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -L./libft -lft
 NAME = pipex
 SRCS = \
-	main.c handler.c make_command.c
+	main.c handler.c do_child.c
 OBJS = $(SRCS:.c=.o)
 INCLUDES = -I. -I./libft
 
