@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:03:26 by sabe              #+#    #+#             */
-/*   Updated: 2025/03/02 16:34:45 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/17 20:13:52 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 t_list				*ft_lstnew(void *content);
 int					ft_lstsize(t_list *lst);
 
-int         ft_min(int a, int b);
-int         ft_max(int a, int b);
+int					ft_min(int a, int b);
+int					ft_max(int a, int b);
 
 #endif
