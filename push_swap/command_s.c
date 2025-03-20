@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_s.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 21:10:18 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/17 20:06:20 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/20 18:07:41 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	swap(t_stack *stack)
 	t_node	*tmp_next;
 	t_node	*tmp_prev;
 
+  if (stack->top == NULL || stack->top->next == stack->top)
+      return;
 	tmp_next = stack->top->next;
 	tmp_prev = stack->top->prev;
 	stack->top->next = stack->top->next->next;

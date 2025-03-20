@@ -1,12 +1,4 @@
-Makefile
-do_child.c
-do_child.o
-handler.c
-handler.o
-infile.txt
-libft
-main.c
-main.o
-outfile.txt
-pipex
-pipex.h
+aa
+bb
+cc
+dd

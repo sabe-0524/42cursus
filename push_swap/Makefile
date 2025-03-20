@@ -6,11 +6,11 @@
 #    By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/23 21:09:48 by abesouichir       #+#    #+#              #
-#    Updated: 2025/03/04 11:51:56 by abesouichir      ###   ########.fr        #
+#    Updated: 2025/03/20 18:00:59 by abesouichir      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc
+CC = cc -fsanitize=address
 CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -L./libft -lft
 NAME = push_swap
