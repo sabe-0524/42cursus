@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_max.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 16:33:43 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/02 16:34:17 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/17 20:13:29 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_max(int a, int b)
+int	ft_max(int a, int b)
 {
-    if (a < b)
-        return (b);
-    else
-        return (a);
+	if (a < b)
+		return (b);
+	else
+		return (a);
 }
