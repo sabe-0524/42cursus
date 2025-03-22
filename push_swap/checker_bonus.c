@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 21:03:41 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/20 19:41:44 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/22 20:50:35 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int	main(int argc, char **argv)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-  if (argc == 1)
-      return (0);
+	if (argc == 1)
+		return (0);
 	alert_error(argc, argv);
 	stack_a = create_stack(argc, argv);
 	if (!stack_a)
