@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 16:54:46 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/17 20:06:31 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/20 19:09:20 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,3 +120,10 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 	while (stack_b->top)
 		pa(stack_a, stack_b);
 }
+
+
+
+
+
+
+

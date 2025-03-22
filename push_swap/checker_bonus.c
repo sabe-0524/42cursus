@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 21:03:41 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/20 18:02:12 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/20 19:41:44 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	execute_ps(t_stack *stack_a, t_stack *stack_b)
 	{
 		convert_null(line);
 		do_command(stack_a, stack_b, line);
+		free(line);
 		line = get_next_line(0);
 	}
 }

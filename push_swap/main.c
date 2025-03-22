@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 21:21:52 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/20 17:56:23 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/20 19:20:52 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	main(int argc, char **argv)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-  if (argc == 1)
-      return (0);
+	if (argc == 1)
+		return (0);
 	alert_error(argc, argv);
 	stack_a = create_stack(argc, argv);
 	if (!stack_a)

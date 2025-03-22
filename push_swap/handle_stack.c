@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 21:24:29 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/17 20:06:26 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/20 19:25:50 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_stack	*create_stack(int argc, char **argv)
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	if (!stack)
 		return (NULL);
+	stack->top = NULL;
 	while (++i < argc)
 	{
 		node = create_node(ft_atoi(argv[i]));
@@ -65,10 +66,14 @@ t_stack	*all_free(t_stack *stack)
 	t_node	*node;
 	t_node	*next;
 	int		is_first;
+	t_node	*head;
 
+	if (!stack)
+		return (NULL);
 	is_first = 1;
 	node = stack->top;
-	while ((is_first || node != stack->top) && node != NULL)
+	head = stack->top;
+	while (node != NULL && (is_first || node != head))
 	{
 		is_first = 0;
 		next = node->next;

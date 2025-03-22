@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+         #
+#    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/23 21:09:48 by abesouichir       #+#    #+#              #
-#    Updated: 2025/03/20 18:00:59 by abesouichir      ###   ########.fr        #
+#    Updated: 2025/03/20 18:32:53 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc -fsanitize=address
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -L./libft -lft
 NAME = push_swap
