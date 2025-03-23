@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:36:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/23 17:57:18 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/23 18:08:51 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	handle_middle(char **argv, int *in_fd, int index)
 void	handle_last(int *in_fd, char *outfile_name)
 {
 	pid_t	pid;
+	int		outfile;
 
 	pid = fork();
 	if (pid < 0)
@@ -96,12 +97,13 @@ void	handle_last(int *in_fd, char *outfile_name)
 			dup2(*in_fd, STDIN_FILENO);
 			close(*in_fd);
 		}
-		if (access(outfile_name, W_OK))
+		outfile = open(outfile_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (outfile < 0)
 		{
 			perror(NULL);
 			exit(EXIT_FAILURE);
 		}
-		print_fd(outfile_name);
+		print_fd(outfile_name, outfile);
 		exit(0);
 	}
 }
