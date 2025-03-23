@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:08:48 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/23 17:26:07 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/23 17:45:37 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*make_filepath(char **command)
 	}
 	all_free(paths, 1);
 	ft_putendl_fd("command not found", 2);
-	exit(EXIT_FAILURE);
+	exit(127);
 }
 
 void	do_command(char **argv, int index)

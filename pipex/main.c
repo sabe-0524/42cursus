@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:35:07 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/23 16:13:13 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/23 17:51:39 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ int	main(int argc, char **argv)
 {
 	if (argc < 5)
 		return (1);
-	handle_command(argc, argv);
+	return(handle_command(argc, argv));
 }

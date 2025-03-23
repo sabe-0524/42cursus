@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+         #
+#    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/09 15:06:46 by sabe              #+#    #+#              #
-#    Updated: 2025/03/03 21:32:35 by abesouichir      ###   ########.fr        #
+#    Updated: 2025/03/23 17:37:48 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS = ft_memcpy.c	ft_strlcat.c ft_atoi.c	ft_memmove.c	ft_strlcpy.c ft_bzero.c	f
 SRCS_BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
-INCLUDES = -I libft.h
+INCLUDES = -I.
 
 ifdef WITH_BONUS
 OBJS += $(OBJS_BONUS)
@@ -28,7 +28,7 @@ $(NAME) :	$(OBJS)
 
 all : $(NAME)
 
-bonus: 
+bonus:
 	make WITH_BONUS=1
 
 %.o:%.c

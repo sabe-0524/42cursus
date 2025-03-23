@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 17:22:20 by sabe              #+#    #+#             */
-/*   Updated: 2025/03/23 17:29:40 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/23 17:51:26 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ void	print_fd(char *outfile_name)
 	int		count;
 	char	c;
 
+	if (access(outfile_name, W_OK))
+	{
+		perror(NULL);
+		exit(EXIT_FAILURE);
+	}
 	outfile = open(outfile_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (outfile < 0)
 	{

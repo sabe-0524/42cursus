@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:36:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/23 17:29:58 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/23 17:51:28 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,14 @@ void	handle_last(int *in_fd, char *outfile_name)
 	}
 }
 
-void	handle_command(int argc, char **argv)
+int	handle_command(int argc, char **argv)
 {
 	int	index;
 	int	in_fd;
+	int	status;
+	int	exit_code;
 
+	exit_code = 0;
 	index = 3;
 	handle_first(argv, &in_fd);
 	while (index < argc - 1)
@@ -114,6 +117,10 @@ void	handle_command(int argc, char **argv)
 		index++;
 	}
 	handle_last(&in_fd, argv[argc - 1]);
-	while (wait(NULL) > 0)
-		;
+	while (wait(&status) > 0)
+	{
+		if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
+			exit_code = WEXITSTATUS(status);
+	}
+	return (exit_code);
 }
