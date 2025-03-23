@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:36:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/23 17:51:28 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/23 17:57:18 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,11 @@ void	handle_last(int *in_fd, char *outfile_name)
 		{
 			dup2(*in_fd, STDIN_FILENO);
 			close(*in_fd);
+		}
+		if (access(outfile_name, W_OK))
+		{
+			perror(NULL);
+			exit(EXIT_FAILURE);
 		}
 		print_fd(outfile_name);
 		exit(0);
