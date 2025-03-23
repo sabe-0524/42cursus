@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:08:48 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/23 16:17:22 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/23 16:25:08 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*make_filepath(char **command)
 		free(path);
 	}
 	all_free(paths, 1);
-	perror("path");
+	perror(command[0]);
 	exit(EXIT_FAILURE);
 }
 
