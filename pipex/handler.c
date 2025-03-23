@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:36:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/17 21:48:21 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/23 16:15:24 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,12 @@ void	handle_middle(char **argv, int *in_fd, int index)
 	}
 }
 
-void	handle_last(int *in_fd, int outfile)
+void	handle_last(int *in_fd, char *outfile_name)
 {
 	char	c;
 	int		count;
 	pid_t	pid;
+	int		outfile;
 
 	pid = fork();
 	if (pid < 0)
@@ -102,22 +103,30 @@ void	handle_last(int *in_fd, int outfile)
 			dup2(*in_fd, STDIN_FILENO);
 			close(*in_fd);
 		}
+		outfile = open(outfile_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (outfile < 0)
+		{
+			perror(outfile_name);
+			exit(EXIT_FAILURE);
+		}
 		count = read(STDIN_FILENO, &c, 1);
 		while (count > 0)
 		{
 			write(outfile, &c, 1);
 			count = read(STDIN_FILENO, &c, 1);
 		}
+		close(outfile);
 		if (count < 0)
 		{
 			perror("read");
+			close(outfile);
 			exit(EXIT_FAILURE);
 		}
 		exit(0);
 	}
 }
 
-void	handle_command(int argc, char **argv, int outfile)
+void	handle_command(int argc, char **argv)
 {
 	int	index;
 	int	in_fd;
@@ -129,7 +138,7 @@ void	handle_command(int argc, char **argv, int outfile)
 		handle_middle(argv, &in_fd, index);
 		index++;
 	}
-	handle_last(&in_fd, outfile);
+	handle_last(&in_fd, argv[argc - 1]);
 	while (wait(NULL) > 0)
 		;
 }

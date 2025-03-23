@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:08:48 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/17 21:43:19 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/23 16:17:22 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ void	do_command(char **argv, int index)
 		filepath = ft_strdup(command[0]);
 		if (access(filepath, X_OK) != 0)
 		{
-			//エラー処理exit
+			perror(filepath);
+			exit(EXIT_FAILURE);
 		}
 		tmp = ft_strdup(ft_strrchr(command[0], '/') + 1);
 		free(command[0]);

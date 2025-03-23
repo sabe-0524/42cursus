@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:28:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/17 21:50:26 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/23 16:12:54 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-void	handle_command(int argc, char **argv, int outfile);
+void	handle_command(int argc, char **argv);
 char	**make_command(char **argv, int index);
 char	*make_filepath(char **command);
 void	do_command(char **argv, int index);
