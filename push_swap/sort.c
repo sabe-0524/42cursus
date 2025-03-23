@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 16:54:46 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/22 20:50:31 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/23 16:05:58 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	sort_under_three(t_stack *stack)
 	int	stack_len;
 
 	stack_len = count_stack(stack);
-	if (stack_len == 1)
+	if (stack_len <= 1)
 		return ;
 	else if (stack_len == 2)
 	{
@@ -104,6 +104,8 @@ void	rotate_max(t_stack *stack)
 
 void	sort(t_stack *stack_a, t_stack *stack_b)
 {
+	int	count;
+
 	if (count_stack(stack_a) <= 3)
 	{
 		sort_under_three(stack_a);
@@ -111,12 +113,16 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 	}
 	pb(stack_a, stack_b);
 	pb(stack_a, stack_b);
-	while (stack_a->top)
+	count = count_stack(stack_a);
+	while (count > 3)
 	{
 		count_r(stack_a, stack_b);
 		execute_command(select_best_node(stack_a), stack_a, stack_b);
+		count--;
 	}
 	rotate_max(stack_b);
+	sort_under_three(stack_a);
 	while (stack_b->top)
-		pa(stack_a, stack_b);
+		push_back(stack_a, stack_b);
+	rotate_min(stack_a);
 }

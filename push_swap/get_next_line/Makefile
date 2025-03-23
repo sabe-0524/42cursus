@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+         #
+#    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/03 21:27:44 by abesouichir       #+#    #+#              #
-#    Updated: 2025/03/03 21:59:25 by abesouichir      ###   ########.fr        #
+#    Updated: 2025/03/23 14:50:25 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = libget_next_line.a
 SRCS = get_next_line.c get_next_line_utils.c
 OBJS = $(SRCS:.c=.o)
-INCLUDES = -I libft.h
+INCLUDES = -I.
 
 $(NAME) :	$(OBJS)
 	ar rc $@ $^

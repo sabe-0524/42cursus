@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 21:14:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/17 20:06:33 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/23 16:05:56 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,9 @@ int					check_stack_sorted(t_stack *stack);
 t_stack				*all_free(t_stack *stack);
 void				swap(t_stack *stack);
 void				push(t_stack *stack_1, t_stack *stack_2);
+void				sort_under_three(t_stack *stack);
+void				push_back(t_stack *stack_a, t_stack *stack_b);
+t_node				*get_min_node(t_stack *stack);
+void				rotate_min(t_stack *stack);
 
 #endif

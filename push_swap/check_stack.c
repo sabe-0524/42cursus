@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 20:14:19 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/17 20:06:11 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/23 14:58:33 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	check_stack_sorted(t_stack *stack)
 
 	node = stack->top;
 	is_first = 1;
+	if (!node)
+		return (1);
 	while (is_first || node->next != stack->top)
 	{
 		is_first = 0;
