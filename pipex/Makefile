@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+         #
+#    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/06 21:15:42 by abesouichir       #+#    #+#              #
-#    Updated: 2025/03/09 16:37:56 by abesouichir      ###   ########.fr        #
+#    Updated: 2025/03/23 17:22:47 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -L./libft -lft
 NAME = pipex
 SRCS = \
-	main.c handler.c do_child.c
+	main.c handler.c do_child.c utils.c
 OBJS = $(SRCS:.c=.o)
 INCLUDES = -I. -I./libft
 

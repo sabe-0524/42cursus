@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:36:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/23 16:15:24 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/23 17:29:58 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	make_pipe(int **pipe_fd)
 	*pipe_fd = (int *)malloc(sizeof(int) * 2);
 	if (!*pipe_fd)
 	{
-		perror("malloc");
+		perror(NULL);
 		exit(EXIT_FAILURE);
 	}
 	if (pipe(*pipe_fd) == -1)
 	{
-		perror("pipe");
+		perror(NULL);
 		free(*pipe_fd);
 		exit(EXIT_FAILURE);
 	}
@@ -37,7 +37,7 @@ void	handle_first(char **argv, int *in_fd)
 	pid = fork();
 	if (pid < 0)
 	{
-		perror("fork");
+		perror(NULL);
 		free(pipe_fd);
 		exit(EXIT_FAILURE);
 	}
@@ -59,11 +59,7 @@ void	handle_middle(char **argv, int *in_fd, int index)
 	make_pipe(&pipe_fd);
 	pid = fork();
 	if (pid < 0)
-	{
-		perror("fork");
-		free(pipe_fd);
-		exit(EXIT_FAILURE);
-	}
+		handle_pid_error(pipe_fd);
 	else if (pid == 0)
 	{
 		if (*in_fd != STDIN_FILENO)
@@ -85,15 +81,12 @@ void	handle_middle(char **argv, int *in_fd, int index)
 
 void	handle_last(int *in_fd, char *outfile_name)
 {
-	char	c;
-	int		count;
 	pid_t	pid;
-	int		outfile;
 
 	pid = fork();
 	if (pid < 0)
 	{
-		perror("fork");
+		perror(NULL);
 		exit(EXIT_FAILURE);
 	}
 	else if (pid == 0)
@@ -103,25 +96,7 @@ void	handle_last(int *in_fd, char *outfile_name)
 			dup2(*in_fd, STDIN_FILENO);
 			close(*in_fd);
 		}
-		outfile = open(outfile_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		if (outfile < 0)
-		{
-			perror(outfile_name);
-			exit(EXIT_FAILURE);
-		}
-		count = read(STDIN_FILENO, &c, 1);
-		while (count > 0)
-		{
-			write(outfile, &c, 1);
-			count = read(STDIN_FILENO, &c, 1);
-		}
-		close(outfile);
-		if (count < 0)
-		{
-			perror("read");
-			close(outfile);
-			exit(EXIT_FAILURE);
-		}
+		print_fd(outfile_name);
 		exit(0);
 	}
 }

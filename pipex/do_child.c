@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:08:48 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/23 16:25:08 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/23 17:26:07 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	**make_command(char **argv, int index)
 		tmp = ft_strjoin(argv[index], " ");
 		if (access(argv[1], R_OK))
 		{
-			perror(argv[1]);
+			perror(NULL);
 			exit(EXIT_FAILURE);
 		}
 		str = ft_strjoin(tmp, argv[1]);
@@ -72,7 +72,7 @@ char	*make_filepath(char **command)
 		free(path);
 	}
 	all_free(paths, 1);
-	perror(command[0]);
+	ft_putendl_fd("command not found", 2);
 	exit(EXIT_FAILURE);
 }
 
@@ -88,7 +88,7 @@ void	do_command(char **argv, int index)
 		filepath = ft_strdup(command[0]);
 		if (access(filepath, X_OK) != 0)
 		{
-			perror(filepath);
+			perror(NULL);
 			exit(EXIT_FAILURE);
 		}
 		tmp = ft_strdup(ft_strrchr(command[0], '/') + 1);
@@ -98,7 +98,7 @@ void	do_command(char **argv, int index)
 	else
 		filepath = make_filepath(command);
 	execve(filepath, command, environ);
-	perror("execve");
+	perror(NULL);
 	exit(EXIT_FAILURE);
 }
 
