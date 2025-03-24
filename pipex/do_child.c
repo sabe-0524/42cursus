@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_child.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:08:48 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/23 17:45:37 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/24 23:45:59 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,14 @@ char	**make_command(char **argv, int index)
 	return (command);
 }
 
-char	*make_filepath(char **command)
+char	*make_filepath(char **command, char *path)
 {
 	char	**paths;
-	char	*path;
 	char	*tmp;
 	int		i;
 
 	i = -1;
-	paths = ft_split(getenv("PATH"), ':');
+	paths = ft_split(path, ':');
 	while (paths[++i] != NULL)
 	{
 		tmp = ft_strjoin(paths[i], "/");
@@ -76,7 +75,7 @@ char	*make_filepath(char **command)
 	exit(127);
 }
 
-void	do_command(char **argv, int index)
+void	do_command(char **argv, int index, char *path)
 {
 	char	**command;
 	char	*filepath;
@@ -96,17 +95,17 @@ void	do_command(char **argv, int index)
 		command[0] = tmp;
 	}
 	else
-		filepath = make_filepath(command);
+		filepath = make_filepath(command, path);
 	execve(filepath, command, environ);
 	perror(NULL);
 	exit(EXIT_FAILURE);
 }
 
-void	do_child(char **argv, int index, int *pipe_fd)
+void	do_child(char **argv, int index, int *pipe_fd, char *path)
 {
 	dup2(pipe_fd[1], STDOUT_FILENO);
 	close(pipe_fd[0]);
 	close(pipe_fd[1]);
 	free(pipe_fd);
-	do_command(argv, index);
+	do_command(argv, index, path);
 }

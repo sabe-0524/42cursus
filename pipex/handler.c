@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:36:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/23 18:08:51 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/24 23:43:18 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	make_pipe(int **pipe_fd)
 	}
 }
 
-void	handle_first(char **argv, int *in_fd)
+void	handle_first(char **argv, int *in_fd, char *path)
 {
 	int		*pipe_fd;
 	pid_t	pid;
@@ -42,7 +42,7 @@ void	handle_first(char **argv, int *in_fd)
 		exit(EXIT_FAILURE);
 	}
 	else if (pid == 0)
-		do_child(argv, 2, pipe_fd);
+		do_child(argv, 2, pipe_fd, path);
 	else
 	{
 		close(pipe_fd[1]);
@@ -51,7 +51,7 @@ void	handle_first(char **argv, int *in_fd)
 	}
 }
 
-void	handle_middle(char **argv, int *in_fd, int index)
+void	handle_middle(char **argv, int *in_fd, int index, char *path)
 {
 	int		*pipe_fd;
 	pid_t	pid;
@@ -67,7 +67,7 @@ void	handle_middle(char **argv, int *in_fd, int index)
 			dup2(*in_fd, STDIN_FILENO);
 			close(*in_fd);
 		}
-		do_child(argv, index, pipe_fd);
+		do_child(argv, index, pipe_fd, path);
 	}
 	else
 	{
@@ -108,7 +108,7 @@ void	handle_last(int *in_fd, char *outfile_name)
 	}
 }
 
-int	handle_command(int argc, char **argv)
+int	handle_command(int argc, char **argv, char *path)
 {
 	int	index;
 	int	in_fd;
@@ -117,10 +117,10 @@ int	handle_command(int argc, char **argv)
 
 	exit_code = 0;
 	index = 3;
-	handle_first(argv, &in_fd);
+	handle_first(argv, &in_fd, path);
 	while (index < argc - 1)
 	{
-		handle_middle(argv, &in_fd, index);
+		handle_middle(argv, &in_fd, index, path);
 		index++;
 	}
 	handle_last(&in_fd, argv[argc - 1]);
