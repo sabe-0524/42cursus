@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:28:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/24 23:45:49 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/25 17:55:02 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ void	do_command(char **argv, int index, char *path);
 void	do_child(char **argv, int index, int *pipe_fd, char *path);
 void	print_fd(char *outfile_name, int outfile);
 void	handle_pid_error(int *pipe_fd);
+void	all_free(char **paths, int i);
+void	error_in_command(char **command, char *filepath);
 
 #endif

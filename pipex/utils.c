@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 17:22:20 by sabe              #+#    #+#             */
-/*   Updated: 2025/03/23 18:09:31 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/25 17:54:50 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,13 @@ void	handle_pid_error(int *pipe_fd)
 {
 	perror(NULL);
 	free(pipe_fd);
+	exit(EXIT_FAILURE);
+}
+
+void	error_in_command(char **command, char *filepath)
+{
+	perror(NULL);
+	all_free(command, 0);
+	free(filepath);
 	exit(EXIT_FAILURE);
 }

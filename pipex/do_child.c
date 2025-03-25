@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_child.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:08:48 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/24 23:45:59 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/25 17:55:42 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ char	**make_command(char **argv, int index)
 
 	if (index == 2)
 	{
-		tmp = ft_strjoin(argv[index], " ");
 		if (access(argv[1], R_OK))
 		{
 			perror(NULL);
 			exit(EXIT_FAILURE);
 		}
+		tmp = ft_strjoin(argv[index], " ");
 		str = ft_strjoin(tmp, argv[1]);
 		free(tmp);
 	}
@@ -70,7 +70,8 @@ char	*make_filepath(char **command, char *path)
 		}
 		free(path);
 	}
-	all_free(paths, 1);
+	all_free(paths, 0);
+	all_free(command, 0);
 	ft_putendl_fd("command not found", 2);
 	exit(127);
 }
@@ -86,10 +87,7 @@ void	do_command(char **argv, int index, char *path)
 	{
 		filepath = ft_strdup(command[0]);
 		if (access(filepath, X_OK) != 0)
-		{
-			perror(NULL);
-			exit(EXIT_FAILURE);
-		}
+			error_in_command(command, filepath);
 		tmp = ft_strdup(ft_strrchr(command[0], '/') + 1);
 		free(command[0]);
 		command[0] = tmp;
@@ -97,8 +95,7 @@ void	do_command(char **argv, int index, char *path)
 	else
 		filepath = make_filepath(command, path);
 	execve(filepath, command, environ);
-	perror(NULL);
-	exit(EXIT_FAILURE);
+	error_in_command(command, filepath);
 }
 
 void	do_child(char **argv, int index, int *pipe_fd, char *path)
