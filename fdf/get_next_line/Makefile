@@ -5,43 +5,32 @@
 #                                                     +:+ +:+         +:+      #
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/03/23 20:08:34 by sabe              #+#    #+#              #
-#    Updated: 2025/03/23 20:26:47 by sabe             ###   ########.fr        #
+#    Created: 2025/03/03 21:27:44 by abesouichir       #+#    #+#              #
+#    Updated: 2025/03/23 14:50:25 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-# LDFLAGS = -L./libft -lft
-NAME = fractal
-SRCS = \
-	main.c
+NAME = libget_next_line.a
+SRCS = get_next_line.c get_next_line_utils.c
 OBJS = $(SRCS:.c=.o)
-INCLUDES = -I. -I./minilibx-linux
-LIBX_FLAGS = -lmlx -lXext -lX11
+INCLUDES = -I.
+
+$(NAME) :	$(OBJS)
+	ar rc $@ $^
 
 all : $(NAME)
 
-# libft/libft.a:
-# 	$(MAKE) -C libft
-
-minilibx-linux/libmlx.a:
-	$(MAKE) -C minilibx-linux
-
-$(NAME) : $(OBJS) minilibx-linux/libmlx.a
-	$(CC) $(CFLAGS) $(LIBX_FLAGS) -o $(NAME) $(OBJS)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
+%.o:%.c
+	$(CC) -c  $(CFLAGS) $^ -o $@ $(INCLUDES)
 
 clean :
-	rm -f $(OBJS)
-	# $(MAKE) -C libft clean
+	rm -f $(OBJS) $(OBJS_BONUS)
 
 fclean : clean
 	rm -f $(NAME)
-	# $(MAKE) -C libft fclean
 
 re : fclean all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re bonus
