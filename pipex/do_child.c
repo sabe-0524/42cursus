@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:08:48 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/25 17:55:42 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/29 18:07:28 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ char	**make_command(char **argv, int index)
 	if (index == 2)
 	{
 		if (access(argv[1], R_OK))
-		{
-			perror(NULL);
-			exit(EXIT_FAILURE);
-		}
+			do_error();
 		tmp = ft_strjoin(argv[index], " ");
 		str = ft_strjoin(tmp, argv[1]);
 		free(tmp);

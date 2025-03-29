@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 17:22:20 by sabe              #+#    #+#             */
-/*   Updated: 2025/03/25 17:54:50 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/29 18:09:22 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ void	print_fd(char *outfile_name, int outfile)
 	char	c;
 
 	if (access(outfile_name, W_OK))
-	{
-		perror(NULL);
-		exit(EXIT_FAILURE);
-	}
+		do_error();
 	count = read(STDIN_FILENO, &c, 1);
 	while (count > 0)
 	{
@@ -31,23 +28,26 @@ void	print_fd(char *outfile_name, int outfile)
 	close(outfile);
 	if (count < 0)
 	{
-		perror(NULL);
 		close(outfile);
-		exit(EXIT_FAILURE);
+		do_error();
 	}
 }
 
 void	handle_pid_error(int *pipe_fd)
 {
-	perror(NULL);
 	free(pipe_fd);
-	exit(EXIT_FAILURE);
+	do_error();
 }
 
 void	error_in_command(char **command, char *filepath)
 {
-	perror(NULL);
 	all_free(command, 0);
 	free(filepath);
+	do_error();
+}
+
+void	do_error(void)
+{
+	perror(NULL);
 	exit(EXIT_FAILURE);
 }

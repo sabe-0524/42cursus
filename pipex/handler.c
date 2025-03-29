@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:36:31 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/24 23:43:18 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/03/29 18:08:23 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,11 @@ void	make_pipe(int **pipe_fd)
 {
 	*pipe_fd = (int *)malloc(sizeof(int) * 2);
 	if (!*pipe_fd)
-	{
-		perror(NULL);
-		exit(EXIT_FAILURE);
-	}
+		do_error();
 	if (pipe(*pipe_fd) == -1)
 	{
-		perror(NULL);
 		free(*pipe_fd);
-		exit(EXIT_FAILURE);
+		do_error();
 	}
 }
 
@@ -37,9 +33,8 @@ void	handle_first(char **argv, int *in_fd, char *path)
 	pid = fork();
 	if (pid < 0)
 	{
-		perror(NULL);
 		free(pipe_fd);
-		exit(EXIT_FAILURE);
+		do_error();
 	}
 	else if (pid == 0)
 		do_child(argv, 2, pipe_fd, path);
@@ -86,10 +81,7 @@ void	handle_last(int *in_fd, char *outfile_name)
 
 	pid = fork();
 	if (pid < 0)
-	{
-		perror(NULL);
-		exit(EXIT_FAILURE);
-	}
+		do_error();
 	else if (pid == 0)
 	{
 		if (*in_fd != STDIN_FILENO)
@@ -99,12 +91,14 @@ void	handle_last(int *in_fd, char *outfile_name)
 		}
 		outfile = open(outfile_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (outfile < 0)
-		{
-			perror(NULL);
-			exit(EXIT_FAILURE);
-		}
+			do_error();
 		print_fd(outfile_name, outfile);
 		exit(0);
+	}
+	else
+	{
+		if (*in_fd != STDIN_FILENO)
+			close(*in_fd);
 	}
 }
 
