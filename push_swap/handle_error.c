@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:49:13 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/17 20:06:25 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/29 17:48:53 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ int	check_error(int argc, char **argv)
 		j = 0;
 		while (argv[i][j] != '\0')
 		{
-			if (argv[i][j] != '+' && argv[i][j] != '-' && (argv[i][j] < '0'
-					|| argv[i][j] > '9'))
+			if (j == 0 && argv[i][j] != '+' && argv[i][j] != '-'
+				&& (argv[i][j] < '0' || argv[i][j] > '9'))
+				return (1);
+			if (argv[i][j] < '0' || argv[i][j] > '9')
 				return (1);
 			j++;
 		}
@@ -61,32 +63,32 @@ int	check_error(int argc, char **argv)
 	return (0);
 }
 
-int	check_duplicated(int argc, char **argv)
+void	check_duplicated(t_stack *stack)
 {
-	int	i;
-	int	j;
+	t_node	*node_a;
+	t_node	*node_b;
 
-	i = 0;
-	while (++i < argc - 1)
+	node_a = stack->top;
+	while (node_a != stack->top->prev)
 	{
-		j = i + 1;
-		while (j < argc)
+		node_b = node_a->next;
+		while (node_b != stack->top)
 		{
-			if (!ft_strncmp(argv[i], argv[j],
-					(size_t)ft_max((int)ft_strlen(argv[i]),
-						(int)ft_strlen(argv[j]))))
+			if (node_a->content == node_b->content)
 			{
-				return (1);
+				write(2, "Error\n", 6);
+				all_free(stack);
+				exit(1);
 			}
-			j++;
+			node_b = node_b->next;
 		}
+		node_a = node_a->next;
 	}
-	return (0);
 }
 
 void	alert_error(int argc, char **argv)
 {
-	if (check_error(argc, argv) || check_duplicated(argc, argv))
+	if (check_error(argc, argv))
 	{
 		write(2, "Error\n", 6);
 		exit(1);

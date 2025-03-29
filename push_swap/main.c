@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 21:21:52 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/23 16:05:52 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/29 17:48:31 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 	stack_a = create_stack(argc, argv);
 	if (!stack_a)
 		exit(1);
+	check_duplicated(stack_a);
 	if (check_stack_sorted(stack_a))
 	{
 		all_free(stack_a);
