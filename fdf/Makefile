@@ -6,7 +6,7 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/23 20:08:34 by sabe              #+#    #+#              #
-#    Updated: 2025/03/29 21:39:38 by sabe             ###   ########.fr        #
+#    Updated: 2025/03/30 18:15:08 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC_DIR = src
 OBJ_DIR = obj
 INCLUDE_DIR = include
 
-SRC_FILES = src/main.c
+SRC_FILES = src/main.c src/handle_map.c src/utils.c
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 LIBFT = $(LIBFT_PATH)/libft.a
@@ -36,7 +36,7 @@ NAME = fdf
 all: $(NAME)
 
 $(NAME): $(OBJ_FILES) $(LIBFT) $(MLX) $(GNL)
-	@$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_PATH) -lft -L$(MLX_PATH) -lmlx -lXext -lX11 -lm -L&(GNL_PATH) -lget_next_line
+	@$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_PATH) -lft -L$(MLX_PATH) -lmlx -lXext -lX11 -lm -L$(GNL_PATH) -lget_next_line
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
@@ -60,7 +60,7 @@ clean:
 
 fclean: clean
 	@$(MAKE) -C $(LIBFT_PATH) fclean
-	@$(MAKE) -C $(GNL_PATH) clean
+	@$(MAKE) -C $(GNL_PATH) fclean
 	@rm $(NAME)
 
 re: fclean all
