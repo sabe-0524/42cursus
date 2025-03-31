@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 21:21:09 by sabe              #+#    #+#             */
-/*   Updated: 2025/03/30 20:33:25 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/31 21:51:10 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	assign_line(t_map *map, char *line, int i)
 	while (nums[j])
 	{
 		map->points[i][j].x = j;
-		map->points[i][j].y = i;
+		map->points[i][j].y = map->col - i - 1;
 		map->points[i][j].z = ft_atoi(nums[j]);
 		j++;
 	}

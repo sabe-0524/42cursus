@@ -6,19 +6,21 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 20:14:12 by sabe              #+#    #+#             */
-/*   Updated: 2025/03/30 20:33:36 by sabe             ###   ########.fr       */
+/*   Updated: 2025/03/31 21:42:33 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTAL_H
 # define FRACTAL_H
 
+# define _USE_MATH_DEFINES
 # include "../get_next_line/get_next_line.h"
 # include "../libft/libft.h"
 # include "mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
+# include <math.h>
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -43,5 +45,6 @@ typedef struct s_map
 
 void			make_map(char **argv, t_map *map);
 void			all_free_char(char **strs);
+void			rotate_map_z(t_map *map, double rad);
 
 #endif
