@@ -6,12 +6,12 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 20:14:12 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/09 19:28:35 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/09 22:05:08 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTAL_H
-# define FRACTAL_H
+#ifndef FDF_H
+# define FDF_H
 
 # define _USE_MATH_DEFINES
 # include "../get_next_line/get_next_line.h"
@@ -41,10 +41,15 @@ typedef struct s_map
 	t_mappoint	**points;
 	int			col;
 	int			row;
+	double		min_x;
+	double		max_x;
+	double		min_y;
+	double		max_y;
 }				t_map;
 
 void			make_map(char **argv, t_map *map);
 void			all_free_char(char **strs);
-void			rotate_map_z(t_map *map);
+void			rotate_map(t_map *map);
+void			move_map(t_map *map, int width, int height);
 
 #endif

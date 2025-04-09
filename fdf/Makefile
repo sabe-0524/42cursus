@@ -6,7 +6,7 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/23 20:08:34 by sabe              #+#    #+#              #
-#    Updated: 2025/03/31 21:38:58 by sabe             ###   ########.fr        #
+#    Updated: 2025/04/09 22:06:20 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC_DIR = src
 OBJ_DIR = obj
 INCLUDE_DIR = include
 
-SRC_FILES = src/main.c src/handle_map.c src/utils.c src/rotate.c
+SRC_FILES = src/main.c src/handle_map.c src/utils.c src/rotate.c src/move.c
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 LIBFT = $(LIBFT_PATH)/libft.a

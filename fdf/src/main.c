@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:11:44 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/09 19:28:27 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/09 22:23:17 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,14 @@ t_map	*init_map()
 int	main(int argc, char **argv)
 {
 	t_map	*map;
+	// void	*mlx;
 
 	if (argc != 2)
 		return (1);
 	map = init_map();
 	make_map(argv, map);
-	rotate_map_z(map);
+	rotate_map(map);
+	move_map(map, 100,500);
 	print_map(map);
 	return (0);
 }
