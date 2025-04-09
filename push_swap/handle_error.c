@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:49:13 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/03/29 17:48:53 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/09 18:29:32 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	check_error(int argc, char **argv)
 			if (j == 0 && argv[i][j] != '+' && argv[i][j] != '-'
 				&& (argv[i][j] < '0' || argv[i][j] > '9'))
 				return (1);
-			if (argv[i][j] < '0' || argv[i][j] > '9')
+			if (j != 0 && (argv[i][j] < '0' || argv[i][j] > '9'))
 				return (1);
 			j++;
 		}
