@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:11:44 by sabe              #+#    #+#             */
-/*   Updated: 2025/03/31 22:18:53 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/09 19:28:27 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	main(int argc, char **argv)
 		return (1);
 	map = init_map();
 	make_map(argv, map);
-	rotate_map_z(map, -1 * M_PI/ 4);
+	rotate_map_z(map);
+	print_map(map);
 	return (0);
 }
