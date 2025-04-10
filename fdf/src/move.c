@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 21:25:13 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/09 22:04:41 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/10 14:59:05 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void find_extrema(t_map *map)
 	int j;
 
 	i = 0;
-	map->min_x = map->points[0][0].x;
-	map->max_x = map->points[0][0].x;
-	map->min_y = map->points[0][0].y;
-	map->max_y = map->points[0][0].y;
+	map->min_x = map->points[0][0].vx;
+	map->max_x = map->points[0][0].vx;
+	map->min_y = map->points[0][0].vy;
+	map->max_y = map->points[0][0].vy;
 	while (i < map->row)
 	{
 		j = 0;
@@ -95,6 +95,6 @@ void move_map(t_map *map, int width, int height)
 		expand_map(map, width / (map->max_x - map->min_x));
 	else
 		expand_map(map, height / (map->max_y - map->min_y));
-	translate_map(map, (width - (map->max_x - map->min_x)) / 2, (height - (map->max_y - map->min_y)) / 2);
+	find_extrema(map);
+	translate_map(map, (width - (map->max_x + map->min_x)) / 2, (height - (map->max_y + map->min_y)) / 2);
 }
-
