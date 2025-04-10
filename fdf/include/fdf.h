@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 20:14:12 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/09 22:05:08 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/10 16:51:47 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_mappoint
 	double		vx;
 	double		vy;
 	double		vz;
+	int			screen_x;
+	int			screen_y;
 	uint32_t	color;
 }				t_mappoint;
 
@@ -47,9 +49,27 @@ typedef struct s_map
 	double		max_y;
 }				t_map;
 
+typedef struct s_img
+{
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_img;
+
+typedef struct s_drawpoint
+{
+	int			x;
+	int			y;
+	uint32_t	color;
+}				t_drawpoint;
+
 void			make_map(char **argv, t_map *map);
 void			all_free_char(char **strs);
 void			rotate_map(t_map *map);
 void			move_map(t_map *map, int width, int height);
+void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
+void			draw_line(t_img *img, t_map *map);
 
 #endif
