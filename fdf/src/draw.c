@@ -6,11 +6,11 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:15:41 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/10 16:52:50 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/12 18:39:14 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {
@@ -22,39 +22,44 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 
 void	bresenham(t_mappoint point_1, t_mappoint point_2, t_img *img)
 {
-	int	dx;
-	int	dy;
-	int	sx;
-	int	sy;
+	int d[2];
+	int s[2];
 	int	err[2];
+	int start[2];
+	uint32_t start_color;
 
-	dx = abs(point_1.screen_x - point_2.screen_x);
-	dy = abs(point_1.screen_y - point_2.screen_y);
+	start[0] = point_1.screen_x;
+	start[1] = point_1.screen_y;
+	start_color = point_1.color;
+	d[0] = abs(point_1.screen_x - point_2.screen_x);
+	d[1] = abs(point_1.screen_y - point_2.screen_y);
 	if (point_1.screen_x < point_2.screen_x)
-		sx = 1;
+		s[0] = 1;
 	else
-		sx = -1;
+		s[0] = -1;
 	if (point_1.screen_y < point_2.screen_y)
-		sy = 1;
+		s[1] = 1;
 	else
-		sy = -1;
-	err[0] = dx - dy;
+		s[1] = -1;
+	err[0] = d[0] - d[1];
 	while (1)
 	{
-		my_mlx_pixel_put(img, point_1.screen_x, point_1.screen_y, 0x00ffffff);
+		my_mlx_pixel_put(img, point_1.screen_x, point_1.screen_y, point_1.color);
 		if (point_1.screen_x == point_2.screen_x
 			&& point_1.screen_y == point_2.screen_y)
 			break ;
 		err[1] = 2 * err[0];
-		if (err[1] > -1 * dy)
+		if (err[1] > -1 * d[1])
 		{
-			err[0] -= dy;
-			point_1.screen_x += sx;
+			err[0] -= d[1];
+			point_1.screen_x += s[0];
+			// point_1.color += (point_2.color - start_color) / (abs(point_2.screen_x - start[0]) + abs(point_2.screen_y - start[1]));
 		}
-		if (err[1] < dx)
+		if (err[1] < d[0])
 		{
-			err[0] += dx;
-			point_1.screen_y += sy;
+			err[0] += d[0];
+			point_1.screen_y += s[1];
+			// point_1.color += (point_2.color - start_color) / (abs(point_2.screen_x - start[0]) + abs(point_2.screen_y - start[1]));
 		}
 	}
 }

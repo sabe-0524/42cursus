@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 20:14:12 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/10 16:51:47 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/12 18:53:54 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,21 @@ typedef struct s_map
 	double		max_x;
 	double		min_y;
 	double		max_y;
+	double		max_z;
+	double		min_z;
+	uint32_t	high_color;
+	uint32_t	low_color;
 }				t_map;
+
+typedef struct s_color
+{
+	int			low_r;
+	int			low_g;
+	int			low_b;
+	int			high_r;
+	int			high_g;
+	int			high_b;
+}				t_color;
 
 typedef struct s_img
 {
@@ -71,5 +85,7 @@ void			rotate_map(t_map *map);
 void			move_map(t_map *map, int width, int height);
 void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void			draw_line(t_img *img, t_map *map);
+void			assign_color_map(t_map *map);
+void			find_height(t_map *map);
 
 #endif

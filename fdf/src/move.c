@@ -6,11 +6,11 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 21:25:13 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/10 14:59:05 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/12 15:43:10 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 void check_extrema(t_map *map, t_mappoint point)
 {
