@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:11:44 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/12 18:14:03 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/12 21:01:35 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,12 @@ t_map	*init_map(void)
 	map->points = NULL;
 	map->row = 0;
 	map->col = 0;
-	map->high_color = 0xffff00ff;
-	map->low_color = 0xffffffff;
+	map->high_color.r = 25500;
+	map->high_color.g = 0;
+	map->high_color.b = 25500;
+	map->low_color.r = 0;
+	map->low_color.g = 25500;
+	map->low_color.b = 25500;
 	return (map);
 }
 

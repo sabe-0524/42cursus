@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:15:41 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/12 18:39:14 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/12 20:21:28 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	bresenham(t_mappoint point_1, t_mappoint point_2, t_img *img)
 	int s[2];
 	int	err[2];
 	int start[2];
-	uint32_t start_color;
+	t_color start_color;
 
 	start[0] = point_1.screen_x;
 	start[1] = point_1.screen_y;
@@ -44,7 +44,7 @@ void	bresenham(t_mappoint point_1, t_mappoint point_2, t_img *img)
 	err[0] = d[0] - d[1];
 	while (1)
 	{
-		my_mlx_pixel_put(img, point_1.screen_x, point_1.screen_y, point_1.color);
+		my_mlx_pixel_put(img, point_1.screen_x, point_1.screen_y, assign_color_pixel(point_1));
 		if (point_1.screen_x == point_2.screen_x
 			&& point_1.screen_y == point_2.screen_y)
 			break ;
@@ -53,13 +53,13 @@ void	bresenham(t_mappoint point_1, t_mappoint point_2, t_img *img)
 		{
 			err[0] -= d[1];
 			point_1.screen_x += s[0];
-			// point_1.color += (point_2.color - start_color) / (abs(point_2.screen_x - start[0]) + abs(point_2.screen_y - start[1]));
+			point_1.color = step_color(point_1, point_2, start, start_color);
 		}
 		if (err[1] < d[0])
 		{
 			err[0] += d[0];
 			point_1.screen_y += s[1];
-			// point_1.color += (point_2.color - start_color) / (abs(point_2.screen_x - start[0]) + abs(point_2.screen_y - start[1]));
+			point_1.color = step_color(point_1, point_2, start, start_color);
 		}
 	}
 }
