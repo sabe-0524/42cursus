@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 12:14:32 by sabe              #+#    #+#             */
-/*   Updated: 2024/05/23 13:01:58 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/13 19:50:07 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,10 @@ char	*ft_trim_line(char *save)
 		return (NULL);
 	while (save[start] != '\n' && save[start] != '\0')
 		start++;
+	if (save[start++] == '\0')
+		return (trim_sub(save));
 	if (save[start] == '\0')
 		return (trim_sub(save));
-	start++;
 	ans = malloc(sizeof(char) * (ft_strlen(save) - start + 1));
 	if (!ans)
 		return (free(save), NULL);

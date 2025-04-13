@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:11:44 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/13 18:34:32 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/13 19:32:03 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(fdf.mlx, fdf.mlx_win, fdf.img.img, 0, 0);
 	mlx_key_hook(fdf.mlx_win, key_hook, &fdf);
 	mlx_loop(fdf.mlx);
+	mlx_destroy_display(fdf.mlx);
+	free(fdf.mlx);
+	// free(fdf.mlx_win);
 	all_free_map(map);
 	return (0);
 }

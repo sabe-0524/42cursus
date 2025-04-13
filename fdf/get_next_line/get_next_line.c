@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 12:14:32 by sabe              #+#    #+#             */
-/*   Updated: 2025/03/03 21:59:54 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/04/13 19:49:15 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,10 @@ char	*ft_trim_line(char *save)
 		return (NULL);
 	while (save[start] != '\n' && save[start] != '\0')
 		start++;
+	if (save[start++] == '\0')
+		return (trim_sub(save));
 	if (save[start] == '\0')
 		return (trim_sub(save));
-	start++;
 	ans = malloc(sizeof(char) * (ft_strlen(save) - start + 1));
 	if (!ans)
 		return (free(save), NULL);
@@ -139,22 +140,3 @@ char	*get_next_line(int fd)
 	}
 	return (line_sub(line, &save, read_bytes, buf));
 }
-
-// int	main(void)
-// {
-// 	int		fd;
-// 	char	*ans;
-
-// 	fd = open("./test.txt", O_RDONLY);
-// 	while ((ans = get_next_line(0)) != NULL)
-// 	{
-// 		printf("%s", ans);
-// 		free(ans);
-// 	}
-// 	close(fd);
-// }
-
-// __attribute__((destructor)) static void destructor()
-// {
-// 	system("leaks -q a.out");
-// }
