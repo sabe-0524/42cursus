@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 18:06:59 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/13 17:35:33 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/13 18:29:31 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,27 @@ void	find_height(t_map *map)
 		}
 		i++;
 	}
+}
+
+void	all_free_points( t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->row && map->points[i])
+	{
+		free(map->points[i]);
+		i++;
+	}
+	free(map->points);
+}
+
+void	all_free_map(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	if (map->points)
+		all_free_points(map);
+	free(map);
 }

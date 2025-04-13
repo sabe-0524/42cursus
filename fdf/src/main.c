@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:11:44 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/13 17:31:31 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/13 18:34:32 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,8 @@ t_map	*init_map(void)
 
 int	main(int argc, char **argv)
 {
+	t_fdf 	fdf;
 	t_map	*map;
-	void	*mlx;
-	void	*mlx_win;
-	t_img	img;
 
 	if (argc != 2)
 		return (1);
@@ -64,13 +62,15 @@ int	main(int argc, char **argv)
 	make_map(argv, map);
 	rotate_map(map);
 	move_map(map, 960, 540);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 960, 540, "Hello world!");
-	img.img = mlx_new_image(mlx, 960, 540);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-			&img.endian);
-	draw_line(&img, map);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	fdf.mlx = mlx_init();
+	fdf.mlx_win = mlx_new_window(fdf.mlx, 960, 540, "fdf");
+	fdf.img.img = mlx_new_image(fdf.mlx, 960, 540);
+	fdf.img.addr = mlx_get_data_addr(fdf.img.img, &fdf.img.bits_per_pixel, &fdf.img.line_length,
+			&fdf.img.endian);
+	draw_line(&fdf.img, map);
+	mlx_put_image_to_window(fdf.mlx, fdf.mlx_win, fdf.img.img, 0, 0);
+	mlx_key_hook(fdf.mlx_win, key_hook, &fdf);
+	mlx_loop(fdf.mlx);
+	all_free_map(map);
 	return (0);
 }
