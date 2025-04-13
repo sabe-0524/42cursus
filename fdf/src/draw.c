@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:15:41 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/12 20:21:28 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/13 17:31:33 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 
 void	bresenham(t_mappoint point_1, t_mappoint point_2, t_img *img)
 {
-	int d[2];
-	int s[2];
-	int	err[2];
-	int start[2];
-	t_color start_color;
+	int		d[2];
+	int		s[2];
+	int		err[2];
+	int		start[2];
+	t_color	start_color;
 
 	start[0] = point_1.screen_x;
 	start[1] = point_1.screen_y;
@@ -44,7 +44,8 @@ void	bresenham(t_mappoint point_1, t_mappoint point_2, t_img *img)
 	err[0] = d[0] - d[1];
 	while (1)
 	{
-		my_mlx_pixel_put(img, point_1.screen_x, point_1.screen_y, assign_color_pixel(point_1));
+		my_mlx_pixel_put(img, point_1.screen_x, point_1.screen_y,
+			assign_color_pixel(point_1));
 		if (point_1.screen_x == point_2.screen_x
 			&& point_1.screen_y == point_2.screen_y)
 			break ;

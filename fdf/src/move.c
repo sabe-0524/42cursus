@@ -6,13 +6,13 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 21:25:13 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/12 15:43:10 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/13 17:31:30 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void check_extrema(t_map *map, t_mappoint point)
+void	check_extrema(t_map *map, t_mappoint point)
 {
 	if (map->min_x > point.vx)
 		map->min_x = point.vx;
@@ -24,10 +24,10 @@ void check_extrema(t_map *map, t_mappoint point)
 		map->max_y = point.vy;
 }
 
-void find_extrema(t_map *map)
+void	find_extrema(t_map *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	map->min_x = map->points[0][0].vx;
@@ -46,10 +46,10 @@ void find_extrema(t_map *map)
 	}
 }
 
-void expand_map(t_map *map, double ratio)
+void	expand_map(t_map *map, double ratio)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < map->row)
@@ -69,10 +69,10 @@ void expand_map(t_map *map, double ratio)
 	}
 }
 
-void translate_map(t_map *map, double dist_x, double dist_y)
+void	translate_map(t_map *map, double dist_x, double dist_y)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < map->row)
@@ -88,7 +88,7 @@ void translate_map(t_map *map, double dist_x, double dist_y)
 	}
 }
 
-void move_map(t_map *map, int width, int height)
+void	move_map(t_map *map, int width, int height)
 {
 	find_extrema(map);
 	if (width / (map->max_x - map->min_x) < height / (map->max_y - map->min_y))
@@ -96,5 +96,6 @@ void move_map(t_map *map, int width, int height)
 	else
 		expand_map(map, height / (map->max_y - map->min_y));
 	find_extrema(map);
-	translate_map(map, (width - (map->max_x + map->min_x)) / 2, (height - (map->max_y + map->min_y)) / 2);
+	translate_map(map, (width - (map->max_x + map->min_x)) / 2, (height
+			- (map->max_y + map->min_y)) / 2);
 }

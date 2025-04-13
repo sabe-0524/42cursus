@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 20:14:12 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/12 20:21:06 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/13 17:35:07 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_mappoint
 	int			screen_x;
 	int			screen_y;
 	t_color		color;
+	int			color_flag;
 }				t_mappoint;
 
 typedef struct s_map
@@ -87,5 +88,6 @@ void			find_height(t_map *map);
 uint32_t		assign_color_pixel(t_mappoint point);
 t_color			step_color(t_mappoint point_1, t_mappoint point_2, int *start,
 					t_color start_color);
+void			assign_point(t_map *map, int i, int j, char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 16:31:41 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/12 21:01:55 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/13 17:31:34 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,32 @@ void	assign_color_map(t_map *map)
 	double	t;
 
 	find_height(map);
-	i = 0;
-	while (i < map->row)
+	i = -1;
+	while (++i < map->row)
 	{
 		j = 0;
 		while (j < map->col)
 		{
-			t = (map->points[i][j].z - map->min_z) / (map->max_z - map->min_z);
-			map->points[i][j].color.r = map->low_color.r + (map->high_color.r
-					- map->low_color.r) * t;
-			map->points[i][j].color.g = map->low_color.g + (map->high_color.g
-					- map->low_color.g) * t;
-			map->points[i][j].color.b = map->low_color.b + (map->high_color.b
-					- map->low_color.b) * t;
+			if (!map->points[i][j].color_flag)
+			{
+				t = (map->points[i][j].z - map->min_z) / (map->max_z
+						- map->min_z);
+				map->points[i][j].color.r = map->low_color.r
+					+ (map->high_color.r - map->low_color.r) * t;
+				map->points[i][j].color.g = map->low_color.g
+					+ (map->high_color.g - map->low_color.g) * t;
+				map->points[i][j].color.b = map->low_color.b
+					+ (map->high_color.b - map->low_color.b) * t;
+			}
 			j++;
 		}
-		i++;
 	}
 }
 
 uint32_t	assign_color_pixel(t_mappoint point)
 {
-	return (0xFF << 24) | ((point.color.r / 100 & 0xFF) << 16) | ((point.color.g / 100 & 0xFF) << 8) | (point.color.b / 100 & 0xFF);
+	return (0xFF << 24) | ((point.color.r / 100 & 0xFF) << 16) | ((point.color.g
+			/ 100 & 0xFF) << 8) | (point.color.b / 100 & 0xFF);
 }
 
 t_color	step_color(t_mappoint point_1, t_mappoint point_2, int *start,
