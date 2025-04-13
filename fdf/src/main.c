@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:11:44 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/13 19:32:03 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/13 20:35:47 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,10 @@ int	main(int argc, char **argv)
 	draw_line(&fdf.img, map);
 	mlx_put_image_to_window(fdf.mlx, fdf.mlx_win, fdf.img.img, 0, 0);
 	mlx_key_hook(fdf.mlx_win, key_hook, &fdf);
+	mlx_hook(fdf.mlx_win, 17, 0, close_win, &fdf);
 	mlx_loop(fdf.mlx);
+	mlx_destroy_image(fdf.mlx, fdf.img.img);
+	mlx_destroy_window(fdf.mlx, fdf.mlx_win);
 	mlx_destroy_display(fdf.mlx);
 	free(fdf.mlx);
 	// free(fdf.mlx_win);
