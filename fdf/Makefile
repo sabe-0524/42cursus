@@ -6,7 +6,7 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/23 20:08:34 by sabe              #+#    #+#              #
-#    Updated: 2025/04/15 19:39:25 by sabe             ###   ########.fr        #
+#    Updated: 2025/04/15 19:40:34 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,16 +53,13 @@ $(GNL):
 	@$(MAKE) -C $(GNL_PATH)
 
 clean:
-	@$(MAKE) -C $(LIBFT_PATH) clean
-	@$(MAKE) -C $(GNL_PATH) clean
+	@$(MAKE) -C $(LIBFT_PATH) fclean
+	@$(MAKE) -C $(GNL_PATH) fclean
 	@$(MAKE) -C $(MLX_PATH) clean
 	rm -rf $(OBJ_DIR)
 
 
 fclean: clean
-	@$(MAKE) -C $(LIBFT_PATH) fclean
-	@$(MAKE) -C $(GNL_PATH) fclean
-	@$(MAKE) -C $(MLX_PATH) clean
 	@rm $(NAME)
 
 re: fclean all
