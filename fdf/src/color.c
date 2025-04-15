@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 16:31:41 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/15 17:48:39 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/15 17:50:53 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ void	assign_color_map(t_map *map)
 
 uint32_t	assign_color_pixel(t_mappoint point)
 {
-	return (0xFF << 24) | ((point.color.r / 100 & 0xFF) << 16) | ((point.color.g
-			/ 100 & 0xFF) << 8) | (point.color.b / 100 & 0xFF);
+	return ((0xFF << 24) | ((point.color.r
+				/ 100 & 0xFF) << 16) | ((point.color.g
+				/ 100 & 0xFF) << 8) | (point.color.b / 100 & 0xFF));
 }
 
 t_color	step_color(t_mappoint point_1, t_mappoint point_2, int *start,
