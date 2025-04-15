@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 20:14:12 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/13 20:29:51 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/15 19:07:21 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,18 @@ typedef struct s_fdf
 	t_img		img;
 }				t_fdf;
 
+typedef struct s_bresenham
+{
+	int			dx;
+	int			dy;
+	int			sx;
+	int			sy;
+	int			start[2];
+	int			err;
+	int			err2;
+	t_color		color;
+}				t_bresenham;
+
 void			make_map(char **argv, t_map *map);
 void			all_free_char(char **strs);
 void			rotate_map(t_map *map);
@@ -95,9 +107,10 @@ void			find_height(t_map *map);
 uint32_t		assign_color_pixel(t_mappoint point);
 t_color			step_color(t_mappoint point_1, t_mappoint point_2, int *start,
 					t_color start_color);
-void			assign_point(t_map *map, int i, int j, char *str);
+void			assign_point(t_map *map, int i, int j, char **str);
 void			all_free_map(t_map *map);
 int				key_hook(int keycode, t_fdf *fdf);
 int				close_win(t_fdf *fdf);
+void			cancel_fdf(t_map *map);
 
 #endif

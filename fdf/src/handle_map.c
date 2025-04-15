@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 21:21:09 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/15 17:48:42 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/15 19:07:31 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,37 +44,35 @@ void	assign_line(t_map *map, char *line, int i)
 	int		j;
 	int		col;
 
-	j = 0;
+	j = -1;
 	nums = ft_split(line, ' ');
 	if (!nums)
-	{
-		perror(NULL); // ToDo エラー処理
-	}
+		cancel_fdf(map);
 	col = count_comp(nums);
+	if (map->col && map->col != col)
+	{
+		all_free_char(nums);
+		cancel_fdf(map);
+	}
 	map->col = col;
 	map->points[i] = (t_mappoint *)ft_calloc(col, sizeof(t_mappoint));
 	if (!map->points[i])
 	{
-		perror(NULL); // ToDo エラー処理
+		all_free_char(nums);
+		cancel_fdf(map);
 	}
-	while (nums[j])
-	{
-		assign_point(map, i, j, nums[j]);
-		j++;
-	}
+	while (nums[++j])
+		assign_point(map, i, j, nums);
 	all_free_char(nums);
 }
 
-int	open_file(char *filename)
+int	open_file(char *filename, t_map *map)
 {
 	int	fd;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-	{
-		perror(NULL);
-		exit(EXIT_FAILURE);
-	}
+		cancel_fdf(map);
 	return (fd);
 }
 
@@ -84,21 +82,19 @@ void	make_map(char **argv, t_map *map)
 	int		i;
 	char	*tmp;
 
-	fd = open_file(argv[1]);
+	fd = open_file(argv[1], map);
 	map->row = count_row(fd);
 	close(fd);
 	map->points = (t_mappoint **)ft_calloc(map->row, sizeof(t_mappoint *));
 	if (!map->points)
 		exit(EXIT_FAILURE);
 	i = 0;
-	fd = open_file(argv[1]);
+	fd = open_file(argv[1], map);
 	while (i < map->row)
 	{
 		tmp = get_next_line(fd);
 		if (!tmp)
-		{
-			perror(NULL); // TODO error
-		}
+			cancel_fdf(map);
 		assign_line(map, tmp, i);
 		free(tmp);
 		i++;

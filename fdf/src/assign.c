@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 17:18:47 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/15 17:48:38 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/15 19:07:07 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,18 @@ uint32_t	ft_atox(char *str)
 	return (answer);
 }
 
-void	extract_color(int *rgb, char *data)
-{
-	char	str[2];
-	int		i;
-
-	i = 0;
-	while (i < 3)
-	{
-		str[0] = data[2 + 2 * i];
-		str[1] = data[3 + 2 * i];
-		rgb[i] = ft_atox(str);
-		i++;
-	}
-}
-
-void	assign_point(t_map *map, int i, int j, char *str)
+void	assign_point(t_map *map, int i, int j, char **str)
 {
 	char		**data;
 	uint32_t	rgb;
 
 	map->points[i][j].x = j;
 	map->points[i][j].y = i;
-	data = ft_split(str, ',');
+	data = ft_split(str[j], ',');
 	if (!data)
 	{
-		perror(NULL); // TODO error
+		all_free_char(str);
+		cancel_fdf(map);
 	}
 	map->points[i][j].z = ft_atoi(data[0]);
 	if (data[1])

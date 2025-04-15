@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:15:41 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/15 17:50:06 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/15 18:21:02 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,33 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+t_bresenham	init_br(t_mappoint point_1, t_mappoint point_2)
+{
+	t_bresenham	br;
+
+	br.start[0] = point_1.screen_x;
+	br.start[1] = point_1.screen_y;
+	br.dx = abs(point_1.screen_x - point_2.screen_x);
+	br.dy = abs(point_1.screen_y - point_2.screen_y);
+	if (point_1.screen_x < point_2.screen_x)
+		br.sx = 1;
+	else
+		br.sx = -1;
+	if (point_1.screen_y < point_2.screen_y)
+		br.sy = 1;
+	else
+		br.sy = -1;
+	br.err = br.dx - br.dy;
+	br.color = point_1.color;
+	return (br);
+}
+
 void	bresenham(t_mappoint point_1, t_mappoint point_2, t_img *img)
 {
-	int		d[2];
-	int		s[2];
-	int		err[2];
-	int		start[2];
-	t_color	start_color;
+	t_bresenham	br;
 
-	start[0] = point_1.screen_x;
-	start[1] = point_1.screen_y;
-	start_color = point_1.color;
-	d[0] = abs(point_1.screen_x - point_2.screen_x);
-	d[1] = abs(point_1.screen_y - point_2.screen_y);
-	if (point_1.screen_x < point_2.screen_x)
-		s[0] = 1;
-	else
-		s[0] = -1;
-	if (point_1.screen_y < point_2.screen_y)
-		s[1] = 1;
-	else
-		s[1] = -1;
-	err[0] = d[0] - d[1];
+	br = init_br(point_1, point_2);
+	br.color = point_1.color;
 	while (1)
 	{
 		my_mlx_pixel_put(img, point_1.screen_x, point_1.screen_y,
@@ -49,18 +54,18 @@ void	bresenham(t_mappoint point_1, t_mappoint point_2, t_img *img)
 		if (point_1.screen_x == point_2.screen_x
 			&& point_1.screen_y == point_2.screen_y)
 			break ;
-		err[1] = 2 * err[0];
-		if (err[1] > -1 * d[1])
+		br.err2 = 2 * br.err;
+		if (br.err2 > -1 * br.dy)
 		{
-			err[0] -= d[1];
-			point_1.screen_x += s[0];
-			point_1.color = step_color(point_1, point_2, start, start_color);
+			br.err -= br.dy;
+			point_1.screen_x += br.sx;
+			point_1.color = step_color(point_1, point_2, br.start, br.color);
 		}
-		if (err[1] < d[0])
+		if (br.err2 < br.dx)
 		{
-			err[0] += d[0];
-			point_1.screen_y += s[1];
-			point_1.color = step_color(point_1, point_2, start, start_color);
+			br.err += br.dx;
+			point_1.screen_y += br.sy;
+			point_1.color = step_color(point_1, point_2, br.start, br.color);
 		}
 	}
 }

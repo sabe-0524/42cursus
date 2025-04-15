@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 18:06:59 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/15 17:48:47 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/15 19:01:42 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,11 @@ void	all_free_map(t_map *map)
 	if (map->points)
 		all_free_points(map);
 	free(map);
+}
+
+void	cancel_fdf(t_map *map)
+{
+	all_free_map(map);
+	perror(NULL);
+	exit(1);
 }
