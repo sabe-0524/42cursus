@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atox.c                                             :+:      :+:    :+:   */
+/*   assign.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 17:18:47 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/13 17:34:45 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/15 17:48:38 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,22 @@ int	find_index(char *base, char c)
 	return (0);
 }
 
-int	ft_atox(char *str)
+uint32_t	ft_atox(char *str)
 {
-	int		answer;
-	char	*base;
+	uint32_t	answer;
+	char		*base;
+	int			i;
 
+	i = 2;
 	base = "0123456789abcdef";
-	answer = 16 * find_index(base, str[0]) + find_index(base, str[1]);
+	answer = 0;
+	while (str[i])
+	{
+		if ('A' <= str[i] && str[i] <= 'Z')
+			str[i] += 32;
+		answer = 16 * answer + find_index(base, str[i]);
+		i++;
+	}
 	return (answer);
 }
 
@@ -53,8 +62,8 @@ void	extract_color(int *rgb, char *data)
 
 void	assign_point(t_map *map, int i, int j, char *str)
 {
-	char	**data;
-	int		rgb[3];
+	char		**data;
+	uint32_t	rgb;
 
 	map->points[i][j].x = j;
 	map->points[i][j].y = i;
@@ -66,14 +75,13 @@ void	assign_point(t_map *map, int i, int j, char *str)
 	map->points[i][j].z = ft_atoi(data[0]);
 	if (data[1])
 	{
-		extract_color(rgb, data[1]);
-		map->points[i][j].color.r = rgb[0] * 100;
-		map->points[i][j].color.g = rgb[1] * 100;
-		map->points[i][j].color.b = rgb[2] * 100;
+		rgb = ft_atox(data[1]);
+		map->points[i][j].color.r = ((rgb >> 16) & 0xFF) * 100;
+		map->points[i][j].color.g = ((rgb >> 8) & 0xFF) * 100;
+		map->points[i][j].color.b = (rgb & 0xff) * 100;
 		map->points[i][j].color_flag = 1;
 	}
 	else
 		map->points[i][j].color_flag = 0;
 	all_free_char(data);
 }
-

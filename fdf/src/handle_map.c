@@ -6,27 +6,27 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 21:21:09 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/13 19:25:59 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/15 17:48:42 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-int count_row(int fd)
+int	count_row(int fd)
 {
-    int row = 0;
-    char *line;
+	int		row;
+	char	*line;
 
+	row = 0;
 	line = get_next_line(fd);
-    while (line != NULL)
-    {
-        row++;
-        free(line);
-        line = get_next_line(fd);
-    }
-    return row;
+	while (line != NULL)
+	{
+		row++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	return (row);
 }
-
 
 int	count_comp(char **nums)
 {
