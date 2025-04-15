@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 21:21:09 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/15 19:07:31 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/15 19:14:56 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ void	make_map(char **argv, t_map *map)
 	fd = open_file(argv[1], map);
 	map->row = count_row(fd);
 	close(fd);
+	if (!map->row)
+		cancel_fdf(map);
 	map->points = (t_mappoint **)ft_calloc(map->row, sizeof(t_mappoint *));
 	if (!map->points)
 		exit(EXIT_FAILURE);
