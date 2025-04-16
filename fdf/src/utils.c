@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 18:06:59 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/15 19:01:42 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/16 18:02:56 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,22 @@ void	find_height(t_map *map)
 	}
 }
 
-void	all_free_points(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (i < map->row && map->points[i])
-	{
-		free(map->points[i]);
-		i++;
-	}
-	free(map->points);
-}
-
 void	all_free_map(t_map *map)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	if (map->points)
-		all_free_points(map);
+	{
+		j = 0;
+		while (i < map->row && map->points[i])
+		{
+			free(map->points[i]);
+			i++;
+		}
+		free(map->points);
+	}
 	free(map);
 }
 
@@ -76,4 +72,11 @@ void	cancel_fdf(t_map *map)
 	all_free_map(map);
 	perror(NULL);
 	exit(1);
+}
+
+void	cancel_in_line(t_map *map, char *line, int fd)
+{
+	free(line);
+	count_row(fd);
+	cancel_fdf(map);
 }

@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 21:21:09 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/15 19:14:56 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/16 18:02:54 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	count_comp(char **nums)
 	return (count);
 }
 
-void	assign_line(t_map *map, char *line, int i)
+void	assign_line(t_map *map, char *line, int i, int fd)
 {
 	char	**nums;
 	int		j;
@@ -47,19 +47,19 @@ void	assign_line(t_map *map, char *line, int i)
 	j = -1;
 	nums = ft_split(line, ' ');
 	if (!nums)
-		cancel_fdf(map);
+		cancel_in_line(map, line, fd);
 	col = count_comp(nums);
 	if (map->col && map->col != col)
 	{
+		cancel_in_line(map, line, fd);
 		all_free_char(nums);
-		cancel_fdf(map);
 	}
 	map->col = col;
 	map->points[i] = (t_mappoint *)ft_calloc(col, sizeof(t_mappoint));
 	if (!map->points[i])
 	{
 		all_free_char(nums);
-		cancel_fdf(map);
+		cancel_in_line(map, line, fd);
 	}
 	while (nums[++j])
 		assign_point(map, i, j, nums);
@@ -97,7 +97,7 @@ void	make_map(char **argv, t_map *map)
 		tmp = get_next_line(fd);
 		if (!tmp)
 			cancel_fdf(map);
-		assign_line(map, tmp, i);
+		assign_line(map, tmp, i, fd);
 		free(tmp);
 		i++;
 	}
