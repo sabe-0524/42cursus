@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:27:27 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/16 22:50:42 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/16 23:06:37 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 void	assign_table(t_table *table, int argc, char **argv)
 {
+	struct timeval	tv;
+
 	memset(table, 0, sizeof(t_table));
+	gettimeofday(&tv, NULL);
+	table->start_time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	table->num_philo = ft_atoi(argv[1]);
 	table->time_to_die = ft_atoi(argv[2]);
 	table->time_to_eat = ft_atoi(argv[3]);
@@ -49,9 +53,9 @@ int	init_table(t_table *table, int argc, char **argv)
 	return (0);
 }
 
-void init_philo(t_table *table)
+void	init_philo(t_table *table)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < table->num_philo)
@@ -62,9 +66,9 @@ void init_philo(t_table *table)
 	}
 }
 
-void init_fork(t_table *table)
+void	init_fork(t_table *table)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < table->num_philo)

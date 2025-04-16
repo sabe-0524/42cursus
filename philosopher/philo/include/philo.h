@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 21:22:15 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/16 22:50:27 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/16 23:08:00 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_table
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				must_times_eat;
+	long int		start_time;
 }					t_table;
 
 int					init_table(t_table *table, int argc, char **argv);
