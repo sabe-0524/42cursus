@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 21:21:55 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/17 18:54:37 by sabe             ###   ########.fr       */
+/*   Created: 2025/04/17 17:27:57 by sabe              #+#    #+#             */
+/*   Updated: 2025/04/17 18:41:36 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int	main(int argc, char **argv)
+long int get_time_stamp(long int start_time)
 {
-	t_table	*table;
+	struct timeval tv;
+	long int time_stamp;
 
-	if (argc != 5 && argc != 6)
-		return (1);
-	table = (t_table *)malloc(sizeof(t_table));
-	if (!table)
-		return (1);
-	if (init_table(table, argc, argv))
-		return (1);
-	init_philo(table);
-	init_fork(table);
-	simulate(table);
-	return (0);
+	gettimeofday(&tv, NULL);
+	time_stamp = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+	return (time_stamp - start_time);
 }
