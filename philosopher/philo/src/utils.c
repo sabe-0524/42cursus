@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:27:57 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/20 19:41:57 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/20 20:25:00 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ long int get_time_stamp(long int start_time)
 void philo_print(t_philo *philo, char *message)
 {
 	pthread_mutex_lock(&philo->table->print_mutex);
-	printf("%ld %d %s\n", get_time_stamp(philo->table->start_time), philo->id, message);
+	pthread_mutex_lock(&philo->table->finish_mutex);
+	if (!philo->table->finish)
+		printf("%ld %d %s\n", get_time_stamp(philo->table->start_time), philo->id, message);
+	pthread_mutex_unlock(&philo->table->finish_mutex);
 	pthread_mutex_unlock(&philo->table->print_mutex);
 }
 
