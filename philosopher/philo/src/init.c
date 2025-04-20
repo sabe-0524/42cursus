@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:27:27 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/16 23:06:37 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/20 18:48:09 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	assign_table(t_table *table, int argc, char **argv)
 	table->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		table->must_times_eat = ft_atoi(argv[5]);
+	pthread_mutex_init(&table->finish_mutex, NULL);
 }
 
 int	init_table(t_table *table, int argc, char **argv)
@@ -62,6 +63,21 @@ void	init_philo(t_table *table)
 	{
 		table->philos[i].id = i + 1;
 		table->philos[i].is_even = !(i % 2);
+		if (i == table->num_philo - 1)
+		{
+			table->philos[i].right_fork = &table->forks[0];
+			table->philos[i].left_fork = &table->forks[i];
+		}
+		else
+		{
+			table->philos[i].right_fork = &table->forks[i + 1];
+			table->philos[i].left_fork = &table->forks[i];
+		}
+		table->philos[i].table = table;
+		table->philos[i].times_eat = 0;
+		pthread_mutex_init(&table->philos[i].print_mutex, NULL);
+		pthread_mutex_init(&table->philos[i].meal_mutex, NULL);
+		pthread_mutex_init(&table->philos[i].last_time_mutex, NULL);
 		i++;
 	}
 }

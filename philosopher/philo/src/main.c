@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 21:21:55 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/17 18:54:37 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/20 17:35:02 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	main(int argc, char **argv)
 		return (1);
 	if (init_table(table, argc, argv))
 		return (1);
-	init_philo(table);
 	init_fork(table);
+	init_philo(table);
 	simulate(table);
 	return (0);
 }
