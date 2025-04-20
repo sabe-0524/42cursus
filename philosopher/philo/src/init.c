@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:27:27 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/20 18:48:09 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/20 19:33:24 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	assign_table(t_table *table, int argc, char **argv)
 	if (argc == 6)
 		table->must_times_eat = ft_atoi(argv[5]);
 	pthread_mutex_init(&table->finish_mutex, NULL);
+	pthread_mutex_init(&table->print_mutex, NULL);
 }
 
 int	init_table(t_table *table, int argc, char **argv)
@@ -75,7 +76,7 @@ void	init_philo(t_table *table)
 		}
 		table->philos[i].table = table;
 		table->philos[i].times_eat = 0;
-		pthread_mutex_init(&table->philos[i].print_mutex, NULL);
+		table->philos[i].last_eat = 0;
 		pthread_mutex_init(&table->philos[i].meal_mutex, NULL);
 		pthread_mutex_init(&table->philos[i].last_time_mutex, NULL);
 		i++;

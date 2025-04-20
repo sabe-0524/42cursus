@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 21:22:15 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/20 19:12:04 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/20 19:41:14 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_philo
 	pthread_t			pthread;
 	t_fork				*right_fork;
 	t_fork				*left_fork;
-	pthread_mutex_t		print_mutex;
 	pthread_mutex_t		meal_mutex;
 	pthread_mutex_t		last_time_mutex;
 	t_table				*table;
@@ -63,6 +62,7 @@ typedef struct s_table
 	long int			start_time;
 	int					finish;
 	pthread_mutex_t		finish_mutex;
+	pthread_mutex_t		print_mutex;
 }						t_table;
 
 int						init_table(t_table *table, int argc, char **argv);
@@ -74,5 +74,6 @@ void					simulate(t_table *table);
 void					philo_print(t_philo *philo, char *message);
 void					add_eat_count(t_philo *philo);
 void					*check_finish(void *arg);
+void					update_last_eat(t_philo *philo);
 
 #endif

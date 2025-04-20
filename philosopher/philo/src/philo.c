@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:31:54 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/20 19:11:21 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/20 20:17:59 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,40 @@ void	philo_eat(t_philo *philo, t_fork *left_fork, t_fork *right_fork,
 {
 	if (philo->is_even)
 	{
+		if (philo->table->finish)
+			return ;
 		pthread_mutex_lock(&left_fork->mutex);
 		philo_print(philo, FORK);
+		if (philo->table->finish)
+		{
+			pthread_mutex_unlock(&left_fork->mutex);
+			return ;
+		}
 		pthread_mutex_lock(&right_fork->mutex);
 		philo_print(philo, FORK);
 	}
 	else
 	{
+		if (philo->table->finish)
+			return ;
 		pthread_mutex_lock(&right_fork->mutex);
 		philo_print(philo, FORK);
+		if (philo->table->finish)
+		{
+			pthread_mutex_unlock(&right_fork->mutex);
+			return ;
+		}
 		pthread_mutex_lock(&left_fork->mutex);
 		philo_print(philo, FORK);
 	}
+	if (philo->table->finish)
+	{
+		pthread_mutex_unlock(&left_fork->mutex);
+		pthread_mutex_unlock(&right_fork->mutex);
+		return ;
+	}
 	philo_print(philo, EAT);
+	update_last_eat(philo);
 	usleep(table->time_to_eat * 1000);
 	add_eat_count(philo);
 	pthread_mutex_unlock(&left_fork->mutex);
@@ -54,8 +75,14 @@ void	*do_philo(void *arg)
 	philo = (t_philo *)arg;
 	while (1)
 	{
+		if (philo->table->finish)
+			return (NULL);
 		philo_eat(philo, philo->left_fork, philo->right_fork, philo->table);
+		if (philo->table->finish)
+			return (NULL);
 		philo_sleep(philo);
+		if (philo->table->finish)
+			return (NULL);
 		philo_think(philo);
 	}
 	return (NULL);
@@ -68,14 +95,15 @@ void	simulate(t_table *table)
 	i = 0;
 	while (i < table->num_philo)
 	{
-		pthread_create(&table->philos[i].pthread, NULL, &do_philo, &table->philos[i]);
+		pthread_create(&table->philos[i].pthread, NULL, do_philo, &table->philos[i]);
 		i++;
 	}
-	pthread_create(&table->finish_pthread, NULL, &check_finish, &table);
+	pthread_create(&table->finish_pthread, NULL, check_finish, table);
 	i = 0;
 	while (i < table->num_philo)
 	{
 		pthread_join(table->philos[i].pthread, NULL);
 		i++;
 	}
+	pthread_join(table->finish_pthread, NULL);
 }

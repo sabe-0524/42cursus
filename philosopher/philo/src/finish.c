@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 18:11:07 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/20 19:11:53 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/20 20:16:50 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	check_died(t_philo *philo)
 	pthread_mutex_unlock(&philo->last_time_mutex);
 	if (starve_time > philo->table->time_to_die)
 	{
+		philo_print(philo, DIED);
 		pthread_mutex_lock(&philo->table->finish_mutex);
 		philo->table->finish = 1;
 		pthread_mutex_unlock(&philo->table->finish_mutex);
@@ -57,7 +58,7 @@ void	*check_finish(void *arg)
 		{
 			if (check_died(&table->philos[i]))
 				return (NULL);
-			if (table->must_times_eat == 0 || (&table->philos[i]))
+			if (table->must_times_eat == 0 || check_eat(&table->philos[i]))
 				eat_flag = 0;
 			i++;
 		}
