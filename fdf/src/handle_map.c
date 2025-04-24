@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 21:21:09 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/16 18:02:54 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/24 21:11:48 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	assign_line(t_map *map, char *line, int i, int fd)
 	col = count_comp(nums);
 	if (map->col && map->col != col)
 	{
-		cancel_in_line(map, line, fd);
 		all_free_char(nums);
+		cancel_in_line(map, line, fd);
 	}
 	map->col = col;
 	map->points[i] = (t_mappoint *)ft_calloc(col, sizeof(t_mappoint));
