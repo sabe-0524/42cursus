@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 21:22:15 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/20 19:41:14 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/24 22:08:45 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ void					philo_print(t_philo *philo, char *message);
 void					add_eat_count(t_philo *philo);
 void					*check_finish(void *arg);
 void					update_last_eat(t_philo *philo);
+int						get_finish(t_philo *philo);
 
 #endif
