@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 18:11:07 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/25 19:41:53 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/25 19:44:35 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,14 @@ void	*check_finish(void *arg)
 	table = (t_table *)arg;
 	while (1)
 	{
-		i = 0;
+		i = -1;
 		eat_flag = 1;
-		while (i < table->num_philo)
+		while (++i < table->num_philo)
 		{
 			if (check_died(&table->philos[i]))
 				return (NULL);
 			if (table->must_times_eat == 0 || check_eat(&table->philos[i]))
 				eat_flag = 0;
-			i++;
 		}
 		if (eat_flag)
 		{

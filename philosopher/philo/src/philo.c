@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:31:54 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/25 19:41:59 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/25 19:58:05 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,13 @@ void	philo_eat(t_philo *philo, t_fork *left_fork, t_fork *right_fork,
 {
 	if (philo->is_even)
 	{
-		if (get_finish(philo))
+		if (take_fork(philo, left_fork, right_fork))
 			return ;
-		pthread_mutex_lock(&left_fork->mutex);
-		philo_print(philo, FORK);
-		if (get_finish(philo))
-		{
-			pthread_mutex_unlock(&left_fork->mutex);
-			return ;
-		}
-		pthread_mutex_lock(&right_fork->mutex);
-		philo_print(philo, FORK);
 	}
 	else
 	{
-		if (get_finish(philo))
+		if (take_fork(philo, right_fork, left_fork))
 			return ;
-		pthread_mutex_lock(&right_fork->mutex);
-		philo_print(philo, FORK);
-		if (get_finish(philo))
-		{
-			pthread_mutex_unlock(&right_fork->mutex);
-			return ;
-		}
-		pthread_mutex_lock(&left_fork->mutex);
-		philo_print(philo, FORK);
 	}
 	if (get_finish(philo))
 	{

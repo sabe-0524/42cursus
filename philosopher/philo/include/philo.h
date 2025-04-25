@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 21:22:15 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/25 18:54:04 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/25 19:56:58 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,7 @@ void					*check_finish(void *arg);
 void					update_last_eat(t_philo *philo);
 int						get_finish(t_philo *philo);
 void					stop_table(t_table *table);
+int						take_fork(t_philo *philo, t_fork *first_fork,
+							t_fork *second_fork);
 
 #endif
