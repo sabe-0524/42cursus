@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:31:54 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/24 22:18:53 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/25 19:41:59 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	philo_sleep(t_philo *philo)
 void	philo_think(t_philo *philo)
 {
 	philo_print(philo, THINK);
+	usleep(1000);
 }
 
 void	*do_philo(void *arg)
@@ -90,9 +91,12 @@ void	*do_philo(void *arg)
 
 void	simulate(t_table *table)
 {
-	int	i;
+	int				i;
+	struct timeval	tv;
 
 	i = 0;
+	gettimeofday(&tv, NULL);
+	table->start_time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	while (i < table->num_philo)
 	{
 		pthread_create(&table->philos[i].pthread, NULL, do_philo,

@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 18:11:07 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/20 20:16:50 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/25 19:41:53 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int	check_eat(t_philo *philo)
 
 void	*check_finish(void *arg)
 {
-	int	i;
-	int	eat_flag;
-	t_table *table;
+	int		i;
+	int		eat_flag;
+	t_table	*table;
 
 	table = (t_table *)arg;
 	while (1)
