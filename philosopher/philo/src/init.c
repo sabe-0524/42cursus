@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:27:27 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/25 19:41:57 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/25 22:11:26 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,19 @@ int	init_table(t_table *table, int argc, char **argv)
 			&& table->must_times_eat == 0))
 	{
 		printf("Invalid argument\n");
+		stop_table(table);
 		return (1);
 	}
 	table->philos = (t_philo *)malloc(sizeof(t_philo) * table->num_philo);
 	if (!table->philos)
 	{
-		free(table);
+		stop_table(table);
 		return (1);
 	}
 	table->forks = (t_fork *)malloc(sizeof(t_fork) * table->num_philo);
 	if (!table->forks)
 	{
-		free(table->philos);
-		free(table);
+		stop_table(table);
 		return (1);
 	}
 	return (0);
