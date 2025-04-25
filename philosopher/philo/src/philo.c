@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:31:54 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/25 19:58:05 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/25 22:37:07 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,21 +76,22 @@ void	simulate(t_table *table)
 	int				i;
 	struct timeval	tv;
 
-	i = 0;
+	i = -1;
 	gettimeofday(&tv, NULL);
 	table->start_time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-	while (i < table->num_philo)
+	if (table->num_philo == 1)
 	{
+		philo_print(&table->philos[0], FORK);
+		usleep(table->time_to_die * 1000);
+		philo_print(&table->philos[0], DIED);
+		return ;
+	}
+	while (++i < table->num_philo)
 		pthread_create(&table->philos[i].pthread, NULL, do_philo,
 			&table->philos[i]);
-		i++;
-	}
 	pthread_create(&table->finish_pthread, NULL, check_finish, table);
-	i = 0;
-	while (i < table->num_philo)
-	{
+	i = -1;
+	while (++i < table->num_philo)
 		pthread_join(table->philos[i].pthread, NULL);
-		i++;
-	}
 	pthread_join(table->finish_pthread, NULL);
 }
