@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer.c                                        :+:      :+:    :+:   */
+/*   handle_operator.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/27 18:56:17 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/28 23:37:14 by sabe             ###   ########.fr       */
+/*   Created: 2025/04/28 22:10:46 by sabe              #+#    #+#             */
+/*   Updated: 2025/04/28 23:09:22 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tokenizer.h>
 
-t_tokenizer	*tokenizer(char *line)
+bool	is_operator(char c)
 {
-	t_tokenizer	*tokenizer;
+	if (c == '|' || c == '>' || c == '<')
+		return (true);
+	else
+		return (false);
+}
 
-	tokenizer = init_tokenizer(line);
-	while (tokenizer->line[tokenizer->line_i])
-	{
-		if (tokenizer->state == STATE_GENERAL)
-		{
-			if (skip_space(tokenizer))
-				continue ;
-			if (handle_quote_general(tokenizer))
-				continue ;
-			if (handle_operator(tokenizer))
-				continue ;
-			tokenizer->line_i++;
-		}
-	}
-	return (tokenizer);
+bool	handle_operator(t_tokenizer *tokenizer)
+{
+	if (!is_operator(tokenizer->line[tokenizer->line_i]))
+		return (false);
+	add_token(tokenizer);
+	add_token_operator(tokenizer);
+	return (true);
 }

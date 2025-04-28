@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer.c                                        :+:      :+:    :+:   */
+/*   handle_space.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/27 18:56:17 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/28 23:37:14 by sabe             ###   ########.fr       */
+/*   Created: 2025/04/28 21:55:30 by sabe              #+#    #+#             */
+/*   Updated: 2025/04/28 22:10:07 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tokenizer.h>
 
-t_tokenizer	*tokenizer(char *line)
+bool	is_space(char s)
 {
-	t_tokenizer	*tokenizer;
+	if (s == ' ' || s == '\t' || s == '\n')
+		return (true);
+	else
+		return (false);
+}
 
-	tokenizer = init_tokenizer(line);
-	while (tokenizer->line[tokenizer->line_i])
+bool	skip_space(t_tokenizer *tokenizer)
+{
+	if (!is_space(tokenizer->line[tokenizer->line_i]))
+		return (false);
+	add_token(tokenizer);
+	while (is_space(tokenizer->line[tokenizer->line_i]))
 	{
-		if (tokenizer->state == STATE_GENERAL)
-		{
-			if (skip_space(tokenizer))
-				continue ;
-			if (handle_quote_general(tokenizer))
-				continue ;
-			if (handle_operator(tokenizer))
-				continue ;
-			tokenizer->line_i++;
-		}
+		tokenizer->line_i++;
+		tokenizer->start_i++;
 	}
-	return (tokenizer);
+	return (false);
 }

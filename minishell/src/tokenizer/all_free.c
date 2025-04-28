@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer.c                                        :+:      :+:    :+:   */
+/*   all_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/27 18:56:17 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/28 23:37:14 by sabe             ###   ########.fr       */
+/*   Created: 2025/04/28 23:17:37 by sabe              #+#    #+#             */
+/*   Updated: 2025/04/28 23:35:59 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tokenizer.h>
 
-t_tokenizer	*tokenizer(char *line)
+void	all_free_tokenizer(t_tokenizer *tokenizer)
 {
-	t_tokenizer	*tokenizer;
+	t_token	*tmp;
+	t_token	*next;
 
-	tokenizer = init_tokenizer(line);
-	while (tokenizer->line[tokenizer->line_i])
+	if (!tokenizer)
+		return ;
+	if (tokenizer->line)
+		free(tokenizer->line);
+	tmp = tokenizer->head;
+	while (tmp)
 	{
-		if (tokenizer->state == STATE_GENERAL)
-		{
-			if (skip_space(tokenizer))
-				continue ;
-			if (handle_quote_general(tokenizer))
-				continue ;
-			if (handle_operator(tokenizer))
-				continue ;
-			tokenizer->line_i++;
-		}
+		next = tmp->next;
+		if (tmp->content)
+			free(tmp->content);
+		free(tmp);
+		tmp = next;
 	}
-	return (tokenizer);
+	tokenizer->head = NULL;
+	tokenizer->last = NULL;
+	free(tokenizer);
 }

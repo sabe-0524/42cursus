@@ -6,7 +6,7 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 17:02:03 by sabe              #+#    #+#              #
-#    Updated: 2025/04/27 17:18:34 by sabe             ###   ########.fr        #
+#    Updated: 2025/04/28 23:32:12 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,25 +14,34 @@ SRC_DIR = src
 OBJ_DIR = obj
 INC_DIR = include
 
+LIBFT_PATH = libft
+
 CFLAGS = -Wall -Werror -Wextra -I$(INC_DIR)
 LDFLAGS = -lreadline
 
-SRC_FILES = src/main.c
+SRC_FILES = src/main.c \
+			src/tokenizer/add_token.c src/tokenizer/handle_operator.c src/tokenizer/handle_quote.c src/tokenizer/handle_space.c src/tokenizer/init.c src/tokenizer/tokenizer.c src/tokenizer/all_free.c
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
+
+LIBFT = $(LIBFT_PATH)/libft.a
 
 NAME = minishell
 
 all: $(NAME)
 
-$(NAME): $(OBJ_FILES)
-	@$(CC) -o $@ $^ $(LDFLAGS)
+$(NAME): $(OBJ_FILES) $(LIBFT)
+	@$(CC) -o $@ $^ -L$(LIBFT_PATH) -lft $(LDFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c -o $@ $<
+
+$(LIBFT):
+	@$(MAKE) -C $(LIBFT_PATH)
 
 clean:
 	rm -rf $(OBJ_DIR)
+	@$(MAKE) -C $(LIBFT_PATH) fclean
 
 
 fclean: clean
