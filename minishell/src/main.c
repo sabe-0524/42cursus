@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:03:00 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/28 23:34:00 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/30 16:45:17 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ void	test_print(t_token *token)
 {
 	while (token)
 	{
-		printf("token: %s\n", token->content);
+		printf("content:%s type:%u\n", token->content, token->type);
 		token = token->next;
 	}
 }
 
 int	main(void)
 {
-	char	*line;
-    t_tokenizer *token;
+	char		*line;
+	t_tokenizer	*token;
 
 	while ((line = readline("minishell$ ")) != NULL)
 	{

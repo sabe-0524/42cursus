@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 18:00:13 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/30 15:38:48 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/30 16:41:02 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ typedef enum e_token_type
 {
 	GENERAL,
 	PIPE,
+	LESSER,
+	GREATER,
+	R_LESSER,
+	R_GREATER,
 }					t_token_type;
 
 typedef struct s_token
@@ -37,7 +41,7 @@ typedef struct s_token
 	struct s_token	*prev;
 	struct s_token	*next;
 	char			*content;
-
+	t_token_type	type;
 }					t_token;
 
 typedef struct s_tokenizer

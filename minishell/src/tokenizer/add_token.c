@@ -6,32 +6,31 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 22:34:15 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/28 23:09:00 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/30 16:44:40 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tokenizer.h>
 
-char	*make_content(t_tokenizer *tokenizer)
+void	make_token(t_tokenizer *tokenizer, t_token *token)
 {
-	char	*content;
-	int		i;
+	int	i;
 
 	i = 0;
-	content = (char *)ft_calloc((tokenizer->line_i - tokenizer->start_i) + 1,
-			sizeof(char));
-	if (!content)
+	token->content = (char *)ft_calloc((tokenizer->line_i - tokenizer->start_i)
+			+ 1, sizeof(char));
+	if (!token->content)
 	{
 		exit(1); // TODO
 	}
 	while (tokenizer->start_i < tokenizer->line_i)
 	{
-		content[i] = tokenizer->line[tokenizer->start_i];
+		token->content[i] = tokenizer->line[tokenizer->start_i];
 		i++;
 		tokenizer->start_i++;
 	}
-	content[i] = '\0';
-	return (content);
+	token->content[i] = '\0';
+	token->type = GENERAL;
 }
 
 void	add_token(t_tokenizer *tokenizer)
@@ -45,7 +44,7 @@ void	add_token(t_tokenizer *tokenizer)
 	{
 		exit(1); // TODO
 	}
-	token->content = make_content(tokenizer);
+	make_token(tokenizer, token);
 	if (tokenizer->head == NULL)
 	{
 		tokenizer->head = token;
@@ -59,25 +58,39 @@ void	add_token(t_tokenizer *tokenizer)
 	}
 }
 
-char	*make_content_op(t_tokenizer *tokenizer, int i)
+void	make_token_op(t_tokenizer *tokenizer, int i, t_token *token)
 {
-	char	*content;
-	int		j;
+	int	j;
 
 	j = 0;
-	content = (char *)ft_calloc(i + 1, sizeof(char));
-	if (!content)
+	token->content = (char *)ft_calloc(i + 1, sizeof(char));
+	if (!token->content)
 	{
 		exit(1); // TODO
 	}
 	while (j < i)
 	{
-		content[j] = tokenizer->line[tokenizer->line_i];
+		token->content[j] = tokenizer->line[tokenizer->line_i];
 		j++;
 		tokenizer->line_i++;
 		tokenizer->start_i++;
 	}
-	return (content);
+	if (i == 2)
+	{
+		if (token->content[0] == '>')
+			token->type = R_GREATER;
+		else
+			token->type = R_LESSER;
+	}
+	else
+	{
+		if (token->content[0] == '|')
+			token->type = PIPE;
+		if (token->content[0] == '>')
+			token->type = GREATER;
+		if (token->content[0] == '<')
+			token->type = LESSER;
+	}
 }
 
 void	add_token_operator(t_tokenizer *tokenizer)
@@ -93,9 +106,9 @@ void	add_token_operator(t_tokenizer *tokenizer)
 			&& tokenizer->line[tokenizer->line_i + 1] == '>')
 		|| (tokenizer->line[tokenizer->line_i] == '<'
 			&& tokenizer->line[tokenizer->line_i + 1] == '<'))
-		token->content = make_content_op(tokenizer, 2);
+		make_token_op(tokenizer, 2, token);
 	else
-		token->content = make_content_op(tokenizer, 1);
+		make_token_op(tokenizer, 1, token);
 	if (tokenizer->head == NULL)
 	{
 		tokenizer->head = token;
