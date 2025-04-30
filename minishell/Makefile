@@ -6,7 +6,7 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 17:02:03 by sabe              #+#    #+#              #
-#    Updated: 2025/04/28 23:32:12 by sabe             ###   ########.fr        #
+#    Updated: 2025/04/30 15:30:35 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CFLAGS = -Wall -Werror -Wextra -I$(INC_DIR)
 LDFLAGS = -lreadline
 
 SRC_FILES = src/main.c \
-			src/tokenizer/add_token.c src/tokenizer/handle_operator.c src/tokenizer/handle_quote.c src/tokenizer/handle_space.c src/tokenizer/init.c src/tokenizer/tokenizer.c src/tokenizer/all_free.c
+			src/tokenizer/add_token.c src/tokenizer/handle_operator.c src/tokenizer/handle_quote.c src/tokenizer/handle_space.c src/tokenizer/init.c src/tokenizer/tokenizer.c src/tokenizer/all_free.c src/tokenizer/in_quote.c
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 LIBFT = $(LIBFT_PATH)/libft.a

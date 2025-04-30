@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 21:55:30 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/28 22:10:07 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/30 16:27:07 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ bool	skip_space(t_tokenizer *tokenizer)
 		tokenizer->line_i++;
 		tokenizer->start_i++;
 	}
-	return (false);
+	return (true);
 }

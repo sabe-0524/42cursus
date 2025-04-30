@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_quote.c                                     :+:      :+:    :+:   */
+/*   in_quote.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/28 22:00:55 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/30 15:35:09 by sabe             ###   ########.fr       */
+/*   Created: 2025/04/30 15:28:16 by sabe              #+#    #+#             */
+/*   Updated: 2025/04/30 15:34:39 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tokenizer.h>
 
-bool handle_quote_general(t_tokenizer *tokenizer)
+void	in_quote(t_tokenizer *tk)
 {
-	if (tokenizer->line[tokenizer->line_i] == '\'')
-	{
-		tokenizer->state = STATE_IN_QUOTE;
-		tokenizer->line_i++;
-		return (true);
-	}
-	if (tokenizer->line[tokenizer->line_i] == '\"')
-	{
-		tokenizer->state = STATE_IN_DQUOTE;
-		tokenizer->line_i++;
-		return (true);
-	}
-	return (false);
+	if (tk->line[tk->line_i] == '\'')
+		tk->state = STATE_GENERAL;
+	tk->line_i++;
+}
+
+void	in_dquote(t_tokenizer *tk)
+{
+	if (tk->line[tk->line_i] == '\"')
+		tk->state = STATE_GENERAL;
+	tk->line_i++;
 }

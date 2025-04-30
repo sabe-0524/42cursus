@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 18:00:13 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/28 23:31:48 by sabe             ###   ########.fr       */
+/*   Updated: 2025/04/30 15:38:48 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef enum e_token_state
 
 typedef enum e_token_type
 {
-	CHAR_GENERAL = -1,
+	GENERAL,
+	PIPE,
 }					t_token_type;
 
 typedef struct s_token
@@ -57,6 +58,7 @@ bool				skip_space(t_tokenizer *tokenizer);
 void				add_token_operator(t_tokenizer *tokenizer);
 t_tokenizer			*tokenizer(char *line);
 void				all_free_tokenizer(t_tokenizer *tokenizer);
-;
+void				in_quote(t_tokenizer *tk);
+void				in_dquote(t_tokenizer *tk);
 
 #endif
