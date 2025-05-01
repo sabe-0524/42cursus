@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/27 16:59:39 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/30 16:52:37 by sabe             ###   ########.fr       */
+/*   Created: 2025/04/30 16:48:20 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/01 22:04:13 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include <parser.h>
 
-# include "../libft/libft.h"
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <tokenizer.h>
-# include <unistd.h>
-# include <parser.h>
+t_parser *parser(t_tokenizer *tk)
+{
+	t_parser *ps;
 
-#endif
+	ps = init_parser(tk);
+	recur_pipe(ps->tree->head);
+	return (ps);
+}

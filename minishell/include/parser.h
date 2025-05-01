@@ -1,25 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/27 16:59:39 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/30 16:52:37 by sabe             ###   ########.fr       */
+/*   Created: 2025/04/30 16:48:29 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/01 22:04:18 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef PARSER_H
+# define PARSER_H
 
-# include "../libft/libft.h"
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdio.h>
-# include <stdlib.h>
 # include <tokenizer.h>
-# include <unistd.h>
-# include <parser.h>
+
+typedef struct s_node
+{
+	struct s_node	*right;
+	struct s_node	*left;
+	t_token			*token;
+}					t_node;
+
+typedef struct s_tree
+{
+	t_node			*head;
+}					t_tree;
+
+typedef struct s_parser
+{
+	t_tree			*tree;
+	t_tokenizer		*tk;
+}					t_parser;
+
+void				recur_redirect(t_node *node);
+void				recur_pipe(t_node *node);
+t_parser			*init_parser(t_tokenizer *tk);
+t_parser				*parser(t_tokenizer *tk);
 
 #endif
