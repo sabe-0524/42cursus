@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 16:48:29 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/01 22:04:18 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/02 20:09:36 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_parser
 void				recur_redirect(t_node *node);
 void				recur_pipe(t_node *node);
 t_parser			*init_parser(t_tokenizer *tk);
-t_parser				*parser(t_tokenizer *tk);
+t_parser			*parser(t_tokenizer *tk);
+bool				is_error_ast(t_tree *tree);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 17:02:03 by sabe              #+#    #+#              #
-#    Updated: 2025/05/01 22:08:14 by sabe             ###   ########.fr        #
+#    Updated: 2025/05/02 20:09:56 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC_FILES = src/main.c \
 			src/tokenizer/init.c src/tokenizer/tokenizer.c \
 			src/tokenizer/all_free.c src/tokenizer/in_quote.c \
 			src/parser/parser.c src/parser/init.c src/parser/recur_pipe.c \
-			src/parser/recur_redirect.c
+			src/parser/recur_redirect.c src/parser/parse_error.c
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 LIBFT = $(LIBFT_PATH)/libft.a
