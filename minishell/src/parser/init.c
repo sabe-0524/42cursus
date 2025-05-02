@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:20:50 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/01 22:06:14 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/02 21:32:12 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ t_parser	*init_parser(t_tokenizer *tk)
 		exit(1); // TODO
 	}
 	ps->tree->head->token = tk->head;
-	ps->tk = tk;
 	return (ps);
 }
