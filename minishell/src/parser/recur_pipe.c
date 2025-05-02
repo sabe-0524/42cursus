@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   recur_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:32:28 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/02 15:39:17 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/05/02 19:45:20 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,39 +34,52 @@
 // 	node->token = token;
 // 	node->token->next = NULL;
 //   if (node->right->token)
-// 	    node->right->token->prev = NULL;
+// 			node->right->token->prev = NULL;
 //   if (node->token->prev)
-// 	    node->token->prev->next = NULL;
+// 			node->token->prev->next = NULL;
 // 	node->token->prev = NULL;
 // }
 
-void add_node_pipe(t_node *node, t_token *token)
+void	add_node_pipe(t_node *node, t_token *token)
 {
-    t_token *head = node->token;
-    t_token *prev = token->prev;
-    t_token *next = token->next;
+	t_token	*head;
+	t_token	*prev;
+	t_token	*next;
+	t_node	*left;
+	t_node	*right;
 
-    t_node *left = ft_calloc(1, sizeof(*left));
-    if (!left) exit(1);
-    t_node *right = ft_calloc(1, sizeof(*right));
-    if (!right) exit(1);
-    if (prev) {
-        prev->next = NULL;
-        left->token = head;
-    } else {
-        left->token = NULL;
-    }
-    if (next) {
-        next->prev = NULL;
-        right->token = next;
-    } else {
-        right->token = NULL;
-    }
-    node->left  = left;
-    node->right = right;
-    token->prev = NULL;
-    token->next = NULL;
-    node->token = token;
+	head = node->token;
+	prev = token->prev;
+	next = token->next;
+	left = ft_calloc(1, sizeof(*left));
+	if (!left)
+		exit(1);
+	right = ft_calloc(1, sizeof(*right));
+	if (!right)
+		exit(1);
+	if (prev)
+	{
+		prev->next = NULL;
+		left->token = head;
+	}
+	else
+	{
+		left->token = NULL;
+	}
+	if (next)
+	{
+		next->prev = NULL;
+		right->token = next;
+	}
+	else
+	{
+		right->token = NULL;
+	}
+	node->left = left;
+	node->right = right;
+	token->prev = NULL;
+	token->next = NULL;
+	node->token = token;
 }
 
 void	recur_pipe(t_node *node)
@@ -74,6 +87,8 @@ void	recur_pipe(t_node *node)
 	t_token	*token;
 	int		flag;
 
+	if (!node)
+		return ;
 	flag = 0;
 	token = node->token;
 	while (token)

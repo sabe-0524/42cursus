@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 21:00:04 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/01 22:23:22 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/02 19:45:17 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,19 @@ void	add_node_redirect(t_node *node, t_token *token)
 	right = ft_calloc(1, sizeof *right);
 	prev = token->prev;
 	file = token->next;
-	after = file->next;
-	prev->next = after;
+	after = NULL;
+	if (file)
+		after = file->next;
+	if (prev)
+		prev->next = after;
 	if (after)
 		after->prev = prev;
-	token->prev = NULL;
-	token->next = NULL;
-	file->prev = NULL;
-	file->next = NULL;
+	token->prev = token->next = NULL;
+	if (file)
+		file->prev = file->next = NULL;
 	left->token = file;
-	right->token = node->token;
+	if (prev)
+		right->token = node->token;
 	node->left = left;
 	node->right = right;
 	node->token = token;
@@ -44,6 +47,8 @@ void	recur_redirect(t_node *node)
 	t_token	*token;
 	int		flag;
 
+	if (!node)
+		return ;
 	flag = 0;
 	token = node->token;
 	while (token)
