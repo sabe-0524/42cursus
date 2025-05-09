@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander.c                                         :+:      :+:    :+:   */
+/*   expand_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 15:06:29 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/09 16:25:46 by sabe             ###   ########.fr       */
+/*   Created: 2025/05/09 16:08:29 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/09 16:10:54 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <expander.h>
 
-void	recur_expand(t_node *node, t_expander *ex)
+bool	is_separator(char c)
 {
-	if (node->token->type == GENERAL)
-	{
-		expand_word(node, ex);
-		return ;
-	}
-	recur_expand(node->left, ex);
-	recur_expand(node->right, ex);
+	if (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z') || ('1' <= c
+			&& c <= '9') || c == '_')
+		return (true);
+	else
+		return (false);
 }
 
-void	expander(t_tree *tree)
+void expand_env(t_token *token)
 {
-	t_expander *ex;
+	size_t token_len;
 
-	ex = init_expander(tree);
-	recur_expand(ex->tree->head, ex);
+	token_len = ft_strlen(token->content);
 }

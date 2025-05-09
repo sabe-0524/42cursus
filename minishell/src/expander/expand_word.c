@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander.c                                         :+:      :+:    :+:   */
+/*   expand_word.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 15:06:29 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/09 16:25:46 by sabe             ###   ########.fr       */
+/*   Created: 2025/05/09 15:36:33 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/09 16:26:28 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <expander.h>
 
-void	recur_expand(t_node *node, t_expander *ex)
+void expand_token(t_token *token, t_expander *ex)
 {
-	if (node->token->type == GENERAL)
-	{
-		expand_word(node, ex);
-		return ;
-	}
-	recur_expand(node->left, ex);
-	recur_expand(node->right, ex);
+	expand_env(token, ex);
+	expand_quote(token, ex);
 }
 
-void	expander(t_tree *tree)
+void expand_word(t_node *node, t_expander *ex)
 {
-	t_expander *ex;
+	t_token *token;
 
-	ex = init_expander(tree);
-	recur_expand(ex->tree->head, ex);
+	token = node->token;
+	while (token)
+	{
+		expand_token(token, ex);
+		token = token->next;
+	}
 }
