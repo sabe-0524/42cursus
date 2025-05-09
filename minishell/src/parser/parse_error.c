@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 19:49:58 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/02 21:26:37 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/09 15:23:27 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 bool check_node(t_node *node)
 {
-	if (node->token->type == PIPE && node->left->token && node->right->token)
+	if (node->token->type == PIPE && node->left && node->right)
 		return (false);
-	if (node->token->type > PIPE && node->left->token)
+	if (node->token->type > PIPE && node->left)
 		return (false);
 	else
 		return (true);
@@ -24,7 +24,7 @@ bool check_node(t_node *node)
 
 bool recur_check(t_node *node)
 {
-	if (!node->token || node->token->type == GENERAL)
+	if (!node || node->token->type == GENERAL)
 		return (false);
 	else
 	{

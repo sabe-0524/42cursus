@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:32:28 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/02 20:04:30 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/09 15:26:49 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,29 +51,23 @@ void	add_node_pipe(t_node *node, t_token *token)
 	head = node->token;
 	prev = token->prev;
 	next = token->next;
-	left = ft_calloc(1, sizeof(*left));
-	if (!left)
-		exit(1);
-	right = ft_calloc(1, sizeof(*right));
-	if (!right)
-		exit(1);
+	left = NULL;
+	right = NULL;
 	if (prev)
 	{
 		prev->next = NULL;
+		left = ft_calloc(1, sizeof(*left));
+		if (!left)
+			exit(1);
 		left->token = head;
-	}
-	else
-	{
-		left->token = NULL;
 	}
 	if (next)
 	{
 		next->prev = NULL;
+		right = ft_calloc(1, sizeof(*right));
+		if (!right)
+			exit(1);
 		right->token = next;
-	}
-	else
-	{
-		right->token = NULL;
 	}
 	node->left = left;
 	node->right = right;

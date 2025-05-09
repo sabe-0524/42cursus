@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 21:00:04 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/02 19:45:17 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/09 15:19:55 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	add_node_redirect(t_node *node, t_token *token)
 	t_token	*file;
 	t_token	*after;
 
-	left = ft_calloc(1, sizeof *left);
-	right = ft_calloc(1, sizeof *right);
 	prev = token->prev;
 	file = token->next;
 	after = NULL;
+	left = NULL;
+	right = NULL;
 	if (file)
 		after = file->next;
 	if (prev)
@@ -33,10 +33,16 @@ void	add_node_redirect(t_node *node, t_token *token)
 		after->prev = prev;
 	token->prev = token->next = NULL;
 	if (file)
+	{
 		file->prev = file->next = NULL;
-	left->token = file;
+		left = ft_calloc(1, sizeof *left);
+		left->token = file;
+	}
 	if (prev)
+	{
+		right = ft_calloc(1, sizeof *right);
 		right->token = node->token;
+	}
 	node->left = left;
 	node->right = right;
 	node->token = token;
