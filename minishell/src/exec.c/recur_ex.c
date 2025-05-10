@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   recur_ex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 16:48:20 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/10 20:36:11 by sabe             ###   ########.fr       */
+/*   Created: 2025/05/10 16:43:06 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/10 18:04:21 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
+#include <exec.h>
 
-t_parser *parser(t_tokenizer *tk)
+void	recur_ex(t_node *node, t_executor *ex)
 {
-	t_parser *ps;
-
-	ps = init_parser(tk);
-	recur_pipe(ps->tree->head);
-	add_flag(ps->tree);
-	return (ps);
+	if (node->token->type == GENERAL)
+	{
+		ex_command(node, ex);
+		return ;
+	}
+	else if (node->token->type == PIPE)
+	{
+		ex_pipe(ex);
+	}
+	else if (node->token->type > PIPE)
+	{
+		ex_redirect(ex);
+	}
+	recur_ex(node->left, ex);
+	recur_ex(node->right, ex);
 }

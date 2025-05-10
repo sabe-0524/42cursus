@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   add_flag.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 16:48:20 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/10 20:36:11 by sabe             ###   ########.fr       */
+/*   Created: 2025/05/10 20:32:10 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/10 20:40:24 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 
-t_parser *parser(t_tokenizer *tk)
+void	add_flag(t_tree *tree)
 {
-	t_parser *ps;
+	t_node	*node;
 
-	ps = init_parser(tk);
-	recur_pipe(ps->tree->head);
-	add_flag(ps->tree);
-	return (ps);
+	node = tree->head;
+	if (!node)
+		return ;
+	while (node->left)
+		node = node->left;
+	node->is_first = true;
+	node = tree->head;
+	while (node->right)
+		node = node->right;
+	node->is_last = true;
 }

@@ -6,7 +6,7 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 17:02:03 by sabe              #+#    #+#              #
-#    Updated: 2025/05/10 14:08:15 by sabe             ###   ########.fr        #
+#    Updated: 2025/05/10 20:35:57 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC_FILES = src/main.c \
 			src/tokenizer/all_free.c src/tokenizer/in_quote.c \
 			src/parser/parser.c src/parser/init.c src/parser/recur_pipe.c \
 			src/parser/recur_redirect.c src/parser/parse_error.c \
-			src/parser/free_ast.c \
+			src/parser/free_ast.c src/parser/add_flag.c \
 			src/expander/add_command.c src/expander/ex_dollar.c \
 			src/expander/ex_quote.c src/expander/expand_word.c \
 			src/expander/expander.c src/expander/init.c src/expander/change_content.c \

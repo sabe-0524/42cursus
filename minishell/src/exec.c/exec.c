@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 16:48:20 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/10 20:36:11 by sabe             ###   ########.fr       */
+/*   Created: 2025/05/10 16:25:12 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/10 16:43:36 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
+#include <exec.h>
 
-t_parser *parser(t_tokenizer *tk)
+void exec(t_tree *tree)
 {
-	t_parser *ps;
+	t_executor *ex;
 
-	ps = init_parser(tk);
-	recur_pipe(ps->tree->head);
-	add_flag(ps->tree);
-	return (ps);
+	ex = init_ex(tree);
+	recur_ex(tree->head, ex);
 }

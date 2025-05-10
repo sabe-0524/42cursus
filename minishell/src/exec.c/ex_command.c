@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ex_command.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 16:48:20 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/10 20:36:11 by sabe             ###   ########.fr       */
+/*   Created: 2025/05/10 17:52:04 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/10 20:25:55 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
+#include <exec.h>
 
-t_parser *parser(t_tokenizer *tk)
+void ex_command(t_node *node, t_executor *ex)
 {
-	t_parser *ps;
-
-	ps = init_parser(tk);
-	recur_pipe(ps->tree->head);
-	add_flag(ps->tree);
-	return (ps);
+	
 }

@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:59:39 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/10 13:35:19 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/10 16:24:57 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include "../libft/libft.h"
+# include <exec.h>
 # include <expander.h>
 # include <parser.h>
 # include <readline/history.h>

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ex_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 16:48:20 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/10 20:36:11 by sabe             ###   ########.fr       */
+/*   Created: 2025/05/10 16:48:08 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/10 17:47:54 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
+#include <exec.h>
 
-t_parser *parser(t_tokenizer *tk)
+void	ex_pipe(t_executor *ex)
 {
-	t_parser *ps;
-
-	ps = init_parser(tk);
-	recur_pipe(ps->tree->head);
-	add_flag(ps->tree);
-	return (ps);
+	if (ex->pipe_fd[0] != -1)
+		ex->in_fd = ex->pipe_fd[0];
+	if (pipe(ex->pipe_fd) < 0)
+	{
+		exit(1); // TODO
+	}
 }

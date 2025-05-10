@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 16:48:20 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/10 20:36:11 by sabe             ###   ########.fr       */
+/*   Created: 2025/05/10 16:20:32 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/10 18:12:04 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
+#ifndef EXEC_H
+# define EXEC_H
 
-t_parser *parser(t_tokenizer *tk)
+# include <fcntl.h>
+# include <parser.h>
+# include <stdint.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <sys/stat.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <unistd.h>
+
+typedef struct s_executor
 {
-	t_parser *ps;
+	t_tree	*tree;
+	int		pipe_fd[2];
+	int		in_fd;
+	int		out_fd;
+	pid_t	pid;
+}			t_executor;
 
-	ps = init_parser(tk);
-	recur_pipe(ps->tree->head);
-	add_flag(ps->tree);
-	return (ps);
-}
+t_executor	*init_ex(t_tree *tree);
+
+#endif
