@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:36:33 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/10 14:02:25 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/10 14:08:32 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	expand_token(t_token *token)
 	}
 	add_command(token, ex);
 	change_content(token, ex);
+	free_expander(ex);
 }
 
 void	expand_word(t_node *node)

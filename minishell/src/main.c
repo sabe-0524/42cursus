@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:03:00 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/10 13:34:54 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/10 15:20:27 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,15 @@ int	main(void)
 		if (*line)
 		{
 			add_history(line);
+			tk = tokenizer(line);
+			ps = parser(tk);
+			expander(ps->tree);
+			printf("%d\n", is_error_ast(ps->tree));
+			print_tree(ps->tree);
+			all_free_parser(ps);
+			free(tk->line);
+			free(tk);
 		}
-		tk = tokenizer(line);
-		ps = parser(tk);
-		expander(ps->tree);
-		printf("%d\n", is_error_ast(ps->tree));
-		print_tree(ps->tree);
-		all_free_parser(ps);
-		free(tk->line);
-		free(tk);
 	}
 	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 19:49:58 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/09 15:23:27 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/10 15:14:19 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 
-bool check_node(t_node *node)
+bool	check_node(t_node *node)
 {
 	if (node->token->type == PIPE && node->left && node->right)
 		return (false);
@@ -22,7 +22,7 @@ bool check_node(t_node *node)
 		return (true);
 }
 
-bool recur_check(t_node *node)
+bool	recur_check(t_node *node)
 {
 	if (!node || node->token->type == GENERAL)
 		return (false);
@@ -38,10 +38,12 @@ bool recur_check(t_node *node)
 	return (false);
 }
 
-bool is_error_ast(t_tree *tree)
+bool	is_error_ast(t_tree *tree)
 {
-	t_node *node;
+	t_node	*node;
 
+	if (!tree)
+		return (false);
 	node = tree->head;
 	if (!node)
 		return (false);
