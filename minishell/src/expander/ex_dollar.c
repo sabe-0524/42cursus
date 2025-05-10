@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_env.c                                       :+:      :+:    :+:   */
+/*   ex_dollar.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 16:08:29 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/09 16:10:54 by sabe             ###   ########.fr       */
+/*   Created: 2025/05/10 12:47:13 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/10 13:27:15 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,20 @@ bool	is_separator(char c)
 		return (false);
 }
 
-void expand_env(t_token *token)
+bool	ex_dollar(t_token *token, t_expander *ex)
 {
-	size_t token_len;
+	char	*key;
 
-	token_len = ft_strlen(token->content);
+	if (token->content[ex->line_i] != '$')
+		return (false);
+	add_command(token, ex);
+	ex->line_i++;
+	ex->start_i++;
+	while (is_separator(token->content[ex->line_i]))
+		ex->line_i++;
+	key = ft_substr(token->content, (unsigned int)ex->start_i,
+			(size_t)(ex->line_i - ex->start_i));
+	ex->start_i = ex->line_i;
+	add_env(key, ex);
+	return (true);
 }
