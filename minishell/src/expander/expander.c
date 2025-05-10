@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:06:29 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/10 13:25:20 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/10 13:39:31 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	recur_expand(t_node *node)
 {
-	if (node->token->type == GENERAL)
+	if (node->token->type == STATE_GENERAL)
 	{
 		expand_word(node);
 		return ;

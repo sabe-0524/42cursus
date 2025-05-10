@@ -6,20 +6,11 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:36:33 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/10 12:42:46 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/10 14:02:25 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <expander.h>
-
-bool	is_separator(char c)
-{
-	if (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z') || ('1' <= c
-			&& c <= '9') || c == '_')
-		return (true);
-	else
-		return (false);
-}
 
 void	expand_token(t_token *token)
 {
@@ -28,7 +19,7 @@ void	expand_token(t_token *token)
 	ex = init_expander();
 	while (token->content[ex->line_i])
 	{
-		if (ex->quote_state == GENERAL)
+		if (ex->quote_state == STATE_GENERAL)
 		{
 			if (ex_quote(token, ex))
 				continue ;
@@ -38,7 +29,7 @@ void	expand_token(t_token *token)
 				continue ;
 			ex->line_i++;
 		}
-		else if (ex->quote_state == QUOTE)
+		else if (ex->quote_state == STATE_IN_QUOTE)
 		{
 			if (ex_quote_in_quote(token, ex))
 				continue ;
@@ -53,6 +44,8 @@ void	expand_token(t_token *token)
 			ex->line_i++;
 		}
 	}
+	add_command(token, ex);
+	change_content(token, ex);
 }
 
 void	expand_word(t_node *node)

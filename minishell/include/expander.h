@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:06:44 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/10 13:33:52 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/10 13:58:55 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,6 @@
 # include <parser.h>
 # include <tokenizer.h>
 
-typedef enum e_env_state
-{
-	GENERAL,
-	ENV,
-}						t_env_state;
-
-typedef enum e_quote_state
-{
-	GENERAL,
-	QUOTE,
-	DQUOTE,
-}						t_quote_state;
-
 typedef struct s_command
 {
 	char				*content;
@@ -39,8 +26,7 @@ typedef struct s_command
 
 typedef struct s_expander
 {
-	t_env_state			env_state;
-	t_quote_state		quote_state;
+	t_token_state		quote_state;
 	int					start_i;
 	int					line_i;
 	t_command			*command;
@@ -57,5 +43,6 @@ bool					ex_dquote_in_dquote(t_token *token, t_expander *ex);
 void					expand_word(t_node *node);
 void					expander(t_tree *tree);
 t_expander				*init_expander(void);
+void					change_content(t_token *token, t_expander *ex);
 
 #endif
