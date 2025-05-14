@@ -6,7 +6,7 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 17:02:03 by sabe              #+#    #+#              #
-#    Updated: 2025/05/14 16:45:16 by sabe             ###   ########.fr        #
+#    Updated: 2025/05/14 20:14:49 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ SRC_FILES = src/main.c \
 			src/expander/free_expander.c \
 			src/exec/ex_command.c src/exec/ex_pipe.c src/exec/exec.c \
 			src/exec/first.c src/exec/init.c src/exec/recur_ex.c \
-			src/exec/utils.c
+			src/exec/utils.c src/exec/ex_greater.c src/exec/ex_lesser.c \
+			src/exec/ex_r_greater.c src/exec/ex_redirect.c
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 LIBFT = $(LIBFT_PATH)/libft.a

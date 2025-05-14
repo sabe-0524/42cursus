@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:03:00 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/14 17:56:54 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/14 18:46:16 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ int	main(void)
 			tk = tokenizer(line);
 			ps = parser(tk);
 			expander(ps->tree);
-			// printf("%d\n", is_error_ast(ps->tree));
 			// print_tree(ps->tree);
+			// if (is_error_ast(ps->tree))
 			exec(ps->tree);
 			all_free_parser(ps);
 			free(tk->line);
