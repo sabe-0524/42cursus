@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 17:52:04 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/10 22:07:27 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/14 16:51:40 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,22 @@ size_t	count_token(t_node *node)
 	return (count);
 }
 
-char	**make_command(t_node *node)
+char	**make_shellcommand(t_node *node)
 {
 	size_t	count;
 	char	**command;
 	size_t	i;
+	t_node	*copy;
 
 	i = 0;
-	count = count_token(node);
+	copy = node;
+	count = count_token(copy);
 	command = (char **)ft_calloc((count + 1), sizeof(char *));
 	while (i < count)
 	{
-		command[i] = node->token->content;
-		node->token = node->token->next;
+		command[i] = copy->token->content;
+		copy->token = copy->token->next;
+		i++;
 	}
 	command[i] = NULL;
 	return (command);
@@ -61,12 +64,12 @@ char	*find_filepath(char *s)
 		free(tmp);
 		if (access(path, X_OK) == 0)
 		{
-			all_free(paths);
+			all_free_paths(paths);
 			return (path);
 		}
 		free(path);
 	}
-	all_free(paths);
+	all_free_paths(paths);
 	ft_putendl_fd("command not found", 2);
 	exit(127);
 }
@@ -84,10 +87,10 @@ char	*make_filepath(char **command)
 
 void	ex_command(t_node *node, t_executor *ex)
 {
-	if (node->is_first)
-		ex_command_first(node, ex);
-	else if (node->is_last)
-		ex_command_last(node, ex);
-	else
-		ex_command_middle(node, ex);
+	// if (node->is_first)
+	ex_command_first(node, ex);
+	// else if (node->is_last)
+	// 	ex_command_last(node, ex);
+	// else
+	// 	ex_command_middle(node, ex);
 }

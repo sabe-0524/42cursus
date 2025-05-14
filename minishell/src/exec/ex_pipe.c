@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:48:08 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/11 23:08:38 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/05/14 17:00:36 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void	ex_pipe(t_executor *ex)
 {
+	ex->save_in = ex->in_fd;
 	if (pipe(ex->pipe_fd) < 0)
 	{
 		exit(1); // TODO
 	}
+	ex->in_fd = ex->pipe_fd[0];
+	ex->out_fd = ex->pipe_fd[1];
 }

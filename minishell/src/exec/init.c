@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   recur_ex.c                                         :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/10 16:43:06 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/10 18:04:21 by sabe             ###   ########.fr       */
+/*   Created: 2025/05/10 16:28:22 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/14 17:00:11 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-void	recur_ex(t_node *node, t_executor *ex)
+extern char	**environ;
+
+t_executor	*init_ex(t_tree *tree)
 {
-	if (node->token->type == GENERAL)
+	t_executor	*ex;
+
+	ex = (t_executor *)ft_calloc(1, sizeof(t_executor));
+	if (!ex)
 	{
-		ex_command(node, ex);
-		return ;
+		exit(1); // TODO
 	}
-	else if (node->token->type == PIPE)
-	{
-		ex_pipe(ex);
-	}
-	else if (node->token->type > PIPE)
-	{
-		ex_redirect(ex);
-	}
-	recur_ex(node->left, ex);
-	recur_ex(node->right, ex);
+	ex->tree = tree;
+	ex->pipe_fd[0] = -1;
+	ex->pipe_fd[1] = -1;
+	ex->in_fd = STDIN_FILENO;
+	ex->out_fd = STDOUT_FILENO;
+	ex->save_in = STDIN_FILENO;
+	ex->pid = -1;
+	ex->envp = environ;
+	return (ex);
 }
