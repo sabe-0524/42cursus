@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ex_lesser.c                                        :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 20:08:29 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/15 19:46:06 by sabe             ###   ########.fr       */
+/*   Created: 2025/05/15 20:39:05 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/15 21:23:01 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-void ex_lesser(t_node *node, t_executor *ex)
+void	ex_echo(t_node *node, t_executor *ex)
 {
-	int fd;
+	t_token	*tk;
+	int		flag;
 
-	if (ex->in_fd != STDIN_FILENO)
-		close(ex->in_fd);
-	fd = open(node->left->token->content, O_RDONLY);
-	ex->in_fd = fd;
+	flag = 0;
+	tk = node->token->next;
+	while (tk)
+	{
+		if (ft_strncmp(tk->content, "-n", 2) == 0 && tk->content[2] == '\0')
+		{
+			flag += 1;
+			tk = tk->next;
+			continue ;
+		}
+		ft_putstr_fd(tk->content, ex->out_fd);
+		tk = tk->next;
+		if (tk)
+			ft_putstr_fd(" ", ex->out_fd);
+	}
+	if (!flag)
+		ft_putstr_fd("\n", ex->out_fd);
 }

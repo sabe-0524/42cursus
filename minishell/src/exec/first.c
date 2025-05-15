@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:06:24 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/14 17:42:08 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/15 21:01:45 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ void	do_child_first(t_node *node, t_executor *ex)
 
 void	ex_command_first(t_node *node, t_executor *ex)
 {
+	if (is_builtin(node))
+	{
+		ex_builtin(node, ex);
+		return ;
+	}
 	ex->pid = fork();
 	if (ex->pid < 0)
 	{
