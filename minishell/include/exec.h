@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:20:32 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 18:30:39 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/05/16 20:24:38 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ void		ex_r_lesser(t_node *node, t_executor *ex);
 void		ex_echo(t_node *node, t_executor *ex);
 bool		is_builtin(t_node *node);
 void		ex_builtin(t_node *node, t_executor *ex);
-void ex_export(t_node *node, t_executor *ex);
-void ex_unset(t_node *node, t_executor *ex);
-void ex_env(t_executor *ex);
-void ex_pwd(t_executor *ex);
+void		ex_export(t_node *node, t_executor *ex);
+void		ex_unset(t_node *node, t_executor *ex);
+void		ex_env(t_executor *ex);
+void		ex_pwd(t_executor *ex);
+size_t		count_token(t_node *node);
 
 #endif
