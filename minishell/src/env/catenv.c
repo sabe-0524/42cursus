@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   catenv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:12:57 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 15:25:30 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/16 18:18:14 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,19 @@ char	*recover_env(t_item *item)
 	ft_strlcat(envp_i, "=", len);
 	ft_strlcat(envp_i, item->data, len);
 	return (envp_i);
+}
+
+char *catenv_i(t_item *item)
+{
+  char	*envp_i;
+  size_t	len;
+
+  len = ft_strlen(item->key) + ft_strlen(item->data) + 2;
+  envp_i = (char *)ft_calloc(len, sizeof(char));
+  ft_strlcat(envp_i, item->key, len);
+  ft_strlcat(envp_i, "=", len);
+  ft_strlcat(envp_i, item->data, len);
+  return (envp_i);
 }
 
 char	**catenv(t_env *env)

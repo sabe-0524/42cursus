@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 13:23:12 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 15:30:25 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/16 18:25:14 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ void				my_unset(t_env *env, char *key);
 void				free_item(t_item *item);
 void				free_env(t_env *env);
 char				**catenv(t_env *env);
+char *catenv_i(t_item *item);
 
 #endif
