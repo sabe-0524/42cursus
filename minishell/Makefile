@@ -6,7 +6,7 @@
 #    By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 17:02:03 by sabe              #+#    #+#              #
-#    Updated: 2025/05/16 18:24:58 by abesouichir      ###   ########.fr        #
+#    Updated: 2025/05/16 18:31:00 by abesouichir      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRC_FILES = src/main.c \
 			src/exec/ex_r_greater.c src/exec/ex_redirect.c src/exec/ex_r_lesser.c \
 			src/exec/builtin/builtin.c src/exec/builtin/echo.c \
 			src/exec/builtin/export.c src/exec/builtin/unset.c \
-			src/exec/builtin/env.c \
+			src/exec/builtin/env.c src/exec/builtin/pwd.c \
 			src/env/getenv.c src/env/make_env.c src/env/setenv.c src/env/unset.c \
 			src/env/utils.c src/env/catenv.c
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))

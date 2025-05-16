@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:20:32 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 18:24:35 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/05/16 18:30:39 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ void		ex_builtin(t_node *node, t_executor *ex);
 void ex_export(t_node *node, t_executor *ex);
 void ex_unset(t_node *node, t_executor *ex);
 void ex_env(t_executor *ex);
+void ex_pwd(t_executor *ex);
 
 #endif
