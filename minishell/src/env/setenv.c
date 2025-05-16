@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setenv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 13:57:20 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 18:10:05 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/05/16 21:23:36 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,18 @@ void	insert_env(t_env *env, t_item *item)
 		}
     tmp = tmp->next;
 	}
+}
+
+void my_setenv_row(t_env *env, char *key, char *data)
+{
+	t_item *item;
+
+	item = (t_item *)ft_calloc(1, sizeof(t_item));
+	item->key = ft_strdup(key);
+	// if (!item->key)
+	// 	a();
+	item->data = data;
+	insert_env(env, item);
 }
 
 void	my_setenv(t_env *env, char *str)

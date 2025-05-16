@@ -6,18 +6,22 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:28:50 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/05/16 20:18:16 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/16 21:20:32 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-void	ex_pwd(t_executor *ex)
+void ex_pwd(t_executor *ex)
 {
-	char	*pwd;
+  char	*pwd;
 
-	pwd = my_getenv("PWD", ex->env);
-	if (pwd == NULL)
-		perror("getcwd");
-	ft_putendl_fd(pwd, ex->out_fd);
+  pwd = getcwd(NULL, 0);
+  if (pwd == NULL)
+  {
+    perror("getcwd");
+    exit(EXIT_FAILURE);
+  }
+  ft_putendl_fd(pwd, ex->out_fd);
+  free(pwd);
 }

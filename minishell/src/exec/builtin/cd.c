@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 20:21:05 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 20:27:27 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/16 21:43:59 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,21 @@ void cd_to_home(t_executor *ex)
 	if (!home)
 		exit(1); // TODO
 	chdir(home);
-	
+	my_setenv_row(ex->env, "PWD", home);
 }
 
-void	my_cd(t_node *node, t_executor *ex)
+void cd_to_path(t_node *node, t_executor *ex)
 {
-	if (count_token(node->token) > 2)
+	if (chdir(node->token->next->content) == -1)
+		perror(NULL);
+	my_setenv_row(ex->env, "PWD", getcwd(NULL, 0));
+}
+
+void	ex_cd(t_node *node, t_executor *ex)
+{
+	if (count_token(node) > 2)
 		exit(1); // TODO
-	else if (count_token(node->token) == 1)
+	else if (count_token(node) == 1)
 		cd_to_home(ex);
 	else
 		cd_to_path(node, ex);
