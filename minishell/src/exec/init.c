@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:28:22 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/14 17:00:11 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/16 15:02:07 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern char	**environ;
 
-t_executor	*init_ex(t_tree *tree)
+t_executor	*init_ex(t_tree *tree, t_env *env)
 {
 	t_executor	*ex;
 
@@ -30,6 +30,6 @@ t_executor	*init_ex(t_tree *tree)
 	ex->out_fd = STDOUT_FILENO;
 	ex->save_in = STDIN_FILENO;
 	ex->pid = -1;
-	ex->envp = environ;
+	ex->env = env;
 	return (ex);
 }

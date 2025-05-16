@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:06:24 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/15 21:01:45 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/16 15:54:15 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	do_child_first(t_node *node, t_executor *ex)
 	if (ex->pipe_fd[0] > STDERR_FILENO)
 		close(ex->pipe_fd[0]);
 	command = make_shellcommand(node);
-	filepath = make_filepath(command);
-	if (execve(filepath, command, ex->envp) == -1)
+	filepath = make_filepath(command, ex);
+	if (execve(filepath, command, catenv(ex->env)) == -1)
 	{
 		perror("execve");
 		exit(1); // TODO

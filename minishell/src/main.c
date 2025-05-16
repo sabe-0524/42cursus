@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:03:00 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/14 18:46:16 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/16 15:53:09 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,16 @@ void	print_tree(t_tree *tree)
 	print_tree_rec(tree->head, 0);
 }
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
 	char		*line;
 	t_tokenizer	*tk;
 	t_parser	*ps;
+	t_env		*env;
 
+	if (argc != 1 && argv[0])
+		return (1);
+	env = init_env(envp);
 	while ((line = readline("minishell$ ")) != NULL)
 	{
 		if (*line)
@@ -68,10 +72,10 @@ int	main(void)
 			add_history(line);
 			tk = tokenizer(line);
 			ps = parser(tk);
-			expander(ps->tree);
+			expander(ps->tree, env);
 			// print_tree(ps->tree);
 			// if (is_error_ast(ps->tree))
-			exec(ps->tree);
+			exec(ps->tree, env);
 			all_free_parser(ps);
 			free(tk->line);
 			free(tk);

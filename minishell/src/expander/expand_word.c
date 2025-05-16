@@ -6,17 +6,17 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:36:33 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/10 14:08:32 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/16 15:09:33 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <expander.h>
 
-void	expand_token(t_token *token)
+void	expand_token(t_token *token, t_env *env)
 {
 	t_expander	*ex;
 
-	ex = init_expander();
+	ex = init_expander(env);
 	while (token->content[ex->line_i])
 	{
 		if (ex->quote_state == STATE_GENERAL)
@@ -49,14 +49,14 @@ void	expand_token(t_token *token)
 	free_expander(ex);
 }
 
-void	expand_word(t_node *node)
+void	expand_word(t_node *node, t_env *env)
 {
 	t_token	*token;
 
 	token = node->token;
 	while (token)
 	{
-		expand_token(token);
+		expand_token(token, env);
 		token = token->next;
 	}
 }

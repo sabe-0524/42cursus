@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   getenv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/10 16:25:12 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 15:02:19 by sabe             ###   ########.fr       */
+/*   Created: 2025/05/16 13:46:16 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/16 14:16:52 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <exec.h>
+#include <env.h>
 
-void exec(t_tree *tree, t_env *env)
+char	*my_getenv(char *key, t_env *env)
 {
-	t_executor *ex;
+	t_item	*item;
+	size_t	len;
 
-	ex = init_ex(tree, env);
-	recur_ex(tree->head, ex);
+	item = env->head;
+	len = ft_strlen(key) + 1;
+	while (item)
+	{
+		if (ft_strncmp(key, item->key, len) == 0)
+			return (item->data);
+		item = item->next;
+	}
+	return (NULL);
 }

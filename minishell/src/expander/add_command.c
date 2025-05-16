@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:12:10 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/10 13:29:33 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/16 15:05:41 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	add_env(char *key, t_expander *ex)
 	char		*env;
 	t_command	*new;
 
-	env = getenv(key);
+	env = my_getenv(key, ex->env);
 	if (!env)
 		return ;
 	new = (t_command *)ft_calloc(1, sizeof(t_command));

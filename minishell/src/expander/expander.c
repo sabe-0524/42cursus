@@ -6,26 +6,26 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:06:29 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/10 15:18:26 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/16 15:09:15 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <expander.h>
 
-void	recur_expand(t_node *node)
+void	recur_expand(t_node *node, t_env *env)
 {
 	if (!node)
 		return ;
 	if (node->token->type == STATE_GENERAL)
 	{
-		expand_word(node);
+		expand_word(node, env);
 		return ;
 	}
-	recur_expand(node->left);
-	recur_expand(node->right);
+	recur_expand(node->left, env);
+	recur_expand(node->right, env);
 }
 
-void	expander(t_tree *tree)
+void	expander(t_tree *tree, t_env *env)
 {
-	recur_expand(tree->head);
+	recur_expand(tree->head, env);
 }

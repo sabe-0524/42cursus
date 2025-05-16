@@ -1,28 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/27 16:59:39 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 14:59:34 by sabe             ###   ########.fr       */
+/*   Created: 2025/05/16 13:23:12 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/16 15:30:25 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef ENV_H
+# define ENV_H
 
 # include "../libft/libft.h"
-# include <env.h>
-# include <exec.h>
-# include <expander.h>
-# include <parser.h>
-# include <readline/history.h>
-# include <readline/readline.h>
+# include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <tokenizer.h>
+# include <string.h>
 # include <unistd.h>
+
+typedef struct s_item
+{
+	char			*key;
+	char			*data;
+	struct s_item	*next;
+	struct s_item	*prev;
+}					t_item;
+
+typedef struct s_env
+{
+	t_item			*head;
+}					t_env;
+
+char				*my_getenv(char *key, t_env *env);
+t_env				*init_env(char **envp);
+void				my_setenv(t_env *env, char *str);
+void				my_unset(t_env *env, char *key);
+void				free_item(t_item *item);
+void				free_env(t_env *env);
+char				**catenv(t_env *env);
 
 #endif

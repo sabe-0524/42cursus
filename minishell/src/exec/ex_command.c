@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 17:52:04 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/15 22:16:33 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/16 15:05:15 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**make_shellcommand(t_node *node)
 	return (command);
 }
 
-char	*find_filepath(char *s)
+char	*find_filepath(char *s, t_executor *ex)
 {
 	char	*path;
 	char	**paths;
@@ -56,7 +56,7 @@ char	*find_filepath(char *s)
 	int		i;
 
 	i = -1;
-	paths = ft_split(getenv("PATH"), ':');
+	paths = ft_split(my_getenv("PATH", ex->env), ':');
 	while (paths[++i])
 	{
 		tmp = ft_strjoin(paths[i], "/");
@@ -74,14 +74,14 @@ char	*find_filepath(char *s)
 	exit(127);
 }
 
-char	*make_filepath(char **command)
+char	*make_filepath(char **command, t_executor *ex)
 {
 	char	*filepath;
 
 	if (ft_strchr(command[0], '/'))
 		filepath = ft_strdup(command[0]);
 	else
-		filepath = find_filepath(command[0]);
+		filepath = find_filepath(command[0], ex);
 	return (filepath);
 }
 
