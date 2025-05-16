@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:55:08 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 14:57:36 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/16 18:07:16 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,16 @@
 void free_item(t_item *item)
 {
 	if (item->data)
+  {
+    item->data = NULL;
 		free(item->data);
+  }
 	if (item->key)
+  {
+    item->key = NULL;
 		free(item->key);
+  }
+  item = NULL;
 	free(item);
 }
 

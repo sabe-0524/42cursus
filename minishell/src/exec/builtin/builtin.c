@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 21:01:11 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 16:52:23 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/16 18:05:45 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ void	ex_builtin(t_node *node, t_executor *ex)
 {
 	if (ft_strncmp(node->token->content, "echo", 5) == 0)
 		ex_echo(node, ex);
-	// if (ft_strncmp(node->token->content, "cd", 3))
+	// if (ft_strncmp(node->token->content, "cd", 3) == 0)
 	// 	ex_cd(node, ex);
-	// if (ft_strncmp(node->token->content, "pwd", 4))
+	// if (ft_strncmp(node->token->content, "pwd", 4) == 0)
 	// 	ex_pwd(node, ex);
-	if (ft_strncmp(node->token->content, "export", 7))
+	if (ft_strncmp(node->token->content, "export", 7) == 0)
 		ex_export(node, ex);
-	if (ft_strncmp(node->token->content, "unset", 6))
-		ex_unset(node, ex);
-	// if (ft_strncmp(node->token->content, "env", 4))
+	// if (ft_strncmp(node->token->content, "unset", 6) == 0)
+	// 	ex_unset(node, ex);
+	// if (ft_strncmp(node->token->content, "env", 4) == 0)
 	// 	ex_env(node, ex);
-	// if (ft_strncmp(node->token->content, "exit", 5))
+	// if (ft_strncmp(node->token->content, "exit", 5) == 0)
 	// 	ex_exit(node, ex);
 }

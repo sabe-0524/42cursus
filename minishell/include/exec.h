@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:20:32 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 15:53:55 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/16 17:53:25 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ void		ex_r_lesser(t_node *node, t_executor *ex);
 void		ex_echo(t_node *node, t_executor *ex);
 bool		is_builtin(t_node *node);
 void		ex_builtin(t_node *node, t_executor *ex);
+void ex_export(t_node *node, t_executor *ex);
 
 #endif
