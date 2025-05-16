@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 21:01:11 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/15 21:21:48 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/16 16:52:23 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	ex_builtin(t_node *node, t_executor *ex)
 	// 	ex_cd(node, ex);
 	// if (ft_strncmp(node->token->content, "pwd", 4))
 	// 	ex_pwd(node, ex);
-	// if (ft_strncmp(node->token->content, "export", 7))
-	// 	ex_export(node, ex);
-	// if (ft_strncmp(node->token->content, "unset", 6))
-	// 	ex_unset(node, ex);
+	if (ft_strncmp(node->token->content, "export", 7))
+		ex_export(node, ex);
+	if (ft_strncmp(node->token->content, "unset", 6))
+		ex_unset(node, ex);
 	// if (ft_strncmp(node->token->content, "env", 4))
 	// 	ex_env(node, ex);
 	// if (ft_strncmp(node->token->content, "exit", 5))
