@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/27 16:59:39 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/17 20:06:12 by sabe             ###   ########.fr       */
+/*   Created: 2025/05/17 20:45:27 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/17 20:47:14 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include <env.h>
-# include <exec.h>
-# include <expander.h>
-# include <parser.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <minisig.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <tokenizer.h>
-# include <unistd.h>
-
-#endif
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	return (ft_strncmp(s1, s2, SIZE_MAX));
+}

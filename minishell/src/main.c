@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:03:00 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 15:53:09 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/17 21:10:55 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ int	main(int argc, char **argv, char **envp)
 	if (argc != 1 && argv[0])
 		return (1);
 	env = init_env(envp);
+	init_signal();
 	while ((line = readline("minishell$ ")) != NULL)
 	{
+		init_signal();
 		if (*line)
 		{
 			add_history(line);

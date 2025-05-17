@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:43:06 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/15 19:31:19 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/17 20:40:43 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,8 @@ void	recur_ex(t_node *node, t_executor *ex)
 	}
 	else if (node->token->type > PIPE)
 	{
-		// ex->save_in = ex->in_fd;
-		// ex->save_out = ex->out_fd;
 		ex_redirect(node, ex);
 		recur_ex(node->right, ex);
-		// if (ex->in_fd > STDERR_FILENO)
-		// 	close(ex->in_fd);
-		// if (ex->out_fd > STDERR_FILENO)
-		// 	close(ex->out_fd);
-		// ex->in_fd = ex->save_in;
-		// ex->out_fd = ex->save_out;
 	}
 	else
 	{

@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   minisig.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/27 16:59:39 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/17 20:06:12 by sabe             ###   ########.fr       */
+/*   Created: 2025/05/17 19:18:00 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/17 21:04:21 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef MINISIG_H
+# define MINISIG_H
+# define _POSIX_C_SOURCE 200809L
 
-# include "../libft/libft.h"
-# include <env.h>
-# include <exec.h>
-# include <expander.h>
-# include <parser.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <minisig.h>
+# include <minishell.h>
+# include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <tokenizer.h>
-# include <unistd.h>
+
+void	init_signal(void);
 
 #endif

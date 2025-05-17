@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 19:44:16 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/15 19:59:06 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/17 20:45:10 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void read_heredoc(t_node *node, t_executor *ex)
 		line = readline("> ");
 		if (line == NULL)
 			break ;
-		if (strcmp(line, node->left->token->content) == 0)
+		if (ft_strcmp(line, node->left->token->content) == 0)
 		{
 			free(line);
 			break ;
