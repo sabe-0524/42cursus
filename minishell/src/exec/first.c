@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:06:24 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/18 15:22:19 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/18 17:01:49 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,26 @@ void	do_child_first(t_node *node, t_executor *ex)
 	}
 }
 
-void	ex_command_first(t_node *node, t_executor *ex)
+int	ex_command_first(t_node *node, t_executor *ex)
 {
+	int	status;
+
 	if (is_builtin(node))
-	{
-		ex_builtin(node, ex);
-		return ;
-	}
+		return (ex_builtin(node, ex));
 	ex->pid = fork();
 	if (ex->pid < 0)
-	{
-		exit(1); // TODO
-	}
+		exit(EXIT_FAILURE);
 	else if (ex->pid == 0)
 	{
 		child_signal();
 		do_child_first(node, ex);
+		exit(EXIT_FAILURE);
 	}
 	else
 	{
 		parent_signal();
 		do_parent_first(ex);
+		waitpid(ex->pid, &status, 0);
+		return (WEXITSTATUS(status));
 	}
 }

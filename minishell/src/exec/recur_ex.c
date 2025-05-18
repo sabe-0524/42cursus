@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:43:06 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/18 16:21:58 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/18 17:15:31 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	recur_ex(t_node *node, t_executor *ex)
 {
+	int	exit_code;
+
 	if (node->token->type == PIPE)
 	{
 		ex->save_in = ex->in_fd;
@@ -35,12 +37,15 @@ void	recur_ex(t_node *node, t_executor *ex)
 	}
 	else if (node->token->type > PIPE)
 	{
-		ex_redirect(node, ex);
+		exit_code = ex_redirect(node, ex);
+		my_setenv_row(ex->env, "?", ft_itoa(exit_code));
+		if (exit_code > 0)
+			return ;
 		recur_ex(node->right, ex);
 	}
 	else
 	{
-		ex_command_first(node, ex);
-		waitpid(ex->pid, NULL, 0);
+		exit_code = ex_command_first(node, ex);
+		my_setenv_row(ex->env, "?", ft_itoa(exit_code));
 	}
 }

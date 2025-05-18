@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:20:32 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/18 16:45:58 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/18 17:14:15 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,16 @@ t_executor	*init_ex(t_tree *tree, t_env *env);
 void		ex_command(t_node *node, t_executor *ex);
 void		ex_pipe(t_executor *ex);
 void		exec(t_tree *tree, t_env *env);
-void		ex_command_first(t_node *node, t_executor *ex);
+int			ex_command_first(t_node *node, t_executor *ex);
 void		recur_ex(t_node *node, t_executor *ex);
 void		all_free_paths(char **paths);
 char		*make_filepath(char **command, t_executor *ex);
 char		*find_filepath(char *s, t_executor *ex);
 char		**make_shellcommand(t_node *node);
-void		ex_greater(t_node *node, t_executor *ex);
-void		ex_lesser(t_node *node, t_executor *ex);
-void		ex_r_greater(t_node *node, t_executor *ex);
-void		ex_redirect(t_node *node, t_executor *ex);
+int			ex_greater(t_node *node, t_executor *ex);
+int			ex_lesser(t_node *node, t_executor *ex);
+int			ex_r_greater(t_node *node, t_executor *ex);
+int			ex_redirect(t_node *node, t_executor *ex);
 int			ex_r_lesser(t_node *node, t_executor *ex);
 int			ex_echo(t_node *node, t_executor *ex);
 bool		is_builtin(t_node *node);
