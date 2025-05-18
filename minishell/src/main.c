@@ -6,13 +6,13 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:03:00 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/18 17:48:01 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/18 20:03:56 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int			g_signal;
+volatile sig_atomic_t	g_signal;
 
 void	print_token(t_token *token)
 {
@@ -68,9 +68,9 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	env = init_env(envp);
 	my_setenv_row(env, "?", ft_itoa(EXIT_SUCCESS));
-	init_signal();
 	while (1)
 	{
+		init_signal();
 		line = readline("minishell$ ");
 		if (line == NULL)
 			break ;

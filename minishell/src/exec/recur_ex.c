@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:43:06 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/18 17:15:31 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/18 19:54:15 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	recur_ex(t_node *node, t_executor *ex)
 		}
 		ex->out_fd = ex->pipe_fd[1];
 		recur_ex(node->left, ex);
+		if (!ft_strcmp(my_getenv("?", ex->env), "130"))
+			return ;
 		if (ex->pipe_fd[1] > STDERR_FILENO)
 			close(ex->pipe_fd[1]);
 		ex->in_fd = ex->pipe_fd[0];
@@ -39,9 +41,8 @@ void	recur_ex(t_node *node, t_executor *ex)
 	{
 		exit_code = ex_redirect(node, ex);
 		my_setenv_row(ex->env, "?", ft_itoa(exit_code));
-		if (exit_code > 0)
-			return ;
-		recur_ex(node->right, ex);
+		if (exit_code == 0)
+			recur_ex(node->right, ex);
 	}
 	else
 	{
