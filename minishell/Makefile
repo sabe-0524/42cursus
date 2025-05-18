@@ -6,7 +6,7 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 17:02:03 by sabe              #+#    #+#              #
-#    Updated: 2025/05/18 15:59:02 by sabe             ###   ########.fr        #
+#    Updated: 2025/05/18 17:39:58 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIBFT_PATH = libft
 CFLAGS = -Wall -Werror -Wextra -I$(INC_DIR)
 LDFLAGS = -lreadline
 
-SRC_FILES = src/main.c \
+SRC_FILES = src/main.c src/utils.c \
 			src/tokenizer/add_token.c src/tokenizer/handle_operator.c \
 			src/tokenizer/handle_quote.c src/tokenizer/handle_space.c \
 			src/tokenizer/init.c src/tokenizer/tokenizer.c \

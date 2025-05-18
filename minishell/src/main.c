@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:03:00 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/18 17:31:49 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/18 17:48:01 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,21 @@ int	main(int argc, char **argv, char **envp)
 	if (argc != 1 && argv[0])
 		return (1);
 	env = init_env(envp);
+	my_setenv_row(env, "?", ft_itoa(EXIT_SUCCESS));
 	init_signal();
-	while ((line = readline("minishell$ ")) != NULL)
+	while (1)
 	{
+		line = readline("minishell$ ");
+		if (line == NULL)
+			break ;
 		init_signal();
-		if (*line)
+		if (is_line(line))
 		{
 			add_history(line);
 			tk = tokenizer(line);
 			if (!tk)
 			{
-				my_setenv_row(env, "?", EXIT_FAILURE);
+				my_setenv_row(env, "?", ft_itoa(EXIT_FAILURE));
 				continue ;
 			}
 			ps = parser(tk);
@@ -85,7 +89,7 @@ int	main(int argc, char **argv, char **envp)
 			{
 				ft_putendl_fd("sysntax error", 2);
 				all_free_parser(ps);
-				my_setenv_row(env, "?", EXIT_FAILURE);
+				my_setenv_row(env, "?", ft_itoa(EXIT_FAILURE));
 				continue ;
 			}
 			expander(ps->tree, env);
@@ -95,5 +99,6 @@ int	main(int argc, char **argv, char **envp)
 			free(tk);
 		}
 	}
+	rl_clear_history();
 	return (0);
 }

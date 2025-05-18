@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 19:44:16 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/18 16:24:31 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/18 17:53:29 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ int	read_heredoc(t_node *node, t_executor *ex)
 
 int	ex_r_lesser(t_node *node, t_executor *ex)
 {
-	if (!node)
-		exit(1);
 	heredoc_signal();
 	if (ex->in_fd != STDIN_FILENO)
 		close(ex->in_fd);
