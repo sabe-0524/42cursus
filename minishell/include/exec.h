@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:20:32 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 21:42:00 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/18 16:45:58 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <env.h>
 # include <fcntl.h>
+# include <minishell.h>
+# include <minisig.h>
 # include <parser.h>
 # include <readline/readline.h>
 # include <stdint.h>
@@ -52,15 +54,16 @@ void		ex_greater(t_node *node, t_executor *ex);
 void		ex_lesser(t_node *node, t_executor *ex);
 void		ex_r_greater(t_node *node, t_executor *ex);
 void		ex_redirect(t_node *node, t_executor *ex);
-void		ex_r_lesser(t_node *node, t_executor *ex);
-void		ex_echo(t_node *node, t_executor *ex);
+int			ex_r_lesser(t_node *node, t_executor *ex);
+int			ex_echo(t_node *node, t_executor *ex);
 bool		is_builtin(t_node *node);
-void		ex_builtin(t_node *node, t_executor *ex);
-void		ex_export(t_node *node, t_executor *ex);
-void		ex_unset(t_node *node, t_executor *ex);
-void		ex_env(t_executor *ex);
-void		ex_pwd(t_executor *ex);
+int			ex_builtin(t_node *node, t_executor *ex);
+int			ex_export(t_node *node, t_executor *ex);
+int			ex_unset(t_node *node, t_executor *ex);
+int			ex_env(t_executor *ex);
+int			ex_pwd(t_executor *ex);
 size_t		count_token(t_node *node);
-void		ex_cd(t_node *node, t_executor *ex);
+int			ex_cd(t_node *node, t_executor *ex);
+int			ex_exit(t_node *node, t_executor *ex);
 
 #endif

@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/16 18:14:35 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/05/18 16:42:57 by sabe             ###   ########.fr       */
+/*   Created: 2025/05/18 15:39:04 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/18 15:54:47 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <exec.h>
+#include <minisig.h>
 
-int	ex_unset(t_node *node, t_executor *ex)
+void	heredoc_c(int signo)
 {
-	t_token	*tk;
+	(void)signo;
+	g_signal = 1;
+}
 
-	tk = node->token;
-	while (tk)
+void	heredoc_signal(void)
+{
+	struct sigaction	sa;
+
+	ft_memset(&sa, 0, sizeof(sa));
+	sa.sa_handler = heredoc_c;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_RESTART;
+	if (sigaction(SIGINT, &sa, NULL) == -1)
 	{
-		my_unset(ex->env, tk->content);
-		tk = tk->next;
+		perror("sigaction");
+		exit(EXIT_FAILURE);
 	}
-	return (EXIT_SUCCESS);
 }

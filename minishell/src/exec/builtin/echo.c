@@ -6,13 +6,13 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:39:05 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/15 21:23:01 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/18 16:41:37 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-void	ex_echo(t_node *node, t_executor *ex)
+int	ex_echo(t_node *node, t_executor *ex)
 {
 	t_token	*tk;
 	int		flag;
@@ -34,4 +34,5 @@ void	ex_echo(t_node *node, t_executor *ex)
 	}
 	if (!flag)
 		ft_putstr_fd("\n", ex->out_fd);
+	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:06:24 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 15:54:15 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/18 15:22:19 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,13 @@ void	ex_command_first(t_node *node, t_executor *ex)
 		exit(1); // TODO
 	}
 	else if (ex->pid == 0)
+	{
+		child_signal();
 		do_child_first(node, ex);
+	}
 	else
+	{
+		parent_signal();
 		do_parent_first(ex);
+	}
 }

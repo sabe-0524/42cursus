@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:52:30 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 17:54:42 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/05/18 16:42:33 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-void ex_export(t_node *node, t_executor *ex)
+int ex_export(t_node *node, t_executor *ex)
 {
 	t_token *tk;
 
@@ -23,4 +23,5 @@ void ex_export(t_node *node, t_executor *ex)
 		my_setenv(ex->env, tk->content);
 		tk = tk->next;
 	}
+	return (EXIT_SUCCESS);
 }

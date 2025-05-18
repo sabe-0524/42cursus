@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 21:01:11 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 21:39:52 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/18 16:45:46 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,21 @@ bool	is_builtin(t_node *node)
 		return (false);
 }
 
-void	ex_builtin(t_node *node, t_executor *ex)
+int	ex_builtin(t_node *node, t_executor *ex)
 {
 	if (ft_strncmp(node->token->content, "echo", 5) == 0)
-		ex_echo(node, ex);
+		return (ex_echo(node, ex));
 	if (ft_strncmp(node->token->content, "cd", 3) == 0)
-		ex_cd(node, ex);
+		return (ex_cd(node, ex));
 	if (ft_strncmp(node->token->content, "pwd", 4) == 0)
-		ex_pwd(ex);
+		return (ex_pwd(ex));
 	if (ft_strncmp(node->token->content, "export", 7) == 0)
-		ex_export(node, ex);
+		return (ex_export(node, ex));
 	if (ft_strncmp(node->token->content, "unset", 6) == 0)
-		ex_unset(node, ex);
+		return (ex_unset(node, ex));
 	if (ft_strncmp(node->token->content, "env", 4) == 0)
-		ex_env(ex);
-	// if (ft_strncmp(node->token->content, "exit", 5) == 0)
-	// 	ex_exit(node, ex);
+		return (ex_env(ex));
+	if (ft_strncmp(node->token->content, "exit", 5) == 0)
+		return (ex_exit(node, ex));
+	return (EXIT_FAILURE);
 }

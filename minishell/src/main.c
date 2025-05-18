@@ -6,11 +6,13 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:03:00 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/17 21:10:55 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/18 16:07:11 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+int			g_signal;
 
 void	print_token(t_token *token)
 {

@@ -6,30 +6,11 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:43:06 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/17 20:40:43 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/18 16:21:58 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
-
-// void	recur_ex(t_node *node, t_executor *ex)
-// {
-// 	if (node->token->type == GENERAL)
-// 	{
-// 		ex_command(node, ex);
-// 		return ;
-// 	}
-// 	else if (node->token->type == PIPE)
-// 	{
-// 		ex_pipe(ex);
-// 	}
-// 	// else if (node->token->type > PIPE)
-// 	// {
-// 	// 	ex_redirect(ex);
-// 	// }
-// 	recur_ex(node->left, ex);
-// 	recur_ex(node->right, ex);
-// }
 
 void	recur_ex(t_node *node, t_executor *ex)
 {

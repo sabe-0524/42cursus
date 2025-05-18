@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:59:39 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/17 20:06:12 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/18 15:54:10 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@
 # include <env.h>
 # include <exec.h>
 # include <expander.h>
+# include <minisig.h>
 # include <parser.h>
 # include <readline/history.h>
 # include <readline/readline.h>
-# include <minisig.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <tokenizer.h>
 # include <unistd.h>
+
+extern int	g_signal;
 
 #endif

@@ -6,12 +6,11 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 19:17:49 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/17 21:13:03 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/18 15:39:20 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minisig.h>
-#include <signal.h>
 
 void	normal_c(int signo)
 {
@@ -36,7 +35,7 @@ void	init_signal(void)
 		exit(EXIT_FAILURE);
 	}
     sa.sa_handler = SIG_IGN;
-    sa.sa_flags   = 0;
+    sa.sa_flags   = SA_RESTART;
     if (sigaction(SIGQUIT, &sa, NULL) == -1) {
         perror("sigaction(SIGQUIT)");
         exit(EXIT_FAILURE);

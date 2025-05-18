@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/16 18:14:35 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/05/18 16:42:57 by sabe             ###   ########.fr       */
+/*   Created: 2025/05/18 15:14:47 by sabe              #+#    #+#             */
+/*   Updated: 2025/05/18 15:27:23 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <exec.h>
+#include <minisig.h>
 
-int	ex_unset(t_node *node, t_executor *ex)
+void	parent_c(int signo)
 {
-	t_token	*tk;
+	(void)signo;
+    write (1, "\n", 1);
+    rl_on_new_line();
+    rl_replace_line("", 0);
+}
 
-	tk = node->token;
-	while (tk)
+void parent_signal(void)
+{
+	struct sigaction sa;
+
+	ft_memset(&sa, 0, sizeof(sa));
+	sa.sa_handler = parent_c;
+	sigemptyset(&sa.sa_mask);
+    sa.sa_flags = SA_RESTART;
+	if (sigaction(SIGINT, &sa, NULL) == -1)
 	{
-		my_unset(ex->env, tk->content);
-		tk = tk->next;
+		perror("sigaction");
+		exit(EXIT_FAILURE);
 	}
-	return (EXIT_SUCCESS);
 }

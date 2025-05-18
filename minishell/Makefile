@@ -6,7 +6,7 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 17:02:03 by sabe              #+#    #+#              #
-#    Updated: 2025/05/17 20:56:47 by sabe             ###   ########.fr        #
+#    Updated: 2025/05/18 15:59:02 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,10 @@ SRC_FILES = src/main.c \
 			src/exec/ex_r_greater.c src/exec/ex_redirect.c src/exec/ex_r_lesser.c \
 			src/exec/builtin/builtin.c src/exec/builtin/echo.c \
 			src/exec/builtin/export.c src/exec/builtin/unset.c \
-			src/exec/builtin/env.c src/exec/builtin/pwd.c src/exec/builtin/cd.c \
+			src/exec/builtin/env.c src/exec/builtin/pwd.c src/exec/builtin/cd.c src/exec/builtin/exit.c \
 			src/env/getenv.c src/env/make_env.c src/env/setenv.c src/env/unset.c \
 			src/env/utils.c src/env/catenv.c \
-			src/sig/init.c
+			src/sig/init.c src/sig/parent.c src/sig/child.c src/sig/heredoc.c
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 LIBFT = $(LIBFT_PATH)/libft.a

@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 19:18:00 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/17 21:04:21 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/18 16:01:52 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,8 @@
 # include <stdlib.h>
 
 void	init_signal(void);
+void	parent_signal(void);
+void	child_signal(void);
+void	heredoc_signal(void);
 
 #endif
