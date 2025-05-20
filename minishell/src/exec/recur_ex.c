@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   recur_ex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:43:06 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/18 19:54:15 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/20 14:26:02 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	recur_ex(t_node *node, t_executor *ex)
 	{
 		exit_code = ex_redirect(node, ex);
 		my_setenv_row(ex->env, "?", ft_itoa(exit_code));
-		if (exit_code == 0)
+		if (exit_code == 0 && node->right)
 			recur_ex(node->right, ex);
 	}
 	else

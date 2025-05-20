@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:06:29 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 15:09:15 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/20 14:12:10 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	recur_expand(t_node *node, t_env *env)
 {
 	if (!node)
 		return ;
-	if (node->token->type == STATE_GENERAL)
+	if (node->token->type == GENERAL)
 	{
 		expand_word(node, env);
 		return ;

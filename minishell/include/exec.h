@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:20:32 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/18 17:14:15 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/20 14:47:51 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ int			ex_pwd(t_executor *ex);
 size_t		count_token(t_node *node);
 int			ex_cd(t_node *node, t_executor *ex);
 int			ex_exit(t_node *node, t_executor *ex);
+void all_free_executor(t_executor *ex);
 
 #endif

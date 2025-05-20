@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   all_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/10 16:25:12 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/20 14:38:10 by abesouichir      ###   ########.fr       */
+/*   Created: 2025/05/20 14:58:52 by abesouichir       #+#    #+#             */
+/*   Updated: 2025/05/20 15:01:46 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <exec.h>
+#include <env.h>
 
-void exec(t_tree *tree, t_env *env)
+void all_free_env(t_env *env)
 {
-	t_executor *ex;
+    t_item *tmp;
 
-	ex = init_ex(tree, env);
-	recur_ex(tree->head, ex);
-  all_free_executor(ex);
+    if (!env)
+        return;
+    while (env->head)
+    {
+        tmp = env->head->next;
+        free(env->head->key);
+        free(env->head->data);
+        free(env->head);
+        env->head = tmp;
+    }
+    free(env);
 }

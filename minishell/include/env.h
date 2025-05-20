@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 13:23:12 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 21:23:47 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/20 15:01:56 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ void				free_env(t_env *env);
 char				**catenv(t_env *env);
 char				*catenv_i(t_item *item);
 void				my_setenv_row(t_env *env, char *key, char *data);
+void all_free_env(t_env *env);
 
 #endif

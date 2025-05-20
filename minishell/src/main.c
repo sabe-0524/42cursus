@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:03:00 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/18 20:03:56 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/20 15:02:37 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,10 @@ int	main(int argc, char **argv, char **envp)
 			}
 			expander(ps->tree, env);
 			exec(ps->tree, env);
-			all_free_parser(ps);
-			free(tk->line);
-			free(tk);
+      free_for_next(ps, tk);
 		}
 	}
+  all_free_env(env);
 	rl_clear_history();
 	return (0);
 }

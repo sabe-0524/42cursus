@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_ast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 21:30:56 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/09 15:20:40 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/20 14:56:44 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,6 @@ static void	free_token(t_token *token)
 	}
 }
 
-// void	free_node(t_node *node)
-// {
-// 	if (!node->token)
-// 	{
-// 		free(node);
-// 		return ;
-// 	}
-// 	else
-// 	{
-// 		free_node(node->left);
-// 		free_node(node->right);
-// 		free_token(node->token);
-// 	}
-// }
-
 void free_node(t_node *node)
 {
     if (!node)
@@ -55,7 +40,7 @@ void	all_free_parser(t_parser *ps)
 {
 	if (!ps)
 		return ;
-	free_node(ps->tree->head);
+	// free_node(ps->tree->head);
 	free(ps->tree);
 	free(ps);
 }
