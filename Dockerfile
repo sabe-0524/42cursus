@@ -15,3 +15,9 @@ WORKDIR /workspace
 
 # デフォルト起動コマンド
 CMD ["bash"]
+
+# command↓
+# docker run --rm -it \
+#   -v "$(pwd)":/workspace \
+#   -w /workspace \
+#   my-c-dev
