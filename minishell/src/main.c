@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:03:00 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/20 15:02:37 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/05/21 15:30:16 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	main(int argc, char **argv, char **envp)
 			if (!tk)
 			{
 				my_setenv_row(env, "?", ft_itoa(EXIT_FAILURE));
+				all_free_tokenizer(tk);
 				continue ;
 			}
 			ps = parser(tk);
@@ -94,10 +95,10 @@ int	main(int argc, char **argv, char **envp)
 			}
 			expander(ps->tree, env);
 			exec(ps->tree, env);
-      free_for_next(ps, tk);
+			free_for_next(ps, tk);
 		}
 	}
-  all_free_env(env);
+	all_free_env(env);
 	rl_clear_history();
 	return (0);
 }

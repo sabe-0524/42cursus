@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 13:57:20 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 21:23:36 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/21 14:50:18 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ void	insert_env(t_env *env, t_item *item)
 {
 	t_item	*tmp;
 
+	if (env->head == NULL)
+	{
+		env->head = item;
+		item->prev = NULL;
+		return ;
+	}
 	tmp = env->head;
 	while (tmp)
 	{
@@ -23,22 +29,24 @@ void	insert_env(t_env *env, t_item *item)
 		{
 			free(tmp->data);
 			tmp->data = item->data;
-			free_item(item);
+			if (item->key)
+				free(item->key);
+			free(item);
 			return ;
 		}
 		if (!tmp->next)
 		{
 			tmp->next = item;
 			item->prev = tmp;
-      return ;
+			return ;
 		}
-    tmp = tmp->next;
+		tmp = tmp->next;
 	}
 }
 
-void my_setenv_row(t_env *env, char *key, char *data)
+void	my_setenv_row(t_env *env, char *key, char *data)
 {
-	t_item *item;
+	t_item	*item;
 
 	item = (t_item *)ft_calloc(1, sizeof(t_item));
 	item->key = ft_strdup(key);

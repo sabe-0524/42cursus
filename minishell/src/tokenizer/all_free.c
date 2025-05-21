@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 23:17:37 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/28 23:35:59 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/21 15:33:51 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,15 @@ void	all_free_tokenizer(t_tokenizer *tokenizer)
 	tokenizer->head = NULL;
 	tokenizer->last = NULL;
 	free(tokenizer);
+}
+
+void	free_tokenizer(t_tokenizer *tk)
+{
+	if (!tk)
+		return ;
+	if (tk->line)
+		free(tk->line);
+	tk->head = NULL;
+	tk->last = NULL;
+	free(tk);
 }

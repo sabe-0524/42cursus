@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 17:37:59 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/20 14:44:20 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/05/21 15:34:19 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ bool	is_line(char *line)
 	return (false);
 }
 
-void free_for_next(t_parser *ps, t_tokenizer *tk)
+void	free_for_next(t_parser *ps, t_tokenizer *tk)
 {
-   all_free_tokenizer(tk);
-   all_free_parser(ps);
+	free_tokenizer(tk);
+	all_free_parser(ps);
 }

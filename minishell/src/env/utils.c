@@ -3,34 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:55:08 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 18:07:16 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/05/21 14:29:17 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <env.h>
 
-void free_item(t_item *item)
+void	free_item(t_item *item)
 {
 	if (item->data)
-  {
-    item->data = NULL;
+	{
+		item->data = NULL;
 		free(item->data);
-  }
+	}
 	if (item->key)
-  {
-    item->key = NULL;
+	{
+		item->key = NULL;
 		free(item->key);
-  }
-  item = NULL;
+	}
+	item = NULL;
 	free(item);
 }
 
-void free_env(t_env *env)
+void	free_env(t_env *env)
 {
-	t_item *tmp;
+	t_item	*tmp;
 
 	while (env->head)
 	{

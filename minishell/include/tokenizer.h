@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 18:00:13 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/18 17:30:44 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/21 15:34:02 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define TOKENIZER_H
 
 # include "../libft/libft.h"
+# include <env.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <env.h>
 
 typedef enum e_token_state
 {
@@ -65,5 +65,6 @@ t_tokenizer			*tokenizer(char *line);
 void				all_free_tokenizer(t_tokenizer *tokenizer);
 void				in_quote(t_tokenizer *tk);
 void				in_dquote(t_tokenizer *tk);
+void				free_tokenizer(t_tokenizer *tk);
 
 #endif
