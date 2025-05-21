@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 13:23:12 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/20 15:01:56 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/05/21 21:09:10 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ENV_H
 
 # include "../libft/libft.h"
+# include <stdbool.h>
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -35,13 +36,13 @@ typedef struct s_env
 
 char				*my_getenv(char *key, t_env *env);
 t_env				*init_env(char **envp);
-void				my_setenv(t_env *env, char *str);
+int					my_setenv(t_env *env, char *str);
 void				my_unset(t_env *env, char *key);
 void				free_item(t_item *item);
 void				free_env(t_env *env);
 char				**catenv(t_env *env);
 char				*catenv_i(t_item *item);
 void				my_setenv_row(t_env *env, char *key, char *data);
-void all_free_env(t_env *env);
+void				all_free_env(t_env *env);
 
 #endif

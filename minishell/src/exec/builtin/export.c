@@ -6,22 +6,24 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:52:30 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/18 16:42:33 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/21 21:10:40 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-int ex_export(t_node *node, t_executor *ex)
+int	ex_export(t_node *node, t_executor *ex)
 {
-	t_token *tk;
+	t_token	*tk;
+	int		flag;
 
+	flag = 0;
 	tk = node->token;
-
 	while (tk)
 	{
-		my_setenv(ex->env, tk->content);
+		if (my_setenv(ex->env, tk->content) == 1)
+			flag = 1;
 		tk = tk->next;
 	}
-	return (EXIT_SUCCESS);
+	return (flag);
 }
