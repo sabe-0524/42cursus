@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:55:08 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/21 14:29:17 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/21 17:04:47 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,9 @@
 void	free_item(t_item *item)
 {
 	if (item->data)
-	{
-		item->data = NULL;
 		free(item->data);
-	}
 	if (item->key)
-	{
-		item->key = NULL;
 		free(item->key);
-	}
-	item = NULL;
 	free(item);
 }
 

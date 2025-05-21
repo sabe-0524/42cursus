@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 19:44:16 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/21 16:22:35 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/21 16:55:10 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	heredoc_child_loop(const char *delim, int write_fd)
 		if (g_signal == 1)
 			break ;
 		if (!line)
-			exit(EXIT_FAILURE);
+			break ;
 		if (ft_strcmp(line, delim) == 0)
 		{
 			free(line);
@@ -33,6 +33,11 @@ void	heredoc_child_loop(const char *delim, int write_fd)
 	}
 	rl_clear_history();
 	close(write_fd);
+	if (g_signal == 1)
+	{
+		g_signal = 0;
+		exit(130);
+	}
 	exit(0);
 }
 

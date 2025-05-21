@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 15:39:04 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/21 16:06:30 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/21 16:49:01 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	event_hook(void)
 void	heredoc_c(int signo)
 {
 	(void)signo;
-	write(1, "\n", 1);
 	g_signal = 1;
 	rl_done = 1;
+	// exit(130);
 }
 
 void	heredoc_signal(void)
