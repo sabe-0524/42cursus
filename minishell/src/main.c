@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:03:00 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/21 15:30:16 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/21 17:19:53 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	main(int argc, char **argv, char **envp)
 			tk = tokenizer(line);
 			if (!tk)
 			{
-				my_setenv_row(env, "?", ft_itoa(EXIT_FAILURE));
+				my_setenv_row(env, "?", ft_itoa(2));
 				all_free_tokenizer(tk);
 				continue ;
 			}
@@ -90,7 +90,7 @@ int	main(int argc, char **argv, char **envp)
 			{
 				ft_putendl_fd("sysntax error", 2);
 				all_free_parser(ps);
-				my_setenv_row(env, "?", ft_itoa(EXIT_FAILURE));
+				my_setenv_row(env, "?", ft_itoa(2));
 				continue ;
 			}
 			expander(ps->tree, env);

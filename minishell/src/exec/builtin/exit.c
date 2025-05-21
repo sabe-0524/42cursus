@@ -6,11 +6,26 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 20:23:50 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/18 16:42:20 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/21 17:30:21 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
+
+bool	is_numeric(char *content)
+{
+	size_t	i;
+
+	i = 0;
+	while (content[i])
+	{
+		if (!(('0' <= content[i] && content[i] <= '9') || (i == 0
+				&& (content[i] == '-' || content[i] == '+'))))
+			return (false);
+		i++;
+	}
+	return (true);
+}
 
 int	ex_exit(t_node *node, t_executor *ex)
 {
@@ -20,7 +35,12 @@ int	ex_exit(t_node *node, t_executor *ex)
 		exit(EXIT_FAILURE);
 	}
 	else if (count_token(node) == 2)
-		exit(ft_atoi(node->token->next->content));
+	{
+		if (is_numeric(node->token->next->content))
+			exit(ft_atoi(node->token->next->content));
+		else
+			exit(2);
+	}
 	else
 		exit(ft_atoi(my_getenv("?", ex->env)));
 	return (EXIT_SUCCESS);
