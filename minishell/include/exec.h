@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:20:32 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/20 14:47:51 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/05/22 20:11:31 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int			ex_pwd(t_executor *ex);
 size_t		count_token(t_node *node);
 int			ex_cd(t_node *node, t_executor *ex);
 int			ex_exit(t_node *node, t_executor *ex);
-void all_free_executor(t_executor *ex);
+void		all_free_executor(t_executor *ex);
+bool		is_dir(char *path);
 
 #endif

@@ -6,11 +6,51 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:36:33 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 15:09:33 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/22 21:11:09 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <expander.h>
+
+void	free_token(t_token *token)
+{
+	if (token->content)
+		free(token->content);
+	free(token);
+}
+
+void	cut_if_blank(t_node *node)
+{
+	t_token	*tk;
+	t_token	*tmp;
+
+	tk = node->token;
+	while (tk)
+	{
+		tmp = tk->next;
+		if (ft_strlen(tk->content) == 0 && tk->is_env)
+		{
+			if (!tk->prev && tk->next)
+			{
+				node->token = tk->next;
+				tk->next->prev = NULL;
+				free_token(tk);
+			}
+			else if (tk->prev && !tk->next)
+			{
+				tk->prev->next = NULL;
+				free_token(tk);
+			}
+			else if (tk->prev && tk->next)
+			{
+				tk->prev->next = tk->next;
+				tk->next->prev = tk->prev;
+				free(tk);
+			}
+		}
+		tk = tmp;
+	}
+}
 
 void	expand_token(t_token *token, t_env *env)
 {
@@ -59,4 +99,5 @@ void	expand_word(t_node *node, t_env *env)
 		expand_token(token, env);
 		token = token->next;
 	}
+	cut_if_blank(node);
 }

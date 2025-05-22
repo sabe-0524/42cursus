@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:06:24 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/18 17:01:49 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/22 21:48:58 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@ void	do_child_first(t_node *node, t_executor *ex)
 		close(ex->pipe_fd[0]);
 	command = make_shellcommand(node);
 	filepath = make_filepath(command, ex);
+	if (access(filepath, F_OK) != 0)
+	{
+		perror(NULL);
+		exit(127);
+	}
+	if (is_dir(filepath) || access(filepath, X_OK) != 0)
+	{
+		ft_putendl_fd("Is a directory", 2);
+		exit(126);
+	}
 	if (execve(filepath, command, catenv(ex->env)) == -1)
 	{
 		perror("execve");

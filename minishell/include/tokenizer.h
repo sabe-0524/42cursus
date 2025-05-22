@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 18:00:13 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/21 15:34:02 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/22 21:12:51 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_token
 	struct s_token	*next;
 	char			*content;
 	t_token_type	type;
+	bool			is_env;
 }					t_token;
 
 typedef struct s_tokenizer

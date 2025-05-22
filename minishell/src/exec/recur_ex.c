@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   recur_ex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:43:06 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/20 14:26:02 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/05/22 19:46:39 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	recur_ex(t_node *node, t_executor *ex)
 {
 	int	exit_code;
 
-	if (node->token->type == PIPE)
+	if (ft_strlen(node->token->content) == 0)
+		return ;
+	else if (node->token->type == PIPE)
 	{
 		ex->save_in = ex->in_fd;
 		if (pipe(ex->pipe_fd) < 0)

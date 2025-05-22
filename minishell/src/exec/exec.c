@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:25:12 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/20 14:38:10 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/05/22 19:41:40 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-void exec(t_tree *tree, t_env *env)
+void	exec(t_tree *tree, t_env *env)
 {
-	t_executor *ex;
+	t_executor	*ex;
 
 	ex = init_ex(tree, env);
 	recur_ex(tree->head, ex);
-  all_free_executor(ex);
+	all_free_executor(ex);
 }

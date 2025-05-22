@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:22:25 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/05/18 16:41:55 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/22 19:53:15 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	ex_env(t_executor *ex)
 	i = 0;
 	while (envp[i])
 	{
-		ft_putendl_fd(envp[i], ex->out_fd);
+		if (envp[i][0] != '?')
+			ft_putendl_fd(envp[i], ex->out_fd);
 		i++;
 	}
 	all_free_paths(envp);

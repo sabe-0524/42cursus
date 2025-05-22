@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:47:13 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/21 21:44:46 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/22 21:19:01 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ bool	ex_dollar(t_token *token, t_expander *ex)
 		|| !(is_separator(token->content[ex->line_i + 1])
 			|| token->content[ex->line_i + 1] == '?'))
 		return (false);
+	token->is_env = true;
 	add_command(token, ex);
 	ex->line_i++;
 	ex->start_i++;
