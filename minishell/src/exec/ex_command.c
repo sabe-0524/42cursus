@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 17:52:04 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/22 20:24:07 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/31 18:43:32 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,4 @@ char	*make_filepath(char **command, t_executor *ex)
 	else
 		filepath = find_filepath(command[0], ex);
 	return (filepath);
-}
-
-void	ex_command(t_node *node, t_executor *ex)
-{
-	// if (node->is_first)
-	ex_command_first(node, ex);
-	// else if (node->is_last)
-	// 	ex_command_last(node, ex);
-	// else
-	// 	ex_command_middle(node, ex);
 }

@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 13:57:20 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/21 21:32:41 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/31 18:41:41 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,8 @@ bool	is_available_env(char *s)
 	return (true);
 }
 
-void	insert_env(t_env *env, t_item *item)
+void	search_env(t_item *tmp, t_item *item)
 {
-	t_item	*tmp;
-
-	if (env->head == NULL)
-	{
-		env->head = item;
-		item->prev = NULL;
-		return ;
-	}
-	tmp = env->head;
 	while (tmp)
 	{
 		if (ft_strncmp(tmp->key, item->key, ft_strlen(item->key) + 1) == 0)
@@ -61,14 +52,26 @@ void	insert_env(t_env *env, t_item *item)
 	}
 }
 
+void	insert_env(t_env *env, t_item *item)
+{
+	t_item	*tmp;
+
+	if (env->head == NULL)
+	{
+		env->head = item;
+		item->prev = NULL;
+		return ;
+	}
+	tmp = env->head;
+	search_env(tmp, item);
+}
+
 void	my_setenv_row(t_env *env, char *key, char *data)
 {
 	t_item	*item;
 
 	item = (t_item *)ft_calloc(1, sizeof(t_item));
 	item->key = ft_strdup(key);
-	// if (!item->key)
-	// 	a();
 	item->data = data;
 	insert_env(env, item);
 }

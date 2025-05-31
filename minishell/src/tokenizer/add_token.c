@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 22:34:15 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/21 15:05:20 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/31 19:21:58 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	make_token(t_tokenizer *tokenizer, t_token *token)
 			+ 1, sizeof(char));
 	if (!token->content)
 	{
-		exit(1); // TODO
+		exit(1);
 	}
 	while (tokenizer->start_i < tokenizer->line_i)
 	{
@@ -42,7 +42,7 @@ void	add_token(t_tokenizer *tokenizer)
 	token = (t_token *)ft_calloc(1, sizeof(t_token));
 	if (!token)
 	{
-		exit(1); // TODO
+		exit(1);
 	}
 	make_token(tokenizer, token);
 	if (tokenizer->head == NULL)
@@ -58,39 +58,52 @@ void	add_token(t_tokenizer *tokenizer)
 	}
 }
 
-void	make_token_op(t_tokenizer *tokenizer, int i, t_token *token)
+void	make_token_op_single(t_tokenizer *tokenizer, t_token *token)
 {
 	int	j;
 
 	j = 0;
-	token->content = (char *)ft_calloc(i + 1, sizeof(char));
+	token->content = (char *)ft_calloc(2, sizeof(char));
 	if (!token->content)
 	{
-		exit(1); // TODO
+		exit(1);
 	}
-	while (j < i)
+	while (j < 1)
 	{
 		token->content[j] = tokenizer->line[tokenizer->line_i];
 		j++;
 		tokenizer->line_i++;
 		tokenizer->start_i++;
 	}
-	if (i == 2)
+	if (token->content[0] == '|')
+		token->type = PIPE;
+	if (token->content[0] == '>')
+		token->type = GREATER;
+	if (token->content[0] == '<')
+		token->type = LESSER;
+}
+
+void	make_token_op_double(t_tokenizer *tokenizer, t_token *token)
+{
+	int	j;
+
+	j = 0;
+	token->content = (char *)ft_calloc(3, sizeof(char));
+	if (!token->content)
 	{
-		if (token->content[0] == '>')
-			token->type = R_GREATER;
-		else
-			token->type = R_LESSER;
+		exit(1);
 	}
+	while (j < 2)
+	{
+		token->content[j] = tokenizer->line[tokenizer->line_i];
+		j++;
+		tokenizer->line_i++;
+		tokenizer->start_i++;
+	}
+	if (token->content[0] == '>')
+		token->type = R_GREATER;
 	else
-	{
-		if (token->content[0] == '|')
-			token->type = PIPE;
-		if (token->content[0] == '>')
-			token->type = GREATER;
-		if (token->content[0] == '<')
-			token->type = LESSER;
-	}
+		token->type = R_LESSER;
 }
 
 void	add_token_operator(t_tokenizer *tokenizer)
@@ -100,15 +113,15 @@ void	add_token_operator(t_tokenizer *tokenizer)
 	token = (t_token *)ft_calloc(1, sizeof(t_token));
 	if (!token)
 	{
-		exit(1); // TODO
+		exit(1);
 	}
 	if ((tokenizer->line[tokenizer->line_i] == '>'
 			&& tokenizer->line[tokenizer->line_i + 1] == '>')
 		|| (tokenizer->line[tokenizer->line_i] == '<'
 			&& tokenizer->line[tokenizer->line_i + 1] == '<'))
-		make_token_op(tokenizer, 2, token);
+		make_token_op_double(tokenizer, token);
 	else
-		make_token_op(tokenizer, 1, token);
+		make_token_op_single(tokenizer, token);
 	if (tokenizer->head == NULL)
 	{
 		tokenizer->head = token;

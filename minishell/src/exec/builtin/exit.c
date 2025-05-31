@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 20:23:50 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/21 17:30:21 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/31 18:42:25 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	is_numeric(char *content)
 	while (content[i])
 	{
 		if (!(('0' <= content[i] && content[i] <= '9') || (i == 0
-				&& (content[i] == '-' || content[i] == '+'))))
+					&& (content[i] == '-' || content[i] == '+'))))
 			return (false);
 		i++;
 	}

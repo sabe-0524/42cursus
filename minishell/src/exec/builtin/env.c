@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:22:25 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/05/22 19:53:15 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/31 18:42:24 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int	ex_env(t_executor *ex)
 		i++;
 	}
 	all_free_paths(envp);
-  return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }

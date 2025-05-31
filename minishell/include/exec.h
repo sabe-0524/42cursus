@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:20:32 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/22 20:11:31 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/31 19:22:42 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ int			ex_cd(t_node *node, t_executor *ex);
 int			ex_exit(t_node *node, t_executor *ex);
 void		all_free_executor(t_executor *ex);
 bool		is_dir(char *path);
+void		do_child_first(t_node *node, t_executor *ex);
 
 #endif

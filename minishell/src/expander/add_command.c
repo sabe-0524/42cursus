@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:12:10 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/22 20:47:09 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/31 18:55:49 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ t_command	*make_command(t_token *token, t_expander *ex)
 	new = (t_command *)ft_calloc(1, sizeof(t_command));
 	if (!new)
 	{
-		exit(1); // TODO
+		exit(1);
 	}
 	new->content = ft_substr(token->content, (unsigned int)ex->start_i,
 			(size_t)(ex->line_i - ex->start_i));
 	if (!new->content)
 	{
-		exit(1); // TODO
+		exit(1);
 	}
 	new->is_env = false;
 	ex->start_i = ex->line_i;
@@ -67,7 +67,7 @@ void	add_env(char *key, t_expander *ex)
 	new = (t_command *)ft_calloc(1, sizeof(t_command));
 	if (!new)
 	{
-		exit(1); // TODO
+		exit(1);
 	}
 	new->content = env;
 	new->is_env = true;
@@ -81,7 +81,7 @@ void	add_command(t_token *token, t_expander *ex)
 	new = make_command(token, ex);
 	if (!new)
 	{
-		exit(1); // TODO
+		exit(1);
 	}
 	ft_command_add_back(&ex->command, new);
 }

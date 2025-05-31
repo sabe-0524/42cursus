@@ -6,15 +6,15 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 20:21:05 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/18 16:46:27 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/31 18:42:20 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-int cd_to_home(t_executor *ex)
+int	cd_to_home(t_executor *ex)
 {
-	char *home;
+	char	*home;
 
 	home = my_getenv("HOME", ex->env);
 	if (!home)
@@ -28,7 +28,7 @@ int cd_to_home(t_executor *ex)
 	return (EXIT_SUCCESS);
 }
 
-int cd_to_path(t_node *node, t_executor *ex)
+int	cd_to_path(t_node *node, t_executor *ex)
 {
 	if (chdir(node->token->next->content) == -1)
 	{

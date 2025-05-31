@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:06:44 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 15:10:35 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/31 19:26:19 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ void					expander(t_tree *tree, t_env *env);
 t_expander				*init_expander(t_env *env);
 void					change_content(t_token *token, t_expander *ex);
 void					free_expander(t_expander *ex);
+void					expand_token(t_token *token, t_env *env);
 
 #endif

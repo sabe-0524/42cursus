@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+         #
+#    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 17:02:03 by sabe              #+#    #+#              #
-#    Updated: 2025/05/20 15:02:14 by abesouichir      ###   ########.fr        #
+#    Updated: 2025/05/31 19:26:45 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,12 @@ SRC_FILES = src/main.c src/utils.c \
 			src/expander/add_command.c src/expander/ex_dollar.c \
 			src/expander/ex_quote.c src/expander/expand_word.c \
 			src/expander/expander.c src/expander/init.c src/expander/change_content.c \
-			src/expander/free_expander.c \
+			src/expander/free_expander.c src/expander/expand_token.c \
 			src/exec/ex_command.c src/exec/ex_pipe.c src/exec/exec.c \
 			src/exec/first.c src/exec/init.c src/exec/recur_ex.c \
 			src/exec/utils.c src/exec/ex_greater.c src/exec/ex_lesser.c \
 			src/exec/ex_r_greater.c src/exec/ex_redirect.c src/exec/ex_r_lesser.c src/exec/all_free.c \
+			src/exec/first_sub.c \
 			src/exec/builtin/builtin.c src/exec/builtin/echo.c \
 			src/exec/builtin/export.c src/exec/builtin/unset.c \
 			src/exec/builtin/env.c src/exec/builtin/pwd.c src/exec/builtin/cd.c src/exec/builtin/exit.c \

@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 21:30:56 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/21 15:27:19 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/31 19:00:02 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,15 @@ static void	free_token(t_token *token)
 	}
 }
 
-void free_node(t_node *node)
+void	free_node(t_node *node)
 {
-    if (!node)
-        return;
-
-    free_node(node->left);
-    free_node(node->right);
-    if (node->token)
-        free_token(node->token);
-    free(node);
+	if (!node)
+		return ;
+	free_node(node->left);
+	free_node(node->right);
+	if (node->token)
+		free_token(node->token);
+	free(node);
 }
 
 void	all_free_parser(t_parser *ps)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:59:39 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/20 14:48:50 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/05/31 19:22:44 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@
 extern volatile sig_atomic_t	g_signal;
 
 bool							is_line(char *line);
-void free_for_next(t_parser *ps, t_tokenizer *tk);
+void							free_for_next(t_parser *ps, t_tokenizer *tk);
 
 #endif

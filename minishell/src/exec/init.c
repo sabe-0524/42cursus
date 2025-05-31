@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:28:22 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/16 15:02:07 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/31 18:44:37 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_executor	*init_ex(t_tree *tree, t_env *env)
 	ex = (t_executor *)ft_calloc(1, sizeof(t_executor));
 	if (!ex)
 	{
-		exit(1); // TODO
+		exit(1);
 	}
 	ex->tree = tree;
 	ex->pipe_fd[0] = -1;
