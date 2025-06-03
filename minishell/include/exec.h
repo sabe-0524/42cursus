@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:20:32 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 19:22:42 by sabe             ###   ########.fr       */
+/*   Updated: 2025/05/31 19:41:52 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define EXEC_H
 
 # include <env.h>
+# include <errno.h>
 # include <fcntl.h>
 # include <minishell.h>
 # include <minisig.h>
