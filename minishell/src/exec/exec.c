@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:25:12 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 19:44:30 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/03 17:33:29 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	exec(t_tree *tree, t_env *env)
 				exit(EXIT_FAILURE);
 			}
 		}
-		if (wpid == ex->pid)
+		if (wpid == ex->last_pid)
 		{
 			my_setenv_row(ex->env, "?", ft_itoa(WEXITSTATUS(status)));
 		}

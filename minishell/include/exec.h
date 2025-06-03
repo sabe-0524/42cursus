@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:20:32 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 19:41:52 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/03 17:18:02 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_executor
 	int		save_out;
 	pid_t	pid;
 	t_env	*env;
+	bool	use_pipe;
+	pid_t	last_pid;
 }			t_executor;
 
 t_executor	*init_ex(t_tree *tree, t_env *env);

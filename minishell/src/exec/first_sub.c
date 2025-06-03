@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 18:52:33 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 18:53:03 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/03 17:33:30 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	check_filepath_and_permissions(const char *filepath)
 	}
 	if (access(filepath, X_OK) != 0)
 	{
-		ft_putendl_fd("Is a directory", 2);
+		ft_putendl_fd("Permission denied", 2);
 		exit(126);
 	}
 }
@@ -80,6 +80,11 @@ void	do_child_first(t_node *node, t_executor *ex)
 
 	redirect_std_fds(ex);
 	close_pipe_read_end(ex);
+	if (is_builtin(node))
+	{
+		ex->out_fd = STDOUT_FILENO;
+		exit(ex_builtin(node, ex));
+	}
 	command = make_shellcommand(node);
 	filepath = make_filepath(command, ex);
 	check_filepath_and_permissions(filepath);

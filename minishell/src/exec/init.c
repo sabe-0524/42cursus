@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:28:22 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 18:44:37 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/03 17:33:33 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ t_executor	*init_ex(t_tree *tree, t_env *env)
 	ex->save_in = STDIN_FILENO;
 	ex->pid = -1;
 	ex->env = env;
+	ex->use_pipe = false;
 	return (ex);
 }

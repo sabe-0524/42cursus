@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:43:06 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 18:50:49 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/03 17:33:34 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	handle_pipe_node(t_node *node, t_executor *ex)
 {
+	ex->use_pipe = true;
 	ex->save_in = ex->in_fd;
 	if (pipe(ex->pipe_fd) < 0)
 	{
@@ -49,6 +50,8 @@ static void	handle_command_node(t_node *node, t_executor *ex)
 	int	exit_code;
 
 	exit_code = ex_command_first(node, ex);
+	if (node->is_last)
+		ex->last_pid = ex->pid;
 	my_setenv_row(ex->env, "?", ft_itoa(exit_code));
 }
 
