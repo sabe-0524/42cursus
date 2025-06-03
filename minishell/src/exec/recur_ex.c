@@ -6,33 +6,51 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:43:06 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/03 17:33:34 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/03 18:20:05 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-static void	handle_pipe_node(t_node *node, t_executor *ex)
+static void	do_pipe_exec(t_node *node, t_executor *ex)
 {
-	ex->use_pipe = true;
-	ex->save_in = ex->in_fd;
-	if (pipe(ex->pipe_fd) < 0)
+	int	pipefd[2];
+
+	if (pipe(pipefd) < 0)
 	{
 		perror("pipe");
 		exit(EXIT_FAILURE);
 	}
-	ex->out_fd = ex->pipe_fd[1];
+	ex->out_fd = pipefd[1];
 	recur_ex(node->left, ex);
 	if (!ft_strcmp(my_getenv("?", ex->env), "130"))
+	{
+		if (pipefd[0] > STDERR_FILENO)
+			close(pipefd[0]);
+		if (pipefd[1] > STDERR_FILENO)
+			close(pipefd[1]);
 		return ;
-	if (ex->pipe_fd[1] > STDERR_FILENO)
-		close(ex->pipe_fd[1]);
-	ex->in_fd = ex->pipe_fd[0];
+	}
+	if (pipefd[1] > STDERR_FILENO)
+		close(pipefd[1]);
+	ex->in_fd = pipefd[0];
 	ex->out_fd = STDOUT_FILENO;
 	recur_ex(node->right, ex);
-	if (ex->pipe_fd[0] > STDERR_FILENO)
-		close(ex->pipe_fd[0]);
-	ex->in_fd = ex->save_in;
+	if (pipefd[0] > STDERR_FILENO)
+		close(pipefd[0]);
+}
+
+static void	handle_pipe_node(t_node *node, t_executor *ex)
+{
+	int	prev_in;
+	int	prev_out;
+
+	prev_in = ex->in_fd;
+	prev_out = ex->out_fd;
+	ex->use_pipe = true;
+	do_pipe_exec(node, ex);
+	ex->in_fd = prev_in;
+	ex->out_fd = prev_out;
 }
 
 static void	handle_redirect_node(t_node *node, t_executor *ex)
