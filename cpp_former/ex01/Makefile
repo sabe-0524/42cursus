@@ -6,17 +6,17 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 21:44:56 by sabe              #+#    #+#              #
-#    Updated: 2025/06/03 21:45:10 by sabe             ###   ########.fr        #
+#    Updated: 2025/06/04 18:58:19 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CPP = g++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = megaphone.cpp
+SRCS = Contact.cpp PhoneBook.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-NAME = 
+NAME = phonebook
 
 all : $(NAME)
 
