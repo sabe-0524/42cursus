@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 21:54:06 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/07 18:22:47 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/06/08 14:55:15 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <string>
 #include <iostream>
+#include <iomanip>
 
 class Contact
 {
@@ -24,18 +25,18 @@ class Contact
 		std::string nickname;
 		std::string phone_number;
 		std::string darkest_secret;
+		std::string getFirstName(void) const;
+		std::string getLastName(void) const;
+		std::string getNickName(void) const;
+		std::string getPhoneNumber(void) const;
+		std::string getDarkestSecret(void) const;
 	public:
 		void setFirstName(std::string input);
 		void setLastName(std::string input);
 		void setNickName(std::string input);
 		void setPhoneNumber(std::string input);
 		void setDarkestSecret(std::string input);
-		std::string getFirstName(void) const;
-		std::string getLastName(void) const;
-		std::string getNickName(void) const;
-		std::string getPhoneNumber(void) const;
-		std::string getDarkestSecret(void) const;
-    void printContact(void) const;
+    	void printContact(void) const;
 };
 
 #endif
