@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 18:07:33 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/08 14:56:32 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/08 17:39:55 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void PhoneBook::searchBook(void)
     return;
   }
   index = static_cast<size_t>(input[0] - '0');
-  if (index > this->getCount())
+  if (index >= this->getCount())
   {
     std::cout << "Index out of range" << std::endl;
     return;
