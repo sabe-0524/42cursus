@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 15:05:49 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/08 17:30:47 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/08 17:35:39 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ bool Account::makeWithdrawal(int withdrawal)
 	}
 }
 
-// int Account::checkAmount(void) const
-// {
-
-// }
+int Account::checkAmount(void) const
+{
+	return (this->_amount);
+}
