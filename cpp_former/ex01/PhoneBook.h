@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 17:52:44 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/04 19:22:18 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/07 17:10:12 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define PHONEBOOK_H
 
 #include "Contact.h"
+#include <iostream>
 
 class PhoneBook
 {
@@ -26,6 +27,8 @@ class PhoneBook
 		Contact *getPhoneBook(void);
 		Contact getContact(int index);
 		size_t getCount(void);
+    void addBook(void);
+    void searchBook(void);
 };
 
 #endif

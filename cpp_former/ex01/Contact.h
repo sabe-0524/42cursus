@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 21:54:06 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/04 17:51:58 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/07 18:22:47 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define CONTACT_H
 
 #include <string>
+#include <iostream>
 
 class Contact
 {
@@ -34,6 +35,7 @@ class Contact
 		std::string getNickName(void) const;
 		std::string getPhoneNumber(void) const;
 		std::string getDarkestSecret(void) const;
+    void printContact(void) const;
 };
 
 #endif
