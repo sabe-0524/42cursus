@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 15:19:05 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 19:04:38 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/09 19:51:49 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ void	child_signal(void)
 		perror("sigaction");
 		exit(EXIT_FAILURE);
 	}
+	signal(SIGQUIT, SIG_DFL);
 }
