@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 17:52:04 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 18:43:32 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/09 19:58:07 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ char	*find_filepath(char *s, t_executor *ex)
 
 	i = -1;
 	paths = ft_split(my_getenv("PATH", ex->env), ':');
+	if (!paths)
+	{
+		ft_putendl_fd("No such file or directory", STDERR_FILENO);
+		exit(127);
+	}
 	while (paths[++i])
 	{
 		tmp = ft_strjoin(paths[i], "/");

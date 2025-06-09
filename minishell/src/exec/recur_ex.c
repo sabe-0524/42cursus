@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:43:06 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/03 18:20:05 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/09 20:26:45 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,8 @@ static void	do_pipe_exec(t_node *node, t_executor *ex)
 
 static void	handle_pipe_node(t_node *node, t_executor *ex)
 {
-	int	prev_in;
-	int	prev_out;
-
-	prev_in = ex->in_fd;
-	prev_out = ex->out_fd;
 	ex->use_pipe = true;
 	do_pipe_exec(node, ex);
-	ex->in_fd = prev_in;
-	ex->out_fd = prev_out;
 }
 
 static void	handle_redirect_node(t_node *node, t_executor *ex)
