@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 20:23:50 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/09 17:42:52 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/10 20:13:22 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,3 @@ int	ex_exit(t_node *node, t_executor *ex)
 		exit(ft_atoi(my_getenv("?", ex->env)));
 	return (EXIT_SUCCESS);
 }
-

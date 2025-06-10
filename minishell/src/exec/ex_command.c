@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 17:52:04 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/09 19:58:07 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/10 20:07:15 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,15 @@ char	**make_shellcommand(t_node *node)
 	return (command);
 }
 
+static void	no_path(char **paths)
+{
+	if (!paths)
+	{
+		ft_putendl_fd("No such file or directory", STDERR_FILENO);
+		exit(127);
+	}
+}
+
 char	*find_filepath(char *s, t_executor *ex)
 {
 	char	*path;
@@ -57,11 +66,7 @@ char	*find_filepath(char *s, t_executor *ex)
 
 	i = -1;
 	paths = ft_split(my_getenv("PATH", ex->env), ':');
-	if (!paths)
-	{
-		ft_putendl_fd("No such file or directory", STDERR_FILENO);
-		exit(127);
-	}
+	no_path(paths);
 	while (paths[++i])
 	{
 		tmp = ft_strjoin(paths[i], "/");
@@ -75,7 +80,7 @@ char	*find_filepath(char *s, t_executor *ex)
 		free(path);
 	}
 	all_free_paths(paths);
-	ft_putendl_fd("command not found", 2);
+	ft_putendl_fd("command not found", STDERR_FILENO);
 	exit(127);
 }
 
