@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:43:46 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/10 21:54:31 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/10 21:54:58 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,6 @@ Fixed& Fixed::operator = (const Fixed &other)
 		this->value = other.getRawBits();
 	return (*this);
 }
-
-// std::ostream& Fixed::operator << (std::ostream& os)
-// {
-// 	os << this->value;
-// 	return (os);
-// }
 
 int Fixed::getRawBits(void) const
 {
