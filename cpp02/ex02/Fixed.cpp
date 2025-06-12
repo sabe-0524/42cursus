@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 21:59:50 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/10 22:14:36 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/12 21:05:11 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,103 @@ bool Fixed::operator == (const Fixed &a) const
 bool Fixed::operator != (const Fixed &a) const
 {
 	return (this->getRawBits() != a.getRawBits());
+}
+
+Fixed Fixed::operator + (const Fixed &a) const
+{
+	Fixed result;
+
+	result.setRawBits(this->getRawBits() + a.getRawBits());
+	return (result);
+}
+
+Fixed Fixed::operator - (const Fixed &a) const
+{
+	Fixed result;
+
+	result.setRawBits(this->getRawBits() - a.getRawBits());
+	return (result);
+}
+
+Fixed Fixed::operator * (const Fixed &a) const
+{
+	Fixed result;
+
+	long long tmp = (long long)(this->getRawBits() * a.getRawBits());
+
+	tmp >>= fractBits;
+	result.setRawBits((int)tmp);
+	return (result);
+}
+
+Fixed Fixed::operator / (const Fixed &a) const
+{
+	Fixed result;
+
+	long long tmp = (long long)this->getRawBits() << fractBits;
+	tmp /= a.getRawBits();
+	result.setRawBits((int)tmp);
+	return (result);
+}
+
+Fixed& Fixed::operator ++ (void)
+{
+	this->setRawBits(this->getRawBits() + 1);
+	return (*this);
+}
+
+Fixed Fixed::operator++(int dummy)
+{
+	(void)dummy;
+	Fixed tmp = *this;
+	this->setRawBits(this->getRawBits() + 1);
+	return (tmp);
+}
+
+Fixed& Fixed::operator -- (void)
+{
+	this->setRawBits(this->getRawBits() - 1);
+	return (*this);
+}
+
+Fixed Fixed::operator--(int dummy)
+{
+	(void)dummy;
+	Fixed tmp = *this;
+	this->setRawBits(this->getRawBits() - 1);
+	return (tmp);
+}
+
+Fixed& Fixed::min(Fixed &a, Fixed &b)
+{
+	if (a <= b)
+		return (a);
+	else
+		return (b);
+}
+
+const Fixed& Fixed::min(const Fixed &a, const Fixed &b)
+{
+	if (a <= b)
+		return (a);
+	else
+		return (b);
+}
+
+Fixed& Fixed::max(Fixed &a, Fixed &b)
+{
+	if (a >= b)
+		return (a);
+	else
+		return (b);
+}
+
+const Fixed& Fixed::max(const Fixed &a, const Fixed &b)
+{
+	if (a >= b)
+		return (a);
+	else
+		return (b);
 }
 
 int Fixed::getRawBits(void) const
