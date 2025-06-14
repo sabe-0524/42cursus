@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 21:59:50 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/12 21:05:11 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/14 14:25:36 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Fixed::Fixed(int num) : value(num << 8)
 	std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(float num) : value(round(num * (1 << 8)))
+Fixed::Fixed(float num) : value(roundf(num * (1 << 8)))
 {
 	std::cout << "Float constructor called" << std::endl;
 }
