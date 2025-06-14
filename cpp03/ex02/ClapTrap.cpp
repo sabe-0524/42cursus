@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:33:21 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/14 18:52:45 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/14 19:09:32 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,9 @@ void ClapTrap::beRepaired(unsigned int amount)
 		this->hitPoints += amount;
 		this->energyPoints--;
 	}
+}
+
+std::string ClapTrap::getName(void)
+{
+	return (this->name);
 }

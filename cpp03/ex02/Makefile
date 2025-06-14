@@ -6,14 +6,14 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/14 16:08:02 by sabe              #+#    #+#              #
-#    Updated: 2025/06/14 17:19:03 by sabe             ###   ########.fr        #
+#    Updated: 2025/06/14 19:11:54 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CPP = g++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp
+SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 NAME = claptrap
