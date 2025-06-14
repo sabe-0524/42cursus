@@ -6,14 +6,14 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/12 21:25:41 by sabe              #+#    #+#              #
-#    Updated: 2025/06/12 21:25:44 by sabe             ###   ########.fr        #
+#    Updated: 2025/06/14 14:53:39 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CPP = g++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp Fixed.cpp
+SRCS = main.cpp Fixed.cpp Point.cpp bsp.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 NAME = fixed

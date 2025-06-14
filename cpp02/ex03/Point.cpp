@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 21:30:01 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/12 21:45:37 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/14 14:53:57 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,3 @@ Fixed Point::getY(void) const
 	return (this->y);
 }
 
-bool bsp(Point const a, Point const b, Point const c, Point const point)
-{
-	
-}
