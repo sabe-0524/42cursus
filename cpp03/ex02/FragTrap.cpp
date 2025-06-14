@@ -6,18 +6,18 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 18:58:17 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/14 19:11:54 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/14 19:37:35 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap(void) : ClapTrap("unknown", 100, 50, 20)
+FragTrap::FragTrap(void) : ClapTrap("unknown", 100, 100, 30)
 {
 	std::cout << this->getClassName() << " default constructor called." << std::endl;
 }
 
-FragTrap::FragTrap(const std::string &name) : ClapTrap(name, 100, 50, 20)
+FragTrap::FragTrap(const std::string &name) : ClapTrap(name, 100, 100, 30)
 {
 	std::cout << this->getClassName() << " string constructor called." << std::endl;
 }
