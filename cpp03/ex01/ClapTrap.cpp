@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:33:21 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/14 17:13:23 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/14 18:52:45 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 ClapTrap::ClapTrap(void) : name("Unknown"), hitPoints(10), energyPoints(10), attackDamage(0)
 {
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << this->getClassName() << " Default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string &name) : name(name), hitPoints(10), energyPoints(10), attackDamage(0)
 {
-	std::cout << "string constructor called" << std::endl;
+	std::cout << this->getClassName() << " string constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string &name, const unsigned int &hitPoints, const unsigned int &energyPoints, const unsigned int &attackDamage) : name(name), hitPoints(hitPoints), energyPoints(energyPoints), attackDamage(attackDamage)
 {
-	std::cout << "full constructor called" << std::endl;
+	std::cout << this->getClassName() << " full constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &other) : name(other.name), hitPoints(other.hitPoints), energyPoints(other.energyPoints), attackDamage(other.attackDamage)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << this->getClassName() <<" Copy constructor called" << std::endl;
 }
 
 ClapTrap& ClapTrap::operator = (const ClapTrap &other)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	std::cout << this->getClassName() << " Copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		this->name = other.name;
@@ -47,7 +47,7 @@ ClapTrap& ClapTrap::operator = (const ClapTrap &other)
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << this->getClassName() << " Destructor called" << std::endl;
 }
 
 void ClapTrap::setName(const std::string &name)

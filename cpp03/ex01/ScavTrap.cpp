@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 16:12:08 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/14 17:20:56 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/14 18:52:54 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ ScavTrap& ScavTrap::operator = (const ScavTrap &other)
 
 void ScavTrap::guardGate(void)
 {
-	std::cout << getClassName() << " is now in Gate keeper mode." << std::endl;
+	std::cout << this->getClassName() << " is now in Gate keeper mode." << std::endl;
 }
