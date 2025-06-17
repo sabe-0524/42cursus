@@ -6,11 +6,27 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:39:05 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 18:42:22 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/17 14:38:43 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
+
+bool	is_option(char *s)
+{
+	size_t	i;
+
+	i = 1;
+	if (s[0] != '-')
+		return (false);
+	while (s[i])
+	{
+		if (s[i] != 'n')
+			return (false);
+		i++;
+	}
+	return (true);
+}
 
 int	ex_echo(t_node *node, t_executor *ex)
 {
@@ -21,12 +37,16 @@ int	ex_echo(t_node *node, t_executor *ex)
 	tk = node->token->next;
 	while (tk)
 	{
-		if (ft_strncmp(tk->content, "-n", 2) == 0 && tk->content[2] == '\0')
+		if (is_option(tk->content))
 		{
-			flag += 1;
+			flag = 1;
 			tk = tk->next;
-			continue ;
 		}
+		else
+			break ;
+	}
+	while (tk)
+	{
 		ft_putstr_fd(tk->content, ex->out_fd);
 		tk = tk->next;
 		if (tk)
