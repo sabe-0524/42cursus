@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 13:23:12 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 19:22:41 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/17 14:25:21 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,10 @@ char				**catenv(t_env *env);
 char				*catenv_i(t_item *item);
 void				my_setenv_row(t_env *env, char *key, char *data);
 void				all_free_env(t_env *env);
+char				*ft_strjoin_free(char *s1, char *s2);
+int					handle_assignment(t_env *env, char *str, char *equal);
+int					handle_no_assignment(char *str);
+bool				is_available_env(char *s);
+void				insert_env(t_env *env, t_item *item, bool is_add);
 
 #endif

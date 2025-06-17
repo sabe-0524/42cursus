@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:55:08 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 18:37:37 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/17 14:23:58 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,65 @@ void	free_env(t_env *env)
 		env->head = tmp;
 	}
 	free(env);
+}
+
+char	*ft_strjoin_free(char *s1, char *s2)
+{
+	char	*ptr;
+	size_t	count1;
+	size_t	count2;
+
+	ptr = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!ptr)
+		return (NULL);
+	count1 = 0;
+	count2 = 0;
+	while (s1[count1] != '\0')
+	{
+		ptr[count1] = s1[count1];
+		count1++;
+	}
+	while (s2[count2] != '\0')
+	{
+		ptr[count1 + count2] = s2[count2];
+		count2++;
+	}
+	ptr[count1 + count2] = '\0';
+	free(s1);
+	free(s2);
+	return (ptr);
+}
+
+int	handle_assignment(t_env *env, char *str, char *equal)
+{
+	t_item	*item;
+	bool	is_add;
+
+	item = ft_calloc(1, sizeof(t_item));
+	is_add = false;
+	if (*(equal - 1) == '+')
+	{
+		item->key = ft_substr(str, 0, equal - str - 1);
+		is_add = true;
+	}
+	else
+	{
+		item->key = ft_substr(str, 0, equal - str);
+	}
+	item->data = ft_strdup(equal + 1);
+	if (!is_available_env(item->key))
+	{
+		free_item(item);
+		return (1);
+	}
+	insert_env(env, item, is_add);
+	return (0);
+}
+
+int	handle_no_assignment(char *str)
+{
+	if (is_available_env(str))
+		return (0);
+	ft_putendl_fd("not a valid identifier", STDERR_FILENO);
+	return (1);
 }
