@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:20:32 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/03 17:18:02 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/20 14:20:40 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,12 @@ int			ex_exit(t_node *node, t_executor *ex);
 void		all_free_executor(t_executor *ex);
 bool		is_dir(char *path);
 void		do_child_first(t_node *node, t_executor *ex);
+void		create_pipe(int pipefd[2]);
+pid_t		create_fork(void);
+void		handle_child(int pipefd[2], int saved_in, t_node *node,
+				t_executor *ex);
+void		setup_parent(int pipefd[2], int saved_out, t_executor *ex);
+void		teardown_parent(int pipefd[2], int saved_in, int saved_out,
+				t_executor *ex);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:32:28 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/17 15:14:14 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/20 14:09:43 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,33 +56,6 @@ void	add_node_pipe(t_node *node, t_token *token)
 	node->token = token;
 }
 
-// void	recur_pipe(t_node *node)
-// {
-// 	t_token	*token;
-// 	int		flag;
-
-// 	if (!node)
-// 		return ;
-// 	flag = 0;
-// 	token = node->token;
-// 	while (token)
-// 	{
-// 		if (token->type == PIPE)
-// 		{
-// 			add_node_pipe(node, token);
-// 			flag = 1;
-// 			break ;
-// 		}
-// 		token = token->next;
-// 	}
-// 	if (flag)
-// 	{
-// 		recur_pipe(node->left);
-// 		recur_pipe(node->right);
-// 	}
-// 	recur_redirect(node);
-// }
-
 static t_token	*find_last_pipe(t_token *tok)
 {
 	t_token	*last;
@@ -103,16 +76,12 @@ void	recur_pipe(t_node *node)
 
 	if (!node)
 		return ;
-	/* トークン列の中で最後に現れる '|' を探す */
 	pipe = find_last_pipe(node->token);
 	if (pipe)
 	{
-		/* 見つかった '|' で左右にノードを分割 */
 		add_node_pipe(node, pipe);
-		/* 左右とも再帰処理 */
 		recur_pipe(node->left);
 		recur_pipe(node->right);
 	}
-	/* リダイレクトはどちらの枝でも走らせる */
 	recur_redirect(node);
 }

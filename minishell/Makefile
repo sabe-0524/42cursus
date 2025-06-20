@@ -6,7 +6,7 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 17:02:03 by sabe              #+#    #+#              #
-#    Updated: 2025/05/31 19:26:45 by sabe             ###   ########.fr        #
+#    Updated: 2025/06/20 14:13:38 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRC_FILES = src/main.c src/utils.c \
 			src/exec/first.c src/exec/init.c src/exec/recur_ex.c \
 			src/exec/utils.c src/exec/ex_greater.c src/exec/ex_lesser.c \
 			src/exec/ex_r_greater.c src/exec/ex_redirect.c src/exec/ex_r_lesser.c src/exec/all_free.c \
-			src/exec/first_sub.c \
+			src/exec/first_sub.c src/exec/recur_pipe.c \
 			src/exec/builtin/builtin.c src/exec/builtin/echo.c \
 			src/exec/builtin/export.c src/exec/builtin/unset.c \
 			src/exec/builtin/env.c src/exec/builtin/pwd.c src/exec/builtin/cd.c src/exec/builtin/exit.c \
