@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:32:28 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/20 14:09:43 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/21 18:01:36 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,30 +56,27 @@ void	add_node_pipe(t_node *node, t_token *token)
 	node->token = token;
 }
 
-static t_token	*find_last_pipe(t_token *tok)
-{
-	t_token	*last;
-
-	last = NULL;
-	while (tok)
-	{
-		if (tok->type == PIPE)
-			last = tok;
-		tok = tok->next;
-	}
-	return (last);
-}
-
 void	recur_pipe(t_node *node)
 {
-	t_token	*pipe;
+	t_token	*token;
+	int		flag;
 
 	if (!node)
 		return ;
-	pipe = find_last_pipe(node->token);
-	if (pipe)
+	flag = 0;
+	token = node->token;
+	while (token)
 	{
-		add_node_pipe(node, pipe);
+		if (token->type == PIPE)
+		{
+			add_node_pipe(node, token);
+			flag = 1;
+			break ;
+		}
+		token = token->next;
+	}
+	if (flag)
+	{
 		recur_pipe(node->left);
 		recur_pipe(node->right);
 	}

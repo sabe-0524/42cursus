@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 14:12:39 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/20 14:20:51 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/21 18:00:43 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ void	handle_child(int pipefd[2], int saved_in, t_node *node, t_executor *ex)
 		dup2(saved_in, STDIN_FILENO);
 		close(saved_in);
 	}
+	ex->in_fd = STDIN_FILENO;
 	dup2(pipefd[1], STDOUT_FILENO);
 	close(pipefd[0]);
 	close(pipefd[1]);
+	ex->out_fd = STDOUT_FILENO;
 	recur_ex(node->left, ex);
 	exit(EXIT_FAILURE);
 }
