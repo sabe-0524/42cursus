@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 20:21:05 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 18:42:20 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/22 18:41:15 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	cd_to_home(t_executor *ex)
 
 	home = my_getenv("HOME", ex->env);
 	if (!home)
+	{
+		ft_putendl_fd("Home not set", 2);
 		return (EXIT_FAILURE);
+	}
 	if (chdir(home) == -1)
 	{
 		perror(NULL);
