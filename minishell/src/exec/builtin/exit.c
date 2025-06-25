@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 20:23:50 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/25 19:56:06 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/25 21:58:06 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,17 @@
 
 bool	is_numeric(t_token *tk)
 {
-	t_token	*tmp;
 	char	*content;
 	size_t	i;
 
 	i = 0;
-	tmp = tk;
-	while (tmp)
+	content = tk->content;
+	while (content[i])
 	{
-		content = tmp->content;
-		while (content[i])
-		{
-			if (!(('0' <= content[i] && content[i] <= '9') || (i == 0
-						&& (content[i] == '-' || content[i] == '+'))))
-				return (false);
-			i++;
-		}
-		tmp = tmp->next;
+		if (!(('0' <= content[i] && content[i] <= '9') || (i == 0
+					&& (content[i] == '-' || content[i] == '+'))))
+			return (false);
+		i++;
 	}
 	return (true);
 }

@@ -6,11 +6,13 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 19:44:16 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 18:46:57 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/25 22:01:18 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 void	heredoc_child_loop(const char *delim, int write_fd)
 {
@@ -41,54 +43,73 @@ void	heredoc_child_loop(const char *delim, int write_fd)
 	exit(0);
 }
 
-static pid_t	ex_r_lesser_fork(t_executor *ex)
+static pid_t	ex_r_lesser_fork(void)
 {
 	pid_t	pid;
 
-	if (pipe(ex->pipe_fd) < 0)
-		exit(1);
 	pid = fork();
 	if (pid < 0)
 	{
-		close(ex->pipe_fd[0]);
-		close(ex->pipe_fd[1]);
+		perror("fork");
 		exit(1);
 	}
 	return (pid);
 }
 
-static int	ex_r_lesser_child(t_node *node, t_executor *ex)
+static int	ex_r_lesser_child(t_node *node, char *tmp_file)
 {
-	close(ex->pipe_fd[0]);
+	int	fd;
+
+	fd = open(tmp_file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (fd < 0)
+	{
+		perror("open");
+		exit(1);
+	}
 	heredoc_signal();
-	heredoc_child_loop(node->left->token->content, ex->pipe_fd[1]);
+	heredoc_child_loop(node->left->token->content, fd);
 	return (0);
 }
 
-static int	ex_r_lesser_parent(t_executor *ex, pid_t pid)
+static int	ex_r_lesser_parent(t_executor *ex, pid_t pid, char *tmp_file)
 {
 	int	status;
 
 	signal(SIGINT, SIG_IGN);
-	close(ex->pipe_fd[1]);
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status) && WEXITSTATUS(status) == 0)
 	{
-		ex->in_fd = ex->pipe_fd[0];
+		ex->in_fd = open(tmp_file, O_RDONLY);
+		if (ex->in_fd < 0)
+		{
+			perror("open");
+			return (1);
+		}
 		return (0);
 	}
-	close(ex->pipe_fd[0]);
-	ex->in_fd = STDIN_FILENO;
 	return (130);
 }
 
 int	ex_r_lesser(t_node *node, t_executor *ex)
 {
 	pid_t	pid;
+	char	*tmp_file;
+	int	fd;
 
-	pid = ex_r_lesser_fork(ex);
+	tmp_file = ft_strdup("/tmp/minishell_heredoc_XXXXXX");
+	if (!tmp_file)
+		exit(1);
+	fd = mkstemp(tmp_file);
+	if (fd < 0)
+	{
+		perror("mkstemp");
+		free(tmp_file);
+		exit(1);
+	}
+	close(fd);
+	pid = ex_r_lesser_fork();
 	if (pid == 0)
-		return (ex_r_lesser_child(node, ex));
+		return (ex_r_lesser_child(node, tmp_file));
 	else
-		return (ex_r_lesser_parent(ex, pid));
+		return (ex_r_lesser_parent(ex, pid, tmp_file));
 }
