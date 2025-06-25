@@ -6,42 +6,50 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 20:23:50 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/10 20:13:22 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/25 19:56:06 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-bool	is_numeric(char *content)
+bool	is_numeric(t_token *tk)
 {
+	t_token	*tmp;
+	char	*content;
 	size_t	i;
 
 	i = 0;
-	while (content[i])
+	tmp = tk;
+	while (tmp)
 	{
-		if (!(('0' <= content[i] && content[i] <= '9') || (i == 0
-					&& (content[i] == '-' || content[i] == '+'))))
-			return (false);
-		i++;
+		content = tmp->content;
+		while (content[i])
+		{
+			if (!(('0' <= content[i] && content[i] <= '9') || (i == 0
+						&& (content[i] == '-' || content[i] == '+'))))
+				return (false);
+			i++;
+		}
+		tmp = tmp->next;
 	}
 	return (true);
 }
 
 int	ex_exit(t_node *node, t_executor *ex)
 {
-	if (count_token(node) > 2)
+	ft_putendl_fd("exit", 2);
+	if (count_token(node) == 1)
+		exit(ft_atoi(my_getenv("?", ex->env)));
+	else if (!is_numeric(node->token->next))
 	{
-		ft_putendl_fd("exit: too many arguments", 2);
-		exit(EXIT_FAILURE);
+		ft_putendl_fd("numeric argument required", 2);
+		exit(2);
 	}
 	else if (count_token(node) == 2)
 	{
-		if (is_numeric(node->token->next->content))
-			exit(ft_atoi(node->token->next->content) % 256);
-		else
-			exit(2);
+		exit(ft_atoi(node->token->next->content) % 256);
 	}
 	else
-		exit(ft_atoi(my_getenv("?", ex->env)));
-	return (EXIT_SUCCESS);
+		ft_putendl_fd("exit: too many arguments", 2);
+	return (EXIT_FAILURE);
 }

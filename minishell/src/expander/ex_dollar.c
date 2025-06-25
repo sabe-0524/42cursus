@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:47:13 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 18:56:02 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/25 19:10:15 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ bool	ex_dollar(t_token *token, t_expander *ex)
 			(size_t)(ex->line_i - ex->start_i));
 	ex->start_i = ex->line_i;
 	add_env(key, ex);
+	free(key);
 	return (true);
 }

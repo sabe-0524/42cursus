@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:52:30 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/10 20:01:53 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/25 19:12:00 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	ex_export(t_node *node, t_executor *ex)
 	{
 		envp = catenv(ex->env);
 		put_export(envp, ex);
+		all_free_paths(envp);
 	}
 	while (tk)
 	{

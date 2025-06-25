@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/01 21:00:04 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 19:03:59 by sabe             ###   ########.fr       */
+/*   Created: 2025/06/25 19:32:46 by sabe              #+#    #+#             */
+/*   Updated: 2025/06/25 19:34:34 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,23 @@ static t_node	*create_left_node_for_file(t_token *file)
 	return (left);
 }
 
-static t_node	*create_right_node_for_prev(t_token *prev, t_token *head)
+static t_node	*create_right_node_for_prev(t_token *prev, t_token *after,
+		t_token *head)
 {
+	t_token	*right_head;
 	t_node	*right;
 
-	if (!prev)
+	if (prev)
+		right_head = head;
+	else
+		right_head = after;
+	if (!right_head)
 		return (NULL);
+	right_head->prev = NULL;
 	right = ft_calloc(1, sizeof(*right));
 	if (!right)
 		exit(1);
-	right->token = head;
+	right->token = right_head;
 	return (right);
 }
 
@@ -66,7 +73,7 @@ void	add_node_redirect(t_node *node, t_token *token)
 	head = node->token;
 	detach_redirect_token(token, &prev, &file, &after);
 	node->left = create_left_node_for_file(file);
-	node->right = create_right_node_for_prev(prev, head);
+	node->right = create_right_node_for_prev(prev, after, head);
 	node->token = token;
 }
 
