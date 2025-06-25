@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 21:01:11 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 18:42:19 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/25 19:57:31 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ex_builtin(t_node *node, t_executor *ex)
 	if (ft_strncmp(node->token->content, "unset", 6) == 0)
 		return (ex_unset(node, ex));
 	if (ft_strncmp(node->token->content, "env", 4) == 0)
-		return (ex_env(ex));
+		return (ex_env(node, ex));
 	if (ft_strncmp(node->token->content, "exit", 5) == 0)
 		return (ex_exit(node, ex));
 	return (EXIT_FAILURE);

@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:20:32 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/20 14:20:40 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/25 19:57:44 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ bool		is_builtin(t_node *node);
 int			ex_builtin(t_node *node, t_executor *ex);
 int			ex_export(t_node *node, t_executor *ex);
 int			ex_unset(t_node *node, t_executor *ex);
-int			ex_env(t_executor *ex);
+int			ex_env(t_node *node, t_executor *ex);
 int			ex_pwd(t_executor *ex);
 size_t		count_token(t_node *node);
 int			ex_cd(t_node *node, t_executor *ex);
