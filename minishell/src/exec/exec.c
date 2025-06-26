@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:25:12 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/25 22:01:59 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/26 20:22:17 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,15 @@ static void	wait_for_children(t_executor *ex)
 void	exec(t_tree *tree, t_env *env)
 {
 	t_executor	*ex;
+	int			heredoc_status;
 
+	heredoc_status = 0;
 	ex = init_ex(tree, env);
-
-	// ヒアドキュメントのリダイレクトをパイプの前に処理する
-	// パイプの左側がヒアドキュメントの場合、先にヒアドキュメントを処理して一時ファイルを作成する
-	if (tree->head->token->type == PIPE && tree->head->left->token->type == R_LESSER)
+	exec_heredoc(ex, tree->head, &heredoc_status);
+	if (heredoc_status == 0)
 	{
-		ex_r_lesser(tree->head->left, ex);
+		recur_ex(tree->head, ex);
+		wait_for_children(ex);
 	}
-
-	recur_ex(tree->head, ex);
-	wait_for_children(ex);
 	all_free_executor(ex);
 }
-
-

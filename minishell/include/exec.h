@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:20:32 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/25 19:57:44 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/26 20:23:13 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,8 @@ void		handle_child(int pipefd[2], int saved_in, t_node *node,
 void		setup_parent(int pipefd[2], int saved_out, t_executor *ex);
 void		teardown_parent(int pipefd[2], int saved_in, int saved_out,
 				t_executor *ex);
+void		exec_heredoc(t_executor *ex, t_node *node, int *status);
+pid_t		my_fork(void);
+char		*make_idx(int n);
 
 #endif
