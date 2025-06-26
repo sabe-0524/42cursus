@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:06:44 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 19:26:19 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/26 21:58:45 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,9 @@ t_expander				*init_expander(t_env *env);
 void					change_content(t_token *token, t_expander *ex);
 void					free_expander(t_expander *ex);
 void					expand_token(t_token *token, t_env *env);
+void					ft_command_add_back(t_command **command,
+							t_command *new);
+size_t					total_len(t_command *command);
+bool					is_separator(char c);
 
 #endif

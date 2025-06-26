@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:42:03 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/26 20:32:40 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/26 20:59:11 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ bool	is_dir(char *path)
 		return (false);
 }
 
-char *make_idx(int n)
+char	*make_idx(int n)
 {
-	char *idx;
-	int i;
+	char	*idx;
+	int		i;
 
 	idx = (char *)malloc(sizeof(char) * 11);
 	i = 9;
@@ -66,5 +66,3 @@ pid_t	my_fork(void)
 	}
 	return (pid);
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 18:26:29 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/26 20:38:03 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/26 21:56:28 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ char	*make_tmpfile(void)
 
 int	heredoc_parent(t_executor *ex, pid_t pid, char *tmp_file, int fd)
 {
-	int status, code = 0;
+	int	status;
+	int	code;
+
+	status = 0;
+	code = 0;
 	parent_signal();
 	if (waitpid(pid, &status, 0) < 0)
 	{
@@ -55,11 +59,10 @@ int	heredoc_parent(t_executor *ex, pid_t pid, char *tmp_file, int fd)
 	return (code);
 }
 
-void	heredoc_child(char *delim, int write_fd)
+void	heredoc_child(char *delim, int write_fd, bool is_qupte, t_env *env)
 {
 	char	*line;
 
-	heredoc_signal();
 	while (1)
 	{
 		line = readline("> ");
@@ -72,7 +75,7 @@ void	heredoc_child(char *delim, int write_fd)
 			free(line);
 			break ;
 		}
-		ft_putendl_fd(line, write_fd);
+		put_heredoc(line, write_fd, is_qupte, env);
 		free(line);
 	}
 	rl_clear_history();
@@ -97,22 +100,18 @@ int	add_heredoc_fd(t_executor *ex, t_node *node)
 	pid = my_fork();
 	if (pid == 0)
 	{
-		heredoc_child(node->left->token->content, fd);
+		heredoc_signal();
+		heredoc_child(node->left->token->content, fd, node->left->token->is_quote, ex->env);
 		return (1);
 	}
 	else
 	{
 		status = heredoc_parent(ex, pid, tmpfile, fd);
 		if (status == 0)
-		{
 			node->heredoc_tmpfile = tmpfile;
-			return (status);
-		}
 		else
-		{
 			free(tmpfile);
-			return (status);
-		}
+		return (status);
 	}
 }
 

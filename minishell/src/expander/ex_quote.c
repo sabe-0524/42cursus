@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:02 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 18:56:04 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/26 21:29:47 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ bool	ex_quote(t_token *token, t_expander *ex)
 	add_command(token, ex);
 	ex->line_i++;
 	ex->start_i++;
+	token->is_quote = true;
 	return (true);
 }
 
