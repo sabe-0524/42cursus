@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:03:00 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 19:31:55 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/27 14:43:56 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ static void	shell_loop(t_env *env)
 	{
 		init_signal();
 		line = readline("minishell$ ");
+		if (g_signal == 1)
+		{
+			my_setenv_row(env, "?", ft_itoa(130));
+			g_signal = 0;
+		}
 		if (line == NULL)
 			break ;
 		init_signal();

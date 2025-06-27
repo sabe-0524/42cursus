@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:20:32 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/26 21:55:00 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/27 16:37:35 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <env.h>
 # include <errno.h>
+# include <expander.h>
 # include <fcntl.h>
 # include <minishell.h>
 # include <minisig.h>
@@ -82,5 +83,6 @@ void		exec_heredoc(t_executor *ex, t_node *node, int *status);
 pid_t		my_fork(void);
 char		*make_idx(int n);
 void		put_heredoc(char *line, int fd, bool is_quote, t_env *env);
+t_command	*make_heredoc_command(char *line, t_expander *ex);
 
 #endif

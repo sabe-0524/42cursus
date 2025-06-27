@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 18:26:29 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/26 21:56:28 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/27 16:38:19 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,16 @@ int	heredoc_parent(t_executor *ex, pid_t pid, char *tmp_file, int fd)
 		code = 1;
 	}
 	else if (WIFSIGNALED(status))
-	{
 		code = 128 + WTERMSIG(status);
-	}
 	else if (WIFEXITED(status))
-	{
 		code = WEXITSTATUS(status);
-	}
 	my_setenv_row(ex->env, "?", ft_itoa(code));
 	close(fd);
 	if (code != 0)
+	{
 		unlink(tmp_file);
+		free(tmp_file);
+	}
 	return (code);
 }
 
@@ -76,7 +75,6 @@ void	heredoc_child(char *delim, int write_fd, bool is_qupte, t_env *env)
 			break ;
 		}
 		put_heredoc(line, write_fd, is_qupte, env);
-		free(line);
 	}
 	rl_clear_history();
 	close(write_fd);
@@ -101,7 +99,8 @@ int	add_heredoc_fd(t_executor *ex, t_node *node)
 	if (pid == 0)
 	{
 		heredoc_signal();
-		heredoc_child(node->left->token->content, fd, node->left->token->is_quote, ex->env);
+		heredoc_child(node->left->token->content, fd,
+			node->left->token->is_quote, ex->env);
 		return (1);
 	}
 	else
@@ -109,8 +108,6 @@ int	add_heredoc_fd(t_executor *ex, t_node *node)
 		status = heredoc_parent(ex, pid, tmpfile, fd);
 		if (status == 0)
 			node->heredoc_tmpfile = tmpfile;
-		else
-			free(tmpfile);
 		return (status);
 	}
 }

@@ -6,11 +6,12 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:42:03 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/26 20:59:11 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/27 16:37:14 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
+#include <expander.h>
 
 void	all_free_paths(char **paths)
 {
@@ -65,4 +66,24 @@ pid_t	my_fork(void)
 		exit(1);
 	}
 	return (pid);
+}
+
+t_command	*make_heredoc_command(char *line, t_expander *ex)
+{
+	t_command	*new;
+
+	new = (t_command *)ft_calloc(1, sizeof(t_command));
+	if (!new)
+	{
+		exit(1);
+	}
+	new->content = ft_substr(line, (unsigned int)ex->start_i,
+			(size_t)(ex->line_i - ex->start_i));
+	if (!new->content)
+	{
+		exit(1);
+	}
+	new->is_env = false;
+	ex->start_i = ex->line_i;
+	return (new);
 }

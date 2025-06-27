@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 21:30:56 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 19:00:02 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/27 16:34:12 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	free_node(t_node *node)
 	free_node(node->right);
 	if (node->token)
 		free_token(node->token);
+	if (node->heredoc_tmpfile)
+		free(node->heredoc_tmpfile);
 	free(node);
 }
 
