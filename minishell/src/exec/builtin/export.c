@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:52:30 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/25 19:12:00 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/27 19:15:42 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	put_export(char **envp, t_executor *ex)
 	i = 0;
 	while (envp[i])
 	{
-		if (envp[i][0] != '?')
+		if (envp[i][0] != '?' && ft_strncmp(envp[i], "_=", 2))
 		{
 			ft_putstr_fd("declare -x ", ex->out_fd);
 			ft_putendl_fd(envp[i], ex->out_fd);
