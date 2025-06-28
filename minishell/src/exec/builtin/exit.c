@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 20:23:50 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/26 21:15:18 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/28 13:34:49 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,33 @@ static int	ft_isspace(int c)
 		return (0);
 }
 
-static int	ft_atoi_exit(const char *str, bool *error)
+static long long int	ft_atoi_exit(const char *str, bool *error)
 {
 	size_t			count;
 	int				flag;
 	long long int	answer;
+	long long int	tmp;
 
 	count = 0;
 	flag = 1;
 	answer = 0;
+	if (!ft_strcmp(str, "-9223372036854775808"))
+		return (LLONG_MIN);
 	while (ft_isspace((int)str[count]))
 		count++;
 	if (str[count] == '-' || str[count] == '+')
 	{
-		if (str[count] == '-')
+		if (str[count++] == '-')
 			flag = -1;
-		count++;
 	}
 	while ('0' <= str[count] && str[count] <= '9')
 	{
-		answer *= 10;
-		answer += str[count] - '0';
-		count++;
-		if ((flag == 1 && answer > (long long)INT_MAX) || (flag == -1
-				&& answer > (long long)INT_MIN * -1))
+		tmp = answer;
+		answer = answer * 10 + str[count++] - '0';
+		if (tmp > answer)
 			*error = true;
 	}
-	return ((int)(answer * flag));
+	return ((answer * flag));
 }
 
 bool	is_numeric(t_token *tk)
@@ -57,6 +57,8 @@ bool	is_numeric(t_token *tk)
 
 	i = 0;
 	content = tk->content;
+	if (!content[0])
+		return (false);
 	while (content[i])
 	{
 		if (!(('0' <= content[i] && content[i] <= '9') || (i == 0

@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 21:01:11 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/25 19:57:31 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/28 14:31:12 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ bool	is_builtin(t_node *node)
 	char	*cmd;
 
 	cmd = node->token->content;
-	if (ft_strncmp(cmd, "echo", 4) == 0 || ft_strncmp(cmd, "cd", 2) == 0
-		|| ft_strncmp(cmd, "pwd", 3) == 0 || ft_strncmp(cmd, "export", 6) == 0
-		|| ft_strncmp(cmd, "unset", 5) == 0 || ft_strncmp(cmd, "env", 3) == 0
-		|| ft_strncmp(cmd, "exit", 4) == 0)
+	if (ft_strncmp(cmd, "echo", 5) == 0 || ft_strncmp(cmd, "cd", 3) == 0
+		|| ft_strncmp(cmd, "pwd", 4) == 0 || ft_strncmp(cmd, "export", 7) == 0
+		|| ft_strncmp(cmd, "unset", 6) == 0 || ft_strncmp(cmd, "env", 4) == 0
+		|| ft_strncmp(cmd, "exit", 5) == 0)
 		return (true);
 	else
 		return (false);
