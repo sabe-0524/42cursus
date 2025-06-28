@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 20:23:50 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/28 13:34:49 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/28 16:34:22 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,27 @@ bool	is_numeric(t_token *tk)
 	return (true);
 }
 
+void	do_exit(t_executor *ex, int num)
+{
+	if (ex->pid != 0)
+	{
+		ft_putendl_fd("exit", ex->out_fd);
+		exit(num);
+	}
+}
+
 int	ex_exit(t_node *node, t_executor *ex)
 {
 	int		status;
 	bool	error;
 
 	error = false;
-	ft_putendl_fd("exit", 2);
 	if (count_token(node) == 1)
-		exit(ft_atoi(my_getenv("?", ex->env)));
+		do_exit(ex, ft_atoi(my_getenv("?", ex->env)));
 	else if (!is_numeric(node->token->next))
 	{
 		ft_putendl_fd("numeric argument required", 2);
-		exit(2);
+		do_exit(ex, 2);
 	}
 	else if (count_token(node) == 2)
 	{
@@ -89,9 +97,9 @@ int	ex_exit(t_node *node, t_executor *ex)
 		if (error == true)
 		{
 			ft_putendl_fd("numeric argument required", 2);
-			exit(2);
+			do_exit(ex, 2);
 		}
-		exit(status);
+		do_exit(ex, status);
 	}
 	else
 		ft_putendl_fd("exit: too many arguments", 2);
