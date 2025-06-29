@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:03:00 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/27 14:43:56 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/29 22:11:21 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	shell_loop(t_env *env)
 {
 	char	*line;
 
+	rl_outstream = stderr;  
 	while (1)
 	{
 		init_signal();

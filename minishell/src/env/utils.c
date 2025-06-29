@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:55:08 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/17 14:23:58 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/29 21:28:33 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ int	handle_assignment(t_env *env, char *str, char *equal)
 	is_add = false;
 	if (*(equal - 1) == '+')
 	{
+		if (equal - 1 == str)
+		{
+			ft_putendl_fd("not a valid identifier", STDERR_FILENO);
+			return (1);
+		}
 		item->key = ft_substr(str, 0, equal - str - 1);
 		is_add = true;
 	}
@@ -80,6 +85,7 @@ int	handle_assignment(t_env *env, char *str, char *equal)
 	item->data = ft_strdup(equal + 1);
 	if (!is_available_env(item->key))
 	{
+		ft_putendl_fd("not a valid identifier", STDERR_FILENO);
 		free_item(item);
 		return (1);
 	}
