@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 21:21:46 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/08 21:41:32 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/29 12:39:10 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 HumanB::HumanB(std::string name)
   : name(name) {}
 
-void HumanB::setWeapon(Weapon *weapon)
+void HumanB::setWeapon(Weapon &weapon)
 {
-	this->weapon = weapon;
+	this->weapon = &weapon;
 }
 
 void HumanB::attack(void)

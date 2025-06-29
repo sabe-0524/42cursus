@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 21:21:36 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/08 21:41:11 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/29 12:38:58 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class HumanB
 		std::string name;
 		Weapon *weapon;
 	public:
-		void setWeapon(Weapon *Weapon);
+		void setWeapon(Weapon &Weapon);
 		void attack(void);
 		HumanB(std::string name);
 };
