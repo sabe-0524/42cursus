@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 16:12:10 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/14 19:53:59 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/29 23:02:42 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class ScavTrap : virtual public ClapTrap
 		virtual ~ScavTrap(void);
 
 		void guardGate(void);
+		void attack(const std::string& target);
 };
 
 #endif
