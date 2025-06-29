@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 21:54:06 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/29 19:33:26 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/29 19:51:43 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ class Contact
 		std::string getPhoneNumber(void) const;
 		std::string getDarkestSecret(void) const;
 	public:
-		void setFirstName(const std::string &input);
-		void setLastName(const std::string &input);
-		void setNickName(const std::string &input);
-		void setPhoneNumber(const std::string &input);
-		void setDarkestSecret(const std::string &input);
+		void setFirstName(const std::string input);
+		void setLastName(const std::string input);
+		void setNickName(const std::string input);
+		void setPhoneNumber(const std::string input);
+		void setDarkestSecret(const std::string input);
     	void printContact(void) const;
 };
 

@@ -6,33 +6,33 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 22:54:07 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/29 19:32:37 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/29 19:51:49 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-void Contact::setFirstName(const std::string &input)
+void Contact::setFirstName(const std::string input)
 {
 	this->first_name = input;
 }
 
-void Contact::setLastName(const std::string &input)
+void Contact::setLastName(const std::string input)
 {
 	this->last_name = input;
 }
 
-void Contact::setNickName(const std::string &input)
+void Contact::setNickName(const std::string input)
 {
 	this->nickname = input;
 }
 
-void Contact::setPhoneNumber(const std::string &input)
+void Contact::setPhoneNumber(const std::string input)
 {
 	this->phone_number = input;
 }
 
-void Contact::setDarkestSecret(const std::string &input)
+void Contact::setDarkestSecret(const std::string input)
 {
 	this->darkest_secret = input;
 }

@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 21:59:30 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/12 21:00:43 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/29 19:57:23 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <stdint.h> 
 
 class Fixed
 {

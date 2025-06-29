@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 21:59:50 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/14 14:25:36 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/29 19:58:44 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ Fixed Fixed::operator * (const Fixed &a) const
 {
 	Fixed result;
 
-	long long tmp = (long long)(this->getRawBits() * a.getRawBits());
+	int64_t tmp = (int64_t)(this->getRawBits() * a.getRawBits());
 
 	tmp >>= fractBits;
 	result.setRawBits((int)tmp);
@@ -106,7 +106,7 @@ Fixed Fixed::operator / (const Fixed &a) const
 {
 	Fixed result;
 
-	long long tmp = (long long)this->getRawBits() << fractBits;
+	int64_t tmp = (int64_t)this->getRawBits() << fractBits;
 	tmp /= a.getRawBits();
 	result.setRawBits((int)tmp);
 	return (result);
