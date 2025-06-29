@@ -6,12 +6,12 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 21:44:56 by sabe              #+#    #+#              #
-#    Updated: 2025/06/04 18:58:19 by sabe             ###   ########.fr        #
+#    Updated: 2025/06/29 19:10:39 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CPP = g++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPP = c++
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 SRCS = Contact.cpp PhoneBook.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
@@ -21,7 +21,7 @@ NAME = phonebook
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS)
+	$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJS)
 
 %.o: %.cpp
 	$(CPP) $(CPPFLAGS) -c $< -o $@

@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 15:05:49 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/08 17:35:39 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/29 19:39:13 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void Account::makeDeposit(int deposit)
 	this->_nbDeposits++;
 	this->_amount += deposit;
 	_totalNbDeposits++;
+	this->_totalAmount += deposit;
 	std::cout << ";amount:" << this->_amount << ";nb_deposits:" << this->_nbDeposits << std::endl;
 }
 
@@ -105,6 +106,7 @@ bool Account::makeWithdrawal(int withdrawal)
 		this->_amount -= withdrawal;
 		this->_nbWithdrawals++;
 		_totalNbWithdrawals++;
+		this->_totalAmount -= withdrawal;
 		std::cout << withdrawal << ";amount:" << this->_amount << ";nb_withdrawals:" << this->_nbWithdrawals << std::endl;
 		return (true);
 	}

@@ -6,13 +6,58 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 18:07:33 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/29 15:42:48 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/29 19:31:20 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-void PhoneBook::setPhoneBook(std::string first_name, std::string last_name, std::string nickname, std::string phone_number, std::string darkest_secret)
+bool isPrintable(const std::string& s)
+{
+    if (s.empty())
+		return (false);
+    for (std::string::const_iterator it = s.begin(); it != s.end(); ++it) {
+        unsigned char c = static_cast<unsigned char>(*it);
+        if (!std::isprint(c)) return false;
+    }
+    return (true);
+}
+
+
+bool isNumber(const std::string& s)
+{
+    if (s.empty())
+		return (false);
+    for (std::string::const_iterator it = s.begin(); it != s.end(); ++it) {
+        unsigned char c = static_cast<unsigned char>(*it);
+        if (!std::isdigit(c)) return false;
+    }
+    return (true);
+}
+
+bool isAlphabet(const std::string& s)
+{
+    if (s.empty())
+		return (false);
+    for (std::string::const_iterator it = s.begin(); it != s.end(); ++it) {
+        unsigned char c = static_cast<unsigned char>(*it);
+        if (!std::isalpha(c) && c != ' ') return false;
+    }
+    return (true);
+}
+
+bool isAlnum(const std::string& s)
+{
+    if (s.empty())
+		return (false);
+    for (std::string::const_iterator it = s.begin(); it != s.end(); ++it) {
+        unsigned char c = static_cast<unsigned char>(*it);
+        if (!std::isalnum(c) && c != ' ') return false;
+    }
+    return (true);
+}
+
+void PhoneBook::setPhoneBook(std::string &first_name, std::string &last_name, std::string &nickname, std::string &phone_number, std::string &darkest_secret)
 {
 	Contact contact;
 
@@ -56,15 +101,35 @@ void PhoneBook::addBook(void)
 
 	std::cout << "First name?: ";
 	this->my_getline(first_name);
+	if (!isAlphabet(first_name))
+	{
+		std::cout << "Invalid input" << std::endl;
+		return;
+	}
 	std::cout << "Last name?: ";
 	this->my_getline(last_name);
+	if (!isAlphabet(last_name))
+	{
+		std::cout << "Invalid input" << std::endl;
+		return;
+	}
 	std::cout << "Nickname?: ";
 	this->my_getline(nickname);
+	if (!isAlnum(nickname))
+	{
+		std::cout << "Invalid input" << std::endl;
+		return;
+	}
 	std::cout << "Phone number?: ";
 	this->my_getline(phone_number);
+	if (!isNumber(phone_number))
+	{
+		std::cout << "Invalid input" << std::endl;
+		return;
+	}
 	std::cout << "Darkest secret?: ";
 	this->my_getline(darkest_secret);
-	if (first_name.empty() || last_name.empty() || nickname.empty() || phone_number.empty() || darkest_secret.empty())
+	if (!isPrintable(darkest_secret))
 	{
 		std::cout << "Invalid input" << std::endl;
 		return;
