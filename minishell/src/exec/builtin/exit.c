@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 20:23:50 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/28 16:34:22 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/28 19:03:06 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	do_exit(t_executor *ex, int num)
 		ft_putendl_fd("exit", ex->out_fd);
 		exit(num);
 	}
+	exit(num);
 }
 
 int	ex_exit(t_node *node, t_executor *ex)
