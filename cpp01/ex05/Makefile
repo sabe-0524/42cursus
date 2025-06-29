@@ -6,12 +6,12 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/09 14:01:11 by sabe              #+#    #+#              #
-#    Updated: 2025/06/09 14:26:05 by sabe             ###   ########.fr        #
+#    Updated: 2025/06/29 19:46:43 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CPP = g++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPP = c++
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 SRCS = main.cpp Harl.cpp
 OBJS = $(SRCS:.cpp=.o)
