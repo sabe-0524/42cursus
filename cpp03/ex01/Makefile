@@ -6,12 +6,12 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/14 16:08:02 by sabe              #+#    #+#              #
-#    Updated: 2025/06/14 17:19:03 by sabe             ###   ########.fr        #
+#    Updated: 2025/06/29 20:12:54 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CPP = g++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPP = c++
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp
 OBJS = $(SRCS:.cpp=.o)

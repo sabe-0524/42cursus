@@ -6,11 +6,11 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 12:28:27 by sabe              #+#    #+#              #
-#    Updated: 2025/06/15 13:19:00 by sabe             ###   ########.fr        #
+#    Updated: 2025/06/29 20:11:57 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CPP = g++
+CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp

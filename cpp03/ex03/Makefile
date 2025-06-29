@@ -6,11 +6,11 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/14 16:08:02 by sabe              #+#    #+#              #
-#    Updated: 2025/06/14 20:34:39 by sabe             ###   ########.fr        #
+#    Updated: 2025/06/29 20:11:57 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CPP = g++
+CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
