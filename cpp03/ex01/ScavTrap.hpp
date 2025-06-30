@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 16:12:10 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/14 17:22:27 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/30 18:06:27 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,17 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
-	protected:
-		const char* getClassName() const { return "ScavTrap"; }
 	public:
 		ScavTrap(void);
-		ScavTrap(const std::string &name);
+		ScavTrap(const std::string name);
 		ScavTrap(const ScavTrap &other);
 		ScavTrap &operator=(const ScavTrap &other);
 		virtual ~ScavTrap(void);
 
 		void guardGate(void);
+		void attack(const std::string& target);
 };
 
 #endif

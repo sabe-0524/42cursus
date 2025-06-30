@@ -6,20 +6,26 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 16:12:08 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/29 23:03:06 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/30 18:31:43 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(void) : ClapTrap("unknown", 100, 50, 20)
+ScavTrap::ScavTrap(void) : ClapTrap("unknown")
 {
 	std::cout << "ScavTrap" << " default constructor called." << std::endl;
+    this->hitPoints = 100;
+    this->energyPoints = 50;
+    this->attackDamage = 20;
 }
 
-ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name, 100, 50, 20)
+ScavTrap::ScavTrap(const std::string name) : ClapTrap(name)
 {
 	std::cout << "ScavTrap" << " string constructor called." << std::endl;
+    this->hitPoints = 100;
+    this->energyPoints = 50;
+    this->attackDamage = 20;
 }
 
 ScavTrap::~ScavTrap(void)
@@ -49,9 +55,9 @@ void ScavTrap::guardGate(void)
 void ScavTrap::attack(const std::string& target)
 {
     std::cout
-      << "ScavTrap " << getName()
+      << "ScavTrap " << this->name
       << " attacks " << target
-      << ", causing " << getAttackDamage()
+      << ", causing " << this->attackDamage
       << " points of damage!"
       << std::endl;
 }

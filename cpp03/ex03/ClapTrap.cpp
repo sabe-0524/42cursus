@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:33:21 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/29 22:41:59 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/30 18:21:29 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,9 @@ ClapTrap::ClapTrap(void) : name("Unknown"), hitPoints(10), energyPoints(10), att
 	std::cout << "ClapTrap" << " Default constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(const std::string &name) : name(name), hitPoints(10), energyPoints(10), attackDamage(0)
+ClapTrap::ClapTrap(const std::string name) : name(name), hitPoints(10), energyPoints(10), attackDamage(0)
 {
 	std::cout << "ClapTrap" << " string constructor called" << std::endl;
-}
-
-ClapTrap::ClapTrap(const std::string &name, const unsigned int &hitPoints, const unsigned int &energyPoints, const unsigned int &attackDamage) : name(name), hitPoints(hitPoints), energyPoints(energyPoints), attackDamage(attackDamage)
-{
-	std::cout << "ClapTrap" << " full constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &other) : name(other.name), hitPoints(other.hitPoints), energyPoints(other.energyPoints), attackDamage(other.attackDamage)
@@ -48,26 +43,6 @@ ClapTrap& ClapTrap::operator = (const ClapTrap &other)
 ClapTrap::~ClapTrap(void)
 {
 	std::cout << "ClapTrap" << " Destructor called" << std::endl;
-}
-
-void ClapTrap::setName(const std::string &name)
-{
-	this->name = name;
-}
-
-void ClapTrap::setHitPoints(const unsigned int &hitPoints)
-{
-	this->hitPoints = hitPoints;
-}
-
-void ClapTrap::setEnergyPoints(const unsigned int &energyPoints)
-{
-	this->energyPoints = energyPoints;
-}
-
-void ClapTrap::setAttackDamage(const unsigned int &attackDamage)
-{
-	this->attackDamage = attackDamage;
 }
 
 void ClapTrap::attack(const std::string& target)
@@ -106,25 +81,4 @@ void ClapTrap::beRepaired(unsigned int amount)
 		this->energyPoints--;
 	}
 }
-
-std::string ClapTrap::getName(void)
-{
-	return (this->name);
-}
-
-unsigned int ClapTrap::getHitPoints(void)
-{
-	return (this->hitPoints);
-}
-
-unsigned int ClapTrap::getAttackDamage(void)
-{
-	return (this->attackDamage);
-}
-
-unsigned int ClapTrap::getEnergyPoints(void)
-{
-	return (this->energyPoints);
-}
-
 

@@ -6,12 +6,12 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/15 18:46:16 by sabe              #+#    #+#              #
-#    Updated: 2025/06/29 20:11:57 by sabe             ###   ########.fr        #
+#    Updated: 2025/06/30 16:15:51 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CPP = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 SRCS = main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
 OBJS = $(SRCS:.cpp=.o)

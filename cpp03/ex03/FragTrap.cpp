@@ -6,20 +6,26 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 18:58:17 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/29 22:42:24 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/30 18:31:37 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap(void) : ClapTrap("unknown", 100, 100, 30)
+FragTrap::FragTrap(void) : ClapTrap("unknown")
 {
 	std::cout << "FragTrap" << " default constructor called." << std::endl;
+    this->hitPoints = 100;
+    this->energyPoints = 100;
+    this->attackDamage = 30;
 }
 
-FragTrap::FragTrap(const std::string &name) : ClapTrap(name, 100, 100, 30)
+FragTrap::FragTrap(const std::string name) : ClapTrap(name)
 {
 	std::cout << "FragTrap" << " string constructor called." << std::endl;
+    this->hitPoints = 100;
+    this->energyPoints = 100;
+    this->attackDamage = 30;
 }
 
 FragTrap::~FragTrap(void)
@@ -43,5 +49,5 @@ FragTrap& FragTrap::operator = (const FragTrap &other)
 
 void FragTrap::highFivesGuys(void)
 {
-	std::cout << "FragTrap" << " " << this->getName() << " requests a high five!" << std::endl;
+	std::cout << "FragTrap" << " " << this->name << " requests a high five!" << std::endl;
 }

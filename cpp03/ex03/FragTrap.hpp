@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 18:56:51 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/14 20:24:59 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/30 18:06:21 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@
 
 class FragTrap : virtual public ClapTrap
 {
-	protected:
-		const char* getClassName() const { return "FragTrap"; }
 	public:
 		FragTrap(void);
-		FragTrap(const std::string &name);
+		FragTrap(const std::string name);
 		FragTrap(const FragTrap &other);
 		FragTrap &operator=(const FragTrap &other);
 		virtual ~FragTrap(void);
