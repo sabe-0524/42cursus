@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 20:16:13 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/15 22:12:49 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/30 22:18:04 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,20 @@ MateriaSource::MateriaSource(const MateriaSource& other)
 MateriaSource& MateriaSource::operator=(const MateriaSource &other)
 {
 	std::cout << "MateriaSource copy assigned operator called." << std::endl;
-	for (int i = 0; i < 4; i++)
+	if (this != &other)
 	{
-		delete this->sources[i];
-	}
-	for (int i = 0; i < 4; i++)
-	{
-        if (other.sources[i])
-            sources[i] = other.sources[i]->clone();
-        else
-            sources[i] = NULL;
+		for (int i = 0; i < 4; i++)
+		{
+			delete this->sources[i];
+			this->sources[i] = NULL;
+		}
+		for (int i = 0; i < 4; i++)
+		{
+	        if (other.sources[i])
+	            sources[i] = other.sources[i]->clone();
+	        else
+	            sources[i] = NULL;
+		}
 	}
 	return (*this);
 }

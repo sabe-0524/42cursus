@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:35:03 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/15 22:22:12 by sabe             ###   ########.fr       */
+/*   Updated: 2025/06/30 22:17:03 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,9 @@ Character::Character(const Character &other)
             inventory[i] = other.inventory[i]->clone();
         else
             inventory[i] = NULL;
-
-        if (other.floor[i])
-            floor[i] = other.floor[i]->clone();
-        else
-            floor[i] = NULL;
+        floor[i] = NULL;
     }
-    floorCount = other.floorCount;
+    floorCount = 0;
 }
 
 Character& Character::operator=(const Character &other)
@@ -56,13 +52,9 @@ Character& Character::operator=(const Character &other)
                 inventory[i] = other.inventory[i]->clone();
             else
                 inventory[i] = NULL;
-
-            if (other.floor[i])
-                floor[i] = other.floor[i]->clone();
-            else
-                floor[i] = NULL;
+            floor[i] = NULL;
         }
-        floorCount = other.floorCount;
+        floorCount = 0;
     }
     return *this;
 }
@@ -97,9 +89,15 @@ void Character::unequip(int idx)
 {
     if (idx < 0 || idx >= 4) return;
     if (inventory[idx]) {
-        if (floorCount < 4) {
-            floor[floorCount++] = inventory[idx];
+        if (floorCount >= 4) {
+            delete floor[0];
+            for (int i = 0; i < 3; ++i) {
+                floor[i] = floor[i+1];
+            }
+            floor[3] = NULL;
+            floorCount--;
         }
+        floor[floorCount++] = inventory[idx];
         inventory[idx] = NULL;
     }
 }
