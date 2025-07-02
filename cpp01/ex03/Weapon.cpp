@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 20:45:27 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/08 21:25:36 by sabe             ###   ########.fr       */
+/*   Updated: 2025/07/02 22:00:55 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void Weapon::setType(std::string type)
 	this->type = type;
 }
 
-std::string Weapon::getType(void)
+const std::string Weapon::getType(void)
 {
 	return (this->type);
 }

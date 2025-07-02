@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 22:09:26 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/08 22:42:51 by sabe             ###   ########.fr       */
+/*   Updated: 2025/07/01 16:26:03 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int main(int argc, char **argv)
 	std::string::size_type pos = 0;
 	while (std::getline(infile, text))
 	{
+		pos = 0;
 		while ((found = text.find(s1, pos)) != std::string::npos)
 		{
 			text.erase(found, s1.length());
