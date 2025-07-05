@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:11:34 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/09 14:30:29 by sabe             ###   ########.fr       */
+/*   Updated: 2025/07/05 12:34:59 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,25 @@
 
 Harl::Harl(void)
 {
-	this->functionMap["DEBUG"] = &Harl::debug;
-	this->functionMap["INFO"] = &Harl::info;
-	this->functionMap["WARNING"] = &Harl::warning;
-	this->functionMap["ERROR"] = &Harl::error;
+	this->functionlist[0] = &Harl::debug;
+	this->functionlist[1] = &Harl::info;
+	this->functionlist[2] = &Harl::warning;
+	this->functionlist[3] = &Harl::error;
 }
 
 void Harl::complain(std::string level)
 {
-	if (this->functionMap.count(level))
-		(this->*functionMap[level])();
-	else
-		std::cout << "Invalid Input" << std::endl;
+	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (level == levels[i])
+		{
+			(this->*functionlist[i])();
+			return;
+		}
+	}
+	std::cout << "Invalid Input" << std::endl;
 }
 
 void Harl::debug(void)
