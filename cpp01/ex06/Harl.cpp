@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:36:46 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/09 15:07:01 by sabe             ###   ########.fr       */
+/*   Updated: 2025/07/05 12:44:16 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,19 @@
 
 Harl::Harl(void)
 {
-	this->level_map["DEBUG"] = DEBUG;
-	this->level_map["INFO"] = INFO;
-	this->level_map["WARNING"] = WARNING;
-	this->level_map["ERROR"] = ERROR;
 }
 
 void Harl::exec(std::string level)
 {
-	if (!this->level_map.count(level))
+	int i = 0;
+	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	while (i < 4)
 	{
-		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
-		return;
+		if (level == levels[i])
+			break;
+		i++;
 	}
-	switch (this->level_map[level])
+	switch (i)
 	{
 		case (DEBUG):
 			this->debug();
@@ -40,7 +39,9 @@ void Harl::exec(std::string level)
 			// fall through
 		case (ERROR):
 			this->error();
-			// fall through
+			break;
+		default:
+			std::cout << "Invalid Input" << std::endl;
 	}
 }
 
