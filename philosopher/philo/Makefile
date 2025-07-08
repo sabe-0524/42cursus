@@ -6,7 +6,7 @@
 #    By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/23 20:08:34 by sabe              #+#    #+#              #
-#    Updated: 2025/04/25 19:57:18 by sabe             ###   ########.fr        #
+#    Updated: 2025/07/08 12:21:57 by sabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,11 +31,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c -o $@ $<
 
 clean:
-	rm -rf $(OBJ_DIR)
+	$(RM) -rf $(OBJ_DIR)
 
 
 fclean: clean
-	@rm $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 
