@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:27:34 by sabe              #+#    #+#             */
-/*   Updated: 2025/07/07 23:24:58 by sabe             ###   ########.fr       */
+/*   Updated: 2025/07/08 16:00:09 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ void	philo_routine(int i, t_table *table)
 	t_philo	*philo;
 
 	philo = init_philo(i, table);
+	if (table->num_philo == 1)
+	{
+		philo_print(philo, FORK);
+		usleep(table->time_to_die * 1000);
+		philo_print(philo, DIED);
+		exit(0);
+	}
 	while (true)
 	{
 		philo_eat(philo);
