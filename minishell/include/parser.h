@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 16:48:29 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/26 18:56:10 by sabe             ###   ########.fr       */
+/*   Updated: 2025/07/09 13:28:29 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_node
 	t_token			*token;
 	int				heredoc_fd;
 	char			*heredoc_tmpfile;
+	bool			is_ignore;
 }					t_node;
 
 typedef struct s_tree

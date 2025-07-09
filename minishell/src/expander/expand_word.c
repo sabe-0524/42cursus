@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:36:33 by sabe              #+#    #+#             */
-/*   Updated: 2025/05/31 19:30:13 by sabe             ###   ########.fr       */
+/*   Updated: 2025/07/09 13:30:10 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ static void	remove_blank_token(t_node *node, t_token *tk)
 		tk->prev->next = tk->next;
 		tk->next->prev = tk->prev;
 		free_token(tk);
+	}
+	else
+	{
+		node->is_ignore = true;
 	}
 }
 

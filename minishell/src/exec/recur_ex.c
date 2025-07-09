@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:43:06 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/27 15:53:04 by sabe             ###   ########.fr       */
+/*   Updated: 2025/07/09 13:29:42 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	handle_command_node(t_node *node, t_executor *ex)
 
 void	recur_ex(t_node *node, t_executor *ex)
 {
-	if (ft_strlen(node->token->content) == 0)
+	if (node->is_ignore == true)
 		return ;
 	else if (node->token->type == PIPE)
 		handle_pipe_node(node, ex);
