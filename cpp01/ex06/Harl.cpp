@@ -6,11 +6,18 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:36:46 by sabe              #+#    #+#             */
-/*   Updated: 2025/07/05 12:44:16 by sabe             ###   ########.fr       */
+/*   Updated: 2025/07/20 14:04:33 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
+
+const std::string Harl::levels[4] = {
+    "DEBUG",
+    "INFO",
+    "WARNING",
+    "ERROR"
+};
 
 Harl::Harl(void)
 {
@@ -19,10 +26,9 @@ Harl::Harl(void)
 void Harl::exec(std::string level)
 {
 	int i = 0;
-	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	while (i < 4)
 	{
-		if (level == levels[i])
+		if (level == this->levels[i])
 			break;
 		i++;
 	}
