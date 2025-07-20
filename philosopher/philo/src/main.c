@@ -6,7 +6,7 @@
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 21:21:55 by sabe              #+#    #+#             */
-/*   Updated: 2025/04/25 19:42:54 by sabe             ###   ########.fr       */
+/*   Updated: 2025/07/20 13:34:27 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ int	main(int argc, char **argv)
 	t_table	*table;
 
 	if (argc != 5 && argc != 6)
+	{
+		printf("Invalid argument\n");
 		return (1);
+	}
 	table = (t_table *)malloc(sizeof(t_table));
 	if (!table)
 		return (1);
