@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 22:30:48 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/08/19 21:54:33 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/08/21 12:40:15 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int main(int argc, char **argv)
     origin.z - focal_length
   };
   t_camera camera = camera_create(origin, horizontal, vertical, lower_left_corner);
-  const int max_depth = 50;
-  const int samples_per_pixel = 100;
+  const int max_depth = 10;
+  const int samples_per_pixel = 10;
 
   t_hittable_lst lst;
   hittable_lst_init(&lst);
@@ -104,7 +104,10 @@ int main(int argc, char **argv)
       int ib = (int)(255.999 * clamp_double(pixel_color.z, 0.0, 0.999));
       my_mlx_pixel_put(&w->img, x, y, (ir << 16) | (ig << 8) | ib);
     }
+    printf("progress: %d%%\r", (int)((double)y / (height - 1) * 100));
+    fflush(stdout);
   }
+  printf("progress: 100%%\n");
 
   mlx_put_image_to_window(w->mlx, w->win, w->img.img, 0, 0);
   mlx_loop(w->mlx);
