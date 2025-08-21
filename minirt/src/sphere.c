@@ -6,14 +6,14 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 09:40:57 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/08/19 19:22:16 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/08/21 22:21:34 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 void sphere_create(t_hittable_lst *lst, t_vec3 center, double radius) {
-    const t_hittable_vtable sphere_vtable = { .hit = hit_sphere };
+    static const t_hittable_vtable sphere_vtable = { .hit = hit_sphere };
     t_sphere *sphere = malloc(sizeof(t_sphere));
     if (!sphere) {
         perror("Failed to allocate memory for sphere");

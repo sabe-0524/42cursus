@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 22:30:48 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/08/21 12:40:15 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/08/21 22:07:37 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int main(int argc, char **argv)
 
   t_hittable_lst lst;
   hittable_lst_init(&lst);
-  hittable_lst_push(&lst, &(t_sphere){.center = {0, 0, -1}, .radius = 0.5}, &(t_hittable_vtable){.hit = hit_sphere});
-  hittable_lst_push(&lst, &(t_sphere){.center = {0, -100.5, -1}, .radius = 100}, &(t_hittable_vtable){.hit = hit_sphere});
+  sphere_create(&lst, (t_vec3){0, 0, -1}, 0.5);
+  sphere_create(&lst, (t_vec3){0, -100.5, -1}, 100);
 
   w->mlx = mlx_init();
   w->win = mlx_new_window(w->mlx, width, height, "minirt");
