@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 17:45:47 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/08/19 21:45:02 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/08/22 11:34:03 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,15 @@ typedef struct s_material
     const t_material_vtable     *vtable;
 }               t_material;
 
+typedef struct s_lambertian {
+    t_color3 albedo;
+} t_lambertian;
+
+typedef struct s_metal {
+    t_color3 albedo;
+    double fuzz; /* 金属の粗さ（0.0 以上 1.0 以下） */
+} t_metal;
+
 /* ヒットレコード（衝突情報） */
 typedef struct s_hit_record
 {
@@ -127,6 +136,7 @@ typedef struct s_hittable_lst
 typedef struct s_sphere {
     t_vec3 center;
     double radius;
+    t_material mat; /* マテリアル情報を持つ */
 } t_sphere;
 
 typedef struct s_camera {
@@ -185,7 +195,6 @@ t_vec3 vec3_random_in_unit_sphere(void);
 t_vec3 ray_at(const t_ray r, double t);
 void hittable_lst_init(t_hittable_lst *lst);
 int hittable_lst_push(t_hittable_lst *lst, const void *object, const t_hittable_vtable *vtable);
-void sphere_create(t_hittable_lst *lst, t_vec3 center, double radius);
 bool hit_sphere(const void *object, const t_ray *r, double t_min, double t_max, t_hit_record *rec);
 bool hit_hittable_lst(const t_hittable_lst *lst, const t_ray *r, double t_min, double t_max, t_hit_record *rec);
 int hittable_lst_push(t_hittable_lst *lst, const void *object, const t_hittable_vtable *vtable);
@@ -195,6 +204,8 @@ double rand_double(double min, double max);
 t_camera camera_create(t_point3 origin, t_vec3 horizontal, t_vec3 vertical, t_vec3 lower_left_corner);
 t_ray camera_get_ray(const t_camera *cam, double u, double v);
 t_vec3 vec3_sqrt(t_vec3 v);
-
+t_material *lambertian_new(t_color3 albedo);
+void sphere_create(t_hittable_lst *lst, t_vec3 center, double radius, t_material mat);
+t_material *metal_new(t_color3 albedo, double fuzz);
 
 #endif /* MINIRT_H */

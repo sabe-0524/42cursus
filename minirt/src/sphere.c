@@ -6,13 +6,13 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 09:40:57 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/08/21 22:21:34 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/08/22 11:10:12 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void sphere_create(t_hittable_lst *lst, t_vec3 center, double radius) {
+void sphere_create(t_hittable_lst *lst, t_vec3 center, double radius, t_material mat) {
     static const t_hittable_vtable sphere_vtable = { .hit = hit_sphere };
     t_sphere *sphere = malloc(sizeof(t_sphere));
     if (!sphere) {
@@ -21,6 +21,7 @@ void sphere_create(t_hittable_lst *lst, t_vec3 center, double radius) {
     }
     sphere->center = center;
     sphere->radius = radius;
+    sphere->mat = mat;
     hittable_lst_push(lst, (void *)sphere, &sphere_vtable);
 }
 
@@ -41,6 +42,7 @@ bool hit_sphere(const void *object, const t_ray *r, double t_min, double t_max, 
       rec->p = ray_at(*r, rec->t);
       t_vec3 outward_normal = vec3_div_s(vec3_sub(rec->p, sphere->center), sphere->radius);
       set_face_normal(rec, r, outward_normal);
+      rec->mat = sphere->mat;
       return true;
     }
     temp = (-b + root) / a;
@@ -50,6 +52,7 @@ bool hit_sphere(const void *object, const t_ray *r, double t_min, double t_max, 
       rec->p = ray_at(*r, rec->t);
       t_vec3 outward_normal = vec3_div_s(vec3_sub(rec->p, sphere->center), sphere->radius);
       set_face_normal(rec, r, outward_normal);
+      rec->mat = sphere->mat;
       return true;
     }
   }

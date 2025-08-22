@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 22:30:48 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/08/21 22:07:37 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/08/22 11:33:56 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,13 @@ t_color3 ray_color(const t_ray r, const t_hittable_lst *lst, int depth) {
   }
   if (hit_hittable_lst(lst, &r, 0.001, DBL_MAX, &rec))
   {
-    t_vec3 target = vec3_add(rec.p, vec3_add(rec.normal, vec3_random_in_unit_sphere()));
-    return vec3_mul_s(ray_color((t_ray){rec.p, vec3_sub(target, rec.p)}, lst, depth - 1), 0.5);
+    t_ray scattered;
+    t_color3 attenuation;
+    if (rec.mat.vtable->scatter(rec.mat.object, &r, &rec, &attenuation, &scattered))
+    {
+      return vec3_mul_v(attenuation, ray_color(scattered, lst, depth - 1));
+    }
+    return (t_color3){0, 0, 0}; // マテリアルが散乱しない場合は黒を返す
   }
   t_vec3 unit_direction = unit_vector(r.dir);
   double t = 0.5 * (unit_direction.y + 1.0);
@@ -72,8 +77,14 @@ int main(int argc, char **argv)
 
   t_hittable_lst lst;
   hittable_lst_init(&lst);
-  sphere_create(&lst, (t_vec3){0, 0, -1}, 0.5);
-  sphere_create(&lst, (t_vec3){0, -100.5, -1}, 100);
+  t_material pink_lambertian = *lambertian_new((t_color3){0.8, 0.3, 0.3});
+  t_material green_lambertian = *lambertian_new((t_color3){0.8, 0.8, 0.0});
+  t_material blue_metal = *metal_new((t_color3){0.2, 0.2, 0.8}, 0.0);
+  t_material red_metal = *metal_new((t_color3){0.8, 0.2, 0.2}, 0.8);
+  sphere_create(&lst, (t_vec3){0, 0, -1}, 0.5, pink_lambertian);
+  sphere_create(&lst, (t_vec3){0, -100.5, -1}, 100, green_lambertian);
+  sphere_create(&lst, (t_vec3){1, 0, -1}, 0.5, blue_metal);
+  sphere_create(&lst, (t_vec3){-1, 0, -1}, 0.5, red_metal);
 
   w->mlx = mlx_init();
   w->win = mlx_new_window(w->mlx, width, height, "minirt");
