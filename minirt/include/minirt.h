@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 17:45:47 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/08/22 11:34:03 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/08/22 14:56:18 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,11 @@ typedef struct s_metal {
     t_color3 albedo;
     double fuzz; /* 金属の粗さ（0.0 以上 1.0 以下） */
 } t_metal;
+
+typedef struct s_dielectric {
+    t_color3 albedo; /* 屈折率に関係なく、色を持つ */
+    double ref_idx;
+} t_dielectric;
 
 /* ヒットレコード（衝突情報） */
 typedef struct s_hit_record
@@ -207,5 +212,9 @@ t_vec3 vec3_sqrt(t_vec3 v);
 t_material *lambertian_new(t_color3 albedo);
 void sphere_create(t_hittable_lst *lst, t_vec3 center, double radius, t_material mat);
 t_material *metal_new(t_color3 albedo, double fuzz);
+double degrees_to_radians(double degrees);
+t_vec3 refract(t_vec3 v, t_vec3 n, double eta_ratio);
+t_material *dielectric_new(t_color3 albedo, double ref_idx);
+double schlick(double cos_theta, double eta_ratio);
 
 #endif /* MINIRT_H */

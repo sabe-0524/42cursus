@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 22:30:48 by abesouichir       #+#    #+#             */
-/*   Updated: 2025/08/22 11:33:56 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/08/22 14:58:42 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,12 @@ int main(int argc, char **argv)
   t_material pink_lambertian = *lambertian_new((t_color3){0.8, 0.3, 0.3});
   t_material green_lambertian = *lambertian_new((t_color3){0.8, 0.8, 0.0});
   t_material blue_metal = *metal_new((t_color3){0.2, 0.2, 0.8}, 0.0);
-  t_material red_metal = *metal_new((t_color3){0.8, 0.2, 0.2}, 0.8);
+  // t_material red_metal = *metal_new((t_color3){0.8, 0.2, 0.2}, 0.8);
+  t_material white_dielectric = *dielectric_new((t_color3){1.0, 1.0, 1.0}, 1.5);
   sphere_create(&lst, (t_vec3){0, 0, -1}, 0.5, pink_lambertian);
   sphere_create(&lst, (t_vec3){0, -100.5, -1}, 100, green_lambertian);
   sphere_create(&lst, (t_vec3){1, 0, -1}, 0.5, blue_metal);
-  sphere_create(&lst, (t_vec3){-1, 0, -1}, 0.5, red_metal);
+  sphere_create(&lst, (t_vec3){-1, 0, -1}, 0.5, white_dielectric);
 
   w->mlx = mlx_init();
   w->win = mlx_new_window(w->mlx, width, height, "minirt");
