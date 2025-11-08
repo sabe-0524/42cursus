@@ -23,7 +23,7 @@ int main(void)
 	std::cout << "Ptr address:    " << stringPTR << std::endl;
 	std::cout << "Ref address:    " << &stringREF << std::endl;
 	std::cout << "Normal value:   " << str << std::endl;
-	std::cout << "Ptr valie:      " << *stringPTR << std::endl;
+	std::cout << "Ptr value:      " << *stringPTR << std::endl;
 	std::cout << "Ref value:      " << stringREF << std::endl;
 	return (0);
 }
