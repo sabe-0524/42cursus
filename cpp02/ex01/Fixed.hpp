@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:42:55 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/10 21:49:26 by sabe             ###   ########.fr       */
+/*   Updated: 2025/11/08 11:22:26 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ class Fixed
 		~Fixed();
 		Fixed(const Fixed&);
 		Fixed& operator = (const Fixed &other);
-		std::ostream& operator << (std::ostream& os);
 		int getRawBits(void) const;
 		void setRawBits(int const raw);
 		float toFloat(void) const;

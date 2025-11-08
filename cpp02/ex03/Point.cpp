@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 21:30:01 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/29 13:15:01 by sabe             ###   ########.fr       */
+/*   Updated: 2025/11/08 11:22:26 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ Point::Point(const Point& other) : x(other.getX()), y(other.getY())
 
 Point::~Point(void)
 {
+}
+
+Point& Point::operator = (const Point& other)
+{
+	(void)other;
+	return (*this);
 }
 
 Fixed Point::getX(void) const
