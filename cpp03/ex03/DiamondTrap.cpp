@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 19:50:04 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/30 20:18:30 by sabe             ###   ########.fr       */
+/*   Updated: 2025/11/09 22:46:56 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,13 @@ DiamondTrap::~DiamondTrap(void)
     std::cout << "DiamondTrap" <<  " destructor called" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &other) : ClapTrap(other)
-  , ScavTrap(other)
-  , FragTrap(other)
-  , name(other.name)
+DiamondTrap::DiamondTrap(const DiamondTrap &other) 
+	: ClapTrap(other.name + "_clap_name")
+	, ScavTrap(other)
+	, FragTrap(other)
+	, name(other.name)
 {
-    std::cout << "DiamondTrap" << " copy constructor called" << std::endl;
-    this->attackDamage = FragTrap::attackDamage;
-    this->hitPoints = FragTrap::hitPoints;
-    this->energyPoints = ScavTrap::energyPoints;
-    ClapTrap::name = this->name + "_clap_name";
+	std::cout << "DiamondTrap" << " copy constructor called" << std::endl;
 }
 
 DiamondTrap& DiamondTrap::operator = (const DiamondTrap &other)
