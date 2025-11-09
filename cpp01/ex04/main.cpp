@@ -75,6 +75,9 @@ bool openOutputFile(const std::string &filename, std::ofstream &outfile)
 
 std::string replaceAll(const std::string &line, const std::string &s1, const std::string &s2)
 {
+    if (s1.empty())
+        return line;
+    
     std::string result = line;
     std::string::size_type pos = 0;
     while ((pos = result.find(s1, pos)) != std::string::npos)
@@ -89,8 +92,12 @@ std::string replaceAll(const std::string &line, const std::string &s1, const std
 void processFile(std::ifstream &infile, std::ofstream &outfile, const std::string &s1, const std::string &s2)
 {
     std::string text;
+    bool first = true;
     while (std::getline(infile, text))
     {
-        outfile << replaceAll(text, s1, s2) << std::endl;
+        if (!first)
+            outfile << std::endl;
+        outfile << replaceAll(text, s1, s2);
+        first = false;
     }
 }

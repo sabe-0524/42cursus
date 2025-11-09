@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_H
-#define HARL_H
+#ifndef HARL_HPP
+#define HARL_HPP
 
 #include <iostream>
 #include <string>
@@ -26,7 +26,7 @@ class Harl
 		void (Harl::* functionlist[4])(void);
 		static const std::string levels[4];
 	public:
-		void complain(std::string level);
+		void complain(const std::string& level);
 		Harl(void);
 };
 

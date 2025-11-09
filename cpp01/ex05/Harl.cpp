@@ -27,7 +27,7 @@ Harl::Harl(void)
 	this->functionlist[3] = &Harl::error;
 }
 
-void Harl::complain(std::string level)
+void Harl::complain(const std::string& level)
 {
 	for (int i = 0; i < 4; i++)
 	{

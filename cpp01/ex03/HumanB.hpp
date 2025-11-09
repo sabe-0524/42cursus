@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANB_H
-#define HUMANB_H
+#ifndef HUMANB_HPP
+#define HUMANB_HPP
 
 #include <iostream>
 #include <string>
@@ -25,7 +25,7 @@ class HumanB
 	public:
 		void setWeapon(Weapon &Weapon);
 		void attack(void);
-		HumanB(std::string name);
+		HumanB(const std::string& name);
 };
 
 #endif
