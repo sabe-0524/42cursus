@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 18:49:10 by sabe              #+#    #+#             */
-/*   Updated: 2025/11/09 23:04:53 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/11/09 23:10:32 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ std::string const& AMateria::getType(void) const
 
 void AMateria::use(ICharacter &target)
 {
-	std::cout << target.getName() << std::endl;
+	(void)target;
 }

@@ -32,7 +32,7 @@ MateriaSource::~MateriaSource(void)
 
 MateriaSource::MateriaSource(const MateriaSource& other)
 {
-	std::cout << "MateraSource copy constructor called." << std::endl;
+	std::cout << "MateriaSource copy constructor called." << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (other.sources[i])
