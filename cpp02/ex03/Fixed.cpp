@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 21:59:50 by sabe              #+#    #+#             */
-/*   Updated: 2025/11/08 11:22:26 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/11/09 22:12:40 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ Fixed Fixed::operator * (const Fixed &a) const
 {
 	Fixed result;
 
-	int64_t tmp = (int64_t)(this->getRawBits() * a.getRawBits());
+	int64_t tmp = (int64_t)this->getRawBits() * (int64_t)a.getRawBits();
 
 	tmp >>= fractBits;
 	result.setRawBits((int)tmp);

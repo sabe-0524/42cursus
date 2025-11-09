@@ -6,12 +6,12 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:42:55 by sabe              #+#    #+#             */
-/*   Updated: 2025/11/08 11:22:26 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/11/09 22:12:40 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_H
-#define FIXED_H
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
 #include <iostream>
 #include <cmath>

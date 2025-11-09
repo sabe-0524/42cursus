@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 14:27:12 by sabe              #+#    #+#             */
-/*   Updated: 2025/11/08 11:22:26 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/11/09 22:12:41 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@ bool bsp(Point const a, Point const b, Point const c, Point const point)
 	d2 = calculateSign(point, b, c);
 	d3 = calculateSign(point, c, a);
 
-	// If any distance is zero, the point is on an edge or vertex
-	if (d1.toFloat() == 0 || d2.toFloat() == 0 || d3.toFloat() == 0)
+	if (d1.getRawBits() == 0 || d2.getRawBits() == 0 || d3.getRawBits() == 0)
 		return (false);
 
-	has_neg = (d1.toFloat() < 0) || (d2.toFloat() < 0) || (d3.toFloat() < 0);
-	has_pos = (d1.toFloat() > 0) || (d2.toFloat() > 0) || (d3.toFloat() > 0);
+	has_neg = (d1.getRawBits() < 0) || (d2.getRawBits() < 0) || (d3.getRawBits() < 0);
+	has_pos = (d1.getRawBits() > 0) || (d2.getRawBits() > 0) || (d3.getRawBits() > 0);
 
 	return (!(has_neg && has_pos));
 }
