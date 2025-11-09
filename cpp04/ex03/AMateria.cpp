@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 18:49:10 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/15 21:53:46 by sabe             ###   ########.fr       */
+/*   Updated: 2025/11/09 23:04:53 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ AMateria::AMateria(const AMateria &other) : type(other.getType())
 AMateria& AMateria::operator=(const AMateria &other)
 {
 	std::cout << "AMateria copy assigned constructor called." << std::endl;
-	if (this != &other)
-	{
-		this->type = other.getType();
-	}
+	(void)other;
 	return (*this);
 }
 
