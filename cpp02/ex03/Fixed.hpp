@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 21:59:30 by sabe              #+#    #+#             */
-/*   Updated: 2025/11/10 16:15:28 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/11/10 18:26:02 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <iostream>
 #include <cmath>
-#include <cstdint>
+#include <stdint.h>
 
 class Fixed
 {
