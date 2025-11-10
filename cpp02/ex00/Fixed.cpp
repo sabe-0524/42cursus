@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 16:42:06 by sabe              #+#    #+#             */
-/*   Updated: 2025/06/10 21:16:08 by sabe             ###   ########.fr       */
+/*   Updated: 2025/11/10 16:15:28 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Fixed::~Fixed(void)
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& other) : raw(other.raw)
+Fixed::Fixed(const Fixed& other) : raw(other.getRawBits())
 {
 	std::cout << "Copy constructor called" << std::endl;
 }

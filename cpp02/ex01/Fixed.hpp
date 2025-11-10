@@ -6,7 +6,7 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:42:55 by sabe              #+#    #+#             */
-/*   Updated: 2025/11/09 22:12:40 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/11/10 16:15:28 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 class Fixed
 {
 	private:
-		int value;
+		int raw;
 		static const int fractBits = 8;
 
 	public:

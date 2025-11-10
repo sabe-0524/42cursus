@@ -6,21 +6,21 @@
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 21:59:50 by sabe              #+#    #+#             */
-/*   Updated: 2025/11/09 22:12:40 by abesouichir      ###   ########.fr       */
+/*   Updated: 2025/11/10 16:15:28 by abesouichir      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed(void) : value(0)
+Fixed::Fixed(void) : raw(0)
 {
 }
 
-Fixed::Fixed(int num) : value(num << this->fractBits)
+Fixed::Fixed(int num) : raw(num << this->fractBits)
 {
 }
 
-Fixed::Fixed(float num) : value(roundf(num * (1 << this->fractBits)))
+Fixed::Fixed(float num) : raw(roundf(num * (1 << this->fractBits)))
 {
 }
 
@@ -28,14 +28,14 @@ Fixed::~Fixed(void)
 {
 }
 
-Fixed::Fixed(const Fixed& other) : value(other.value)
+Fixed::Fixed(const Fixed& other) : raw(other.raw)
 {
 }
 
 Fixed& Fixed::operator = (const Fixed &other)
 {
 	if (this != &other)
-		this->value = other.getRawBits();
+		this->raw = other.getRawBits();
 	return (*this);
 }
 
@@ -168,22 +168,22 @@ const Fixed& Fixed::max(const Fixed &a, const Fixed &b)
 
 int Fixed::getRawBits(void) const
 {
-	return (this->value);
+	return (this->raw);
 }
 
 void Fixed::setRawBits(const int raw)
 {
-	this->value = raw;
+	this->raw = raw;
 }
 
 float Fixed::toFloat(void) const
 {
-	return (static_cast<float>(this->value) / (1 << this->fractBits));
+	return (static_cast<float>(this->raw) / (1 << this->fractBits));
 }
 
 int Fixed::toInt(void) const
 {
-	return (this->value >> this->fractBits);
+	return (this->raw >> this->fractBits);
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fixedObj)
