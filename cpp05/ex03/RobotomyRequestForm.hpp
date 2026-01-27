@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 00:00:00 by sabe              #+#    #+#             */
-/*   Updated: 2026/01/27 22:02:05 by abesouichir      ###   ########.fr       */
+/*   Updated: 2026/01/27 00:00:00 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-#define SHRUBBERYCREATIONFORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+#define ROBOTOMYREQUESTFORM_HPP
 
 #include "AForm.hpp"
-#include <fstream>
+#include <cstdlib>
+#include <ctime>
 
-class ShrubberyCreationForm : public AForm
+class RobotomyRequestForm : public AForm
 {
 	private:
 		std::string	_target;
 
 	public:
 		// Orthodox Canonical Form
-		ShrubberyCreationForm(void);
-		ShrubberyCreationForm(const std::string &target);
-		ShrubberyCreationForm(const ShrubberyCreationForm &other);
-		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
-		virtual ~ShrubberyCreationForm(void);
+		RobotomyRequestForm(void);
+		RobotomyRequestForm(const std::string &target);
+		RobotomyRequestForm(const RobotomyRequestForm &other);
+		RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
+		virtual ~RobotomyRequestForm(void);
 
 		// Getter
 		const std::string	&getTarget(void) const;

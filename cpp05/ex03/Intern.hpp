@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,30 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-#define SHRUBBERYCREATIONFORM_HPP
+#ifndef INTERN_HPP
+#define INTERN_HPP
 
+#include <iostream>
+#include <string>
 #include "AForm.hpp"
-#include <fstream>
 
-class ShrubberyCreationForm : public AForm
+class Intern
 {
 	private:
-		std::string	_target;
+		AForm	*createShrubberyCreationForm(const std::string &target) const;
+		AForm	*createRobotomyRequestForm(const std::string &target) const;
+		AForm	*createPresidentialPardonForm(const std::string &target) const;
 
 	public:
 		// Orthodox Canonical Form
-		ShrubberyCreationForm(void);
-		ShrubberyCreationForm(const std::string &target);
-		ShrubberyCreationForm(const ShrubberyCreationForm &other);
-		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
-		virtual ~ShrubberyCreationForm(void);
-
-		// Getter
-		const std::string	&getTarget(void) const;
+		Intern(void);
+		Intern(const Intern &other);
+		Intern &operator=(const Intern &other);
+		~Intern(void);
 
 		// Member functions
-		virtual void	executeAction(void) const;
+		AForm	*makeForm(const std::string &formName, const std::string &target) const;
 };
 
 #endif
