@@ -125,7 +125,7 @@ void	BitcoinExchange::loadDatabase(const std::string &filename)
 		std::string				rateToken;
 		double					rate;
 
-		if (firstLine && line == "date,exchange_rate")
+		if (firstLine && trim(line) == "date,exchange_rate")
 		{
 			firstLine = false;
 			continue ;

@@ -1,5 +1,7 @@
 #include "RPN.hpp"
 
+#include <climits>
+#include <cctype>
 #include <cstdlib>
 #include <sstream>
 #include <stdexcept>
@@ -31,12 +33,38 @@ bool	RPN::isOperator(const std::string &token)
 long	RPN::applyOperation(long lhs, long rhs, const std::string &token)
 {
 	if (token == "+")
+	{
+		if ((rhs > 0 && lhs > LONG_MAX - rhs)
+			|| (rhs < 0 && lhs < LONG_MIN - rhs))
+			throw std::runtime_error("Error");
 		return (lhs + rhs);
+	}
 	if (token == "-")
+	{
+		if ((rhs > 0 && lhs < LONG_MIN + rhs)
+			|| (rhs < 0 && lhs > LONG_MAX + rhs))
+			throw std::runtime_error("Error");
 		return (lhs - rhs);
+	}
 	if (token == "*")
+	{
+		if (lhs > 0)
+		{
+			if ((rhs > 0 && lhs > LONG_MAX / rhs)
+				|| (rhs < 0 && rhs < LONG_MIN / lhs))
+				throw std::runtime_error("Error");
+		}
+		else if (lhs < 0)
+		{
+			if ((rhs > 0 && lhs < LONG_MIN / rhs)
+				|| (rhs < 0 && lhs != 0 && rhs < LONG_MAX / lhs))
+				throw std::runtime_error("Error");
+		}
 		return (lhs * rhs);
+	}
 	if (rhs == 0)
+		throw std::runtime_error("Error");
+	if (lhs == LONG_MIN && rhs == -1)
 		throw std::runtime_error("Error");
 	return (lhs / rhs);
 }
@@ -49,7 +77,8 @@ long	RPN::evaluate(const std::string &expression) const
 
 	while (stream >> token)
 	{
-		if (token.length() == 1 && std::isdigit(token[0]))
+		if (token.length() == 1
+			&& std::isdigit(static_cast<unsigned char>(token[0])))
 		{
 			values.push(token[0] - '0');
 			continue ;
