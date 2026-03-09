@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesouichirou <abesouichirou@student.42    +#+  +:+       +#+        */
+/*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 00:00:00 by sabe              #+#    #+#             */
-/*   Updated: 2026/01/30 01:20:04 by abesouichir      ###   ########.fr       */
+/*   Updated: 2026/02/27 20:30:14 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int main(void)
 
 	Data* originalPtr = &data;
 	uintptr_t raw = Serializer::serialize(originalPtr);
+	std::cout "raw: " << raw << std::endl;
 	Data* restoredPtr = Serializer::deserialize(raw);
 
 	std::cout << "Original ptr: " << originalPtr << std::endl;
