@@ -1,201 +1,20 @@
 #include "PmergeMe.hpp"
 
 #include <climits>
-#include <ctime>
 #include <cstdlib>
+#include <ctime>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
 
-namespace
+PmergeMe::PmergeMe(void)
 {
-	std::vector<PairData>::iterator	findVectorPairPositionById(
-		std::vector<PairData> &chain,
-		std::size_t maxId
-	)
-	{
-		std::vector<PairData>::iterator	it;
-
-		it = chain.begin();
-		while (it != chain.end())
-		{
-			if (it->id == maxId)
-				return (it);
-			++it;
-		}
-		return (chain.end());
-	}
-
-	std::deque<PairData>::iterator	findDequePairPositionById(
-		std::deque<PairData> &chain,
-		std::size_t maxId
-	)
-	{
-		std::deque<PairData>::iterator	it;
-
-		it = chain.begin();
-		while (it != chain.end())
-		{
-			if (it->id == maxId)
-				return (it);
-			++it;
-		}
-		return (chain.end());
-	}
-
-	std::vector<PairData>::iterator	upperBoundVectorPairs(
-		std::vector<PairData> &chain,
-		int value,
-		std::vector<PairData>::iterator end
-	)
-	{
-		std::vector<PairData>::iterator	left;
-		std::vector<PairData>::iterator	right;
-		std::vector<PairData>::iterator	middle;
-
-		left = chain.begin();
-		right = end;
-		while (left < right)
-		{
-			middle = left + (right - left) / 2;
-			if (middle->larger <= value)
-				left = middle + 1;
-			else
-				right = middle;
-		}
-		return (left);
-	}
-
-	std::deque<PairData>::iterator	upperBoundDequePairs(
-		std::deque<PairData> &chain,
-		int value,
-		std::deque<PairData>::iterator end
-	)
-	{
-		std::deque<PairData>::iterator	left;
-		std::deque<PairData>::iterator	right;
-		std::deque<PairData>::iterator	middle;
-
-		left = chain.begin();
-		right = end;
-		while (left < right)
-		{
-			middle = left + (right - left) / 2;
-			if (middle->larger <= value)
-				left = middle + 1;
-			else
-				right = middle;
-		}
-		return (left);
-	}
-
-	std::vector<OutputValue>::iterator	findVectorValuePartner(
-		std::vector<OutputValue> &chain,
-		std::size_t maxId
-	)
-	{
-		std::vector<OutputValue>::iterator	it;
-
-		it = chain.begin();
-		while (it != chain.end())
-		{
-			if (it->isMainChain && it->pairId == maxId)
-				return (it);
-			++it;
-		}
-		return (chain.end());
-	}
-
-	std::deque<OutputValue>::iterator	findDequeValuePartner(
-		std::deque<OutputValue> &chain,
-		std::size_t maxId
-	)
-	{
-		std::deque<OutputValue>::iterator	it;
-
-		it = chain.begin();
-		while (it != chain.end())
-		{
-			if (it->isMainChain && it->pairId == maxId)
-				return (it);
-			++it;
-		}
-		return (chain.end());
-	}
-
-	std::vector<OutputValue>::iterator	upperBoundVectorValues(
-		std::vector<OutputValue> &chain,
-		int value,
-		std::vector<OutputValue>::iterator end
-	)
-	{
-		std::vector<OutputValue>::iterator	left;
-		std::vector<OutputValue>::iterator	right;
-		std::vector<OutputValue>::iterator	middle;
-
-		left = chain.begin();
-		right = end;
-		while (left < right)
-		{
-			middle = left + (right - left) / 2;
-			if (middle->value <= value)
-				left = middle + 1;
-			else
-				right = middle;
-		}
-		return (left);
-	}
-
-	std::deque<OutputValue>::iterator	upperBoundDequeValues(
-		std::deque<OutputValue> &chain,
-		int value,
-		std::deque<OutputValue>::iterator end
-	)
-	{
-		std::deque<OutputValue>::iterator	left;
-		std::deque<OutputValue>::iterator	right;
-		std::deque<OutputValue>::iterator	middle;
-
-		left = chain.begin();
-		right = end;
-		while (left < right)
-		{
-			middle = left + (right - left) / 2;
-			if (middle->value <= value)
-				left = middle + 1;
-			else
-				right = middle;
-		}
-		return (left);
-	}
-}
-
-PmergeMe::PmergeMe(void) : _vectorTimeUs(0.0), _dequeTimeUs(0.0)
-{
-}
-
-PmergeMe::PmergeMe(int argc, char **argv) : _vectorTimeUs(0.0), _dequeTimeUs(0.0)
-{
-	int	i;
-	int	value;
-
-	if (argc < 2)
-		throw std::runtime_error("Error");
-	i = 1;
-	while (i < argc)
-	{
-		if (!parsePositiveInt(argv[i], value))
-			throw std::runtime_error("Error");
-		_vectorInput.push_back(value);
-		_dequeInput.push_back(value);
-		++i;
-	}
 }
 
 PmergeMe::PmergeMe(const PmergeMe &other)
 {
-	*this = other;
+	(void)other;
 }
 
 PmergeMe::~PmergeMe(void)
@@ -204,532 +23,445 @@ PmergeMe::~PmergeMe(void)
 
 PmergeMe	&PmergeMe::operator=(const PmergeMe &other)
 {
-	if (this == &other)
-		return (*this);
-	_vectorInput = other._vectorInput;
-	_dequeInput = other._dequeInput;
-	_sortedVector = other._sortedVector;
-	_sortedDeque = other._sortedDeque;
-	_vectorTimeUs = other._vectorTimeUs;
-	_dequeTimeUs = other._dequeTimeUs;
+	(void)other;
 	return (*this);
 }
 
-bool	PmergeMe::parsePositiveInt(const char *token, int &value)
+std::vector<int>	PmergeMe::parseInput(int argc, char **argv)
 {
-	std::istringstream	stream(token);
-	long				parsed;
-	char				extra;
+	std::vector<int>	values;
 
-	stream >> parsed;
-	if (stream.fail() || stream.get(extra))
-		return (false);
-	if (parsed <= 0 || parsed > INT_MAX)
-		return (false);
-	value = static_cast<int>(parsed);
-	return (true);
+	if (argc < 2)
+		throw std::runtime_error("Error");
+	values.reserve(argc - 1);
+	for (int i = 1; i < argc; ++i)
+	{
+		char	*end;
+		long	value;
+
+		value = std::strtol(argv[i], &end, 10);
+		if (argv[i][0] == '\0' || *end != '\0'
+			|| value <= 0 || value > INT_MAX)
+			throw std::runtime_error("Error");
+		values.push_back(static_cast<int>(value));
+	}
+	return (values);
 }
 
-std::vector<std::size_t>	PmergeMe::buildInsertionOrder(std::size_t size)
+void	PmergeMe::printSequence(
+	const std::string &label,
+	const std::vector<int> &values)
 {
-	std::vector<std::size_t>	order;
-	std::size_t				previousJacob;
-	std::size_t				jacobPrev;
-	std::size_t				jacobCurr;
+	std::cout << label;
+	for (size_t i = 0; i < values.size(); ++i)
+		std::cout << " " << values[i];
+	std::cout << std::endl;
+}
 
-	if (size == 0)
-		return (order);
-	previousJacob = 1;
-	jacobPrev = 1;
-	jacobCurr = 3;
-	while (previousJacob <= size)
+void	PmergeMe::validateSameResult(
+	const std::vector<int> &vectorValues,
+	const std::deque<int> &dequeValues)
+{
+	if (vectorValues.size() != dequeValues.size())
+		throw std::runtime_error("Error");
+	for (size_t i = 0; i < vectorValues.size(); ++i)
 	{
-		std::size_t	upper;
-		std::size_t	index;
+		if (vectorValues[i] != dequeValues[i])
+			throw std::runtime_error("Error");
+	}
+}
 
-		upper = jacobCurr - 1;
-		if (upper > size)
-			upper = size;
-		index = upper;
-		while (index >= previousJacob)
-		{
-			order.push_back(index - 1);
-			if (index == previousJacob)
-				break ;
-			--index;
-		}
-		previousJacob = jacobCurr;
-		jacobCurr = jacobCurr + (2 * jacobPrev);
-		jacobPrev = previousJacob;
+std::vector<size_t>	PmergeMe::buildVectorInsertionOrder(size_t pairCount)
+{
+	std::vector<size_t>	order;
+	size_t				previous;
+	size_t				current;
+	size_t				jacobsthalPrev;
+	size_t				jacobsthalCurr;
+
+	if (pairCount <= 1)
+		return (order);
+	previous = 1;
+	jacobsthalPrev = 1;
+	jacobsthalCurr = 3;
+	while (previous < pairCount)
+	{
+		current = jacobsthalCurr;
+		if (current > pairCount)
+			current = pairCount;
+		for (size_t index = current; index > previous; --index)
+			order.push_back(index);
+		previous = current;
+		current = jacobsthalCurr + (2 * jacobsthalPrev);
+		jacobsthalPrev = jacobsthalCurr;
+		jacobsthalCurr = current;
 	}
 	return (order);
 }
 
-PairData	PmergeMe::findPairByMaxId(
-	const std::vector<PairRelation> &relations,
-	std::size_t maxId
-)
+std::deque<size_t>	PmergeMe::buildDequeInsertionOrder(size_t pairCount)
 {
-	std::size_t	i;
+	std::deque<size_t>	order;
+	size_t				previous;
+	size_t				current;
+	size_t				jacobsthalPrev;
+	size_t				jacobsthalCurr;
 
-	i = 0;
-	while (i < relations.size())
+	if (pairCount <= 1)
+		return (order);
+	previous = 1;
+	jacobsthalPrev = 1;
+	jacobsthalCurr = 3;
+	while (previous < pairCount)
 	{
-		if (relations[i].maxId == maxId)
-			return (relations[i].minPair);
-		++i;
+		current = jacobsthalCurr;
+		if (current > pairCount)
+			current = pairCount;
+		for (size_t index = current; index > previous; --index)
+			order.push_back(index);
+		previous = current;
+		current = jacobsthalCurr + (2 * jacobsthalPrev);
+		jacobsthalPrev = jacobsthalCurr;
+		jacobsthalCurr = current;
+	}
+	return (order);
+}
+
+size_t	PmergeMe::findVectorMatchIndex(
+	const std::vector<VectorPair> &pairs,
+	const std::vector<bool> &used,
+	int largerId)
+{
+	for (size_t i = 0; i < pairs.size(); ++i)
+	{
+		if (!used[i] && pairs[i].larger.id == largerId)
+			return (i);
 	}
 	throw std::runtime_error("Error");
 }
 
-PairData	PmergeMe::findPairByMaxId(
-	const std::deque<PairRelation> &relations,
-	std::size_t maxId
-)
+size_t	PmergeMe::findDequeMatchIndex(
+	const std::deque<DequePair> &pairs,
+	const std::deque<bool> &used,
+	int largerId)
 {
-	std::size_t	i;
-
-	i = 0;
-	while (i < relations.size())
+	for (size_t i = 0; i < pairs.size(); ++i)
 	{
-		if (relations[i].maxId == maxId)
-			return (relations[i].minPair);
-		++i;
+		if (!used[i] && pairs[i].larger.id == largerId)
+			return (i);
 	}
 	throw std::runtime_error("Error");
 }
 
-void	PmergeMe::insertVectorPendingPairs(
-	std::vector<PairData> &chain,
-	const std::vector<PendingPair> &pending
-) const
+size_t	PmergeMe::findVectorItemIndex(
+	const std::vector<VectorItem> &items,
+	int itemId)
 {
-	std::vector<std::size_t>	order;
-	std::size_t				i;
-
-	order = buildInsertionOrder(pending.size());
-	i = 0;
-	while (i < order.size())
+	for (size_t i = 0; i < items.size(); ++i)
 	{
-		const PendingPair						&current = pending[order[i]];
-		std::vector<PairData>::iterator			partner;
-		std::vector<PairData>::iterator			position;
-
-		partner = findVectorPairPositionById(chain, current.maxId);
-		position = upperBoundVectorPairs(chain, current.minPair.larger, partner);
-		chain.insert(position, current.minPair);
-		++i;
+		if (items[i].id == itemId)
+			return (i);
 	}
+	throw std::runtime_error("Error");
 }
 
-void	PmergeMe::insertDequePendingPairs(
-	std::deque<PairData> &chain,
-	const std::deque<PendingPair> &pending
-) const
+size_t	PmergeMe::findDequeItemIndex(
+	const std::deque<DequeItem> &items,
+	int itemId)
 {
-	std::vector<std::size_t>	order;
-	std::size_t				i;
-
-	order = buildInsertionOrder(pending.size());
-	i = 0;
-	while (i < order.size())
+	for (size_t i = 0; i < items.size(); ++i)
 	{
-		const PendingPair						&current = pending[order[i]];
-		std::deque<PairData>::iterator			partner;
-		std::deque<PairData>::iterator			position;
-
-		partner = findDequePairPositionById(chain, current.maxId);
-		position = upperBoundDequePairs(chain, current.minPair.larger, partner);
-		chain.insert(position, current.minPair);
-		++i;
+		if (items[i].id == itemId)
+			return (i);
 	}
+	throw std::runtime_error("Error");
 }
 
-void	PmergeMe::insertVectorPendingValues(
-	std::vector<OutputValue> &chain,
-	const std::vector<PendingValue> &pending
-) const
+size_t	PmergeMe::findVectorInsertionIndex(
+	const std::vector<VectorItem> &items,
+	int value,
+	size_t upperBound)
 {
-	std::vector<std::size_t>	order;
-	std::size_t				i;
+	size_t	low;
+	size_t	high;
+	size_t	middle;
 
-	order = buildInsertionOrder(pending.size());
-	i = 0;
-	while (i < order.size())
+	low = 0;
+	high = upperBound;
+	while (low < high)
 	{
-		const PendingValue						&current = pending[order[i]];
-		OutputValue								node;
-		std::vector<OutputValue>::iterator		partner;
-		std::vector<OutputValue>::iterator		position;
-
-		node.value = current.value;
-		node.pairId = 0;
-		node.isMainChain = false;
-		partner = findVectorValuePartner(chain, current.maxId);
-		position = upperBoundVectorValues(chain, current.value, partner);
-		chain.insert(position, node);
-		++i;
-	}
-}
-
-void	PmergeMe::insertDequePendingValues(
-	std::deque<OutputValue> &chain,
-	const std::deque<PendingValue> &pending
-) const
-{
-	std::vector<std::size_t>	order;
-	std::size_t				i;
-
-	order = buildInsertionOrder(pending.size());
-	i = 0;
-	while (i < order.size())
-	{
-		const PendingValue						&current = pending[order[i]];
-		OutputValue								node;
-		std::deque<OutputValue>::iterator		partner;
-		std::deque<OutputValue>::iterator		position;
-
-		node.value = current.value;
-		node.pairId = 0;
-		node.isMainChain = false;
-		partner = findDequeValuePartner(chain, current.maxId);
-		position = upperBoundDequeValues(chain, current.value, partner);
-		chain.insert(position, node);
-		++i;
-	}
-}
-
-void	PmergeMe::sortVectorPairs(std::vector<PairData> &pairs)
-{
-	std::vector<PairData>	maxima;
-	std::vector<PairRelation>	relations;
-	std::vector<PairData>	chain;
-	std::vector<PendingPair>	pending;
-	PairData					straggler;
-	bool						hasStraggler;
-	std::size_t					i;
-
-	if (pairs.size() <= 1)
-		return ;
-	hasStraggler = (pairs.size() % 2 != 0);
-	i = 0;
-	while (i + 1 < pairs.size())
-	{
-		PairData	high;
-		PairData	low;
-		PairRelation	relation;
-
-		if (pairs[i].larger >= pairs[i + 1].larger)
-		{
-			high = pairs[i];
-			low = pairs[i + 1];
-		}
+		middle = low + ((high - low) / 2);
+		if (items[middle].value <= value)
+			low = middle + 1;
 		else
-		{
-			high = pairs[i + 1];
-			low = pairs[i];
-		}
-		maxima.push_back(high);
-		relation.maxId = high.id;
-		relation.minPair = low;
-		relations.push_back(relation);
-		i += 2;
+			high = middle;
 	}
-	if (hasStraggler)
-		straggler = pairs.back();
-	sortVectorPairs(maxima);
-	chain.push_back(findPairByMaxId(relations, maxima[0].id));
-	i = 0;
-	while (i < maxima.size())
-	{
-		chain.push_back(maxima[i]);
-		if (i > 0)
-		{
-			PendingPair	entry;
-
-			entry.minPair = findPairByMaxId(relations, maxima[i].id);
-			entry.maxId = maxima[i].id;
-			pending.push_back(entry);
-		}
-		++i;
-	}
-	insertVectorPendingPairs(chain, pending);
-	if (hasStraggler)
-	{
-		std::vector<PairData>::iterator	position;
-
-		position = upperBoundVectorPairs(chain, straggler.larger, chain.end());
-		chain.insert(position, straggler);
-	}
-	pairs = chain;
+	return (low);
 }
 
-void	PmergeMe::sortDequePairs(std::deque<PairData> &pairs)
+size_t	PmergeMe::findDequeInsertionIndex(
+	const std::deque<DequeItem> &items,
+	int value,
+	size_t upperBound)
 {
-	std::deque<PairData>		maxima;
-	std::deque<PairRelation>	relations;
-	std::deque<PairData>		chain;
-	std::deque<PendingPair>		pending;
-	PairData					straggler;
-	bool						hasStraggler;
-	std::size_t					i;
+	size_t	low;
+	size_t	high;
+	size_t	middle;
 
-	if (pairs.size() <= 1)
-		return ;
-	hasStraggler = (pairs.size() % 2 != 0);
-	i = 0;
-	while (i + 1 < pairs.size())
+	low = 0;
+	high = upperBound;
+	while (low < high)
 	{
-		PairData	high;
-		PairData	low;
-		PairRelation	relation;
-
-		if (pairs[i].larger >= pairs[i + 1].larger)
-		{
-			high = pairs[i];
-			low = pairs[i + 1];
-		}
+		middle = low + ((high - low) / 2);
+		if (items[middle].value <= value)
+			low = middle + 1;
 		else
-		{
-			high = pairs[i + 1];
-			low = pairs[i];
-		}
-		maxima.push_back(high);
-		relation.maxId = high.id;
-		relation.minPair = low;
-		relations.push_back(relation);
-		i += 2;
+			high = middle;
 	}
-	if (hasStraggler)
-		straggler = pairs.back();
-	sortDequePairs(maxima);
-	chain.push_back(findPairByMaxId(relations, maxima[0].id));
-	i = 0;
-	while (i < maxima.size())
-	{
-		chain.push_back(maxima[i]);
-		if (i > 0)
-		{
-			PendingPair	entry;
-
-			entry.minPair = findPairByMaxId(relations, maxima[i].id);
-			entry.maxId = maxima[i].id;
-			pending.push_back(entry);
-		}
-		++i;
-	}
-	insertDequePendingPairs(chain, pending);
-	if (hasStraggler)
-	{
-		std::deque<PairData>::iterator	position;
-
-		position = upperBoundDequePairs(chain, straggler.larger, chain.end());
-		chain.insert(position, straggler);
-	}
-	pairs = chain;
+	return (low);
 }
 
-void	PmergeMe::sortVector(void)
+void	PmergeMe::fordJohnsonSortVector(std::vector<VectorItem> &items)
 {
-	std::vector<PairData>	pairs;
-	std::vector<OutputValue>	chain;
-	std::vector<PendingValue>	pending;
-	bool						hasStraggler;
-	int							straggler;
-	std::size_t					i;
-	std::size_t					pairId;
-
-	_sortedVector = _vectorInput;
-	if (_sortedVector.size() <= 1)
-		return ;
-	hasStraggler = (_sortedVector.size() % 2 != 0);
-	if (hasStraggler)
-		straggler = _sortedVector.back();
-	i = 0;
-	pairId = 0;
-	while (i + 1 < _sortedVector.size())
-	{
-		PairData	pair;
-
-		if (_sortedVector[i] >= _sortedVector[i + 1])
-		{
-			pair.larger = _sortedVector[i];
-			pair.smaller = _sortedVector[i + 1];
-		}
-		else
-		{
-			pair.larger = _sortedVector[i + 1];
-			pair.smaller = _sortedVector[i];
-		}
-		pair.id = pairId++;
-		pairs.push_back(pair);
-		i += 2;
-	}
-	sortVectorPairs(pairs);
-	chain.push_back(OutputValue());
-	chain.back().value = pairs[0].smaller;
-	chain.back().pairId = pairs[0].id;
-	chain.back().isMainChain = false;
-	i = 0;
-	while (i < pairs.size())
-	{
-		OutputValue	node;
-
-		node.value = pairs[i].larger;
-		node.pairId = pairs[i].id;
-		node.isMainChain = true;
-		chain.push_back(node);
-		if (i > 0)
-		{
-			PendingValue	entry;
-
-			entry.value = pairs[i].smaller;
-			entry.maxId = pairs[i].id;
-			pending.push_back(entry);
-		}
-		++i;
-	}
-	insertVectorPendingValues(chain, pending);
-	if (hasStraggler)
-	{
-		OutputValue							node;
-		std::vector<OutputValue>::iterator	position;
-
-		node.value = straggler;
-		node.pairId = 0;
-		node.isMainChain = false;
-		position = upperBoundVectorValues(chain, straggler, chain.end());
-		chain.insert(position, node);
-	}
-	_sortedVector.clear();
-	i = 0;
-	while (i < chain.size())
-	{
-		_sortedVector.push_back(chain[i].value);
-		++i;
-	}
-}
-
-void	PmergeMe::sortDeque(void)
-{
-	std::deque<PairData>	pairs;
-	std::deque<OutputValue>	chain;
-	std::deque<PendingValue>	pending;
+	std::vector<VectorPair>	pairs;
+	VectorItem				straggler;
 	bool					hasStraggler;
-	int						straggler;
-	std::size_t				i;
-	std::size_t				pairId;
+	std::vector<VectorItem>	largers;
+	std::vector<VectorPair>	sortedPairs;
+	std::vector<bool>		used;
+	std::vector<VectorItem>	mainChain;
+	std::vector<size_t>		order;
 
-	_sortedDeque = _dequeInput;
-	if (_sortedDeque.size() <= 1)
+	if (items.size() <= 1)
 		return ;
-	hasStraggler = (_sortedDeque.size() % 2 != 0);
-	if (hasStraggler)
-		straggler = _sortedDeque.back();
-	i = 0;
-	pairId = 0;
-	while (i + 1 < _sortedDeque.size())
+	hasStraggler = false;
+	for (size_t i = 0; i + 1 < items.size(); i += 2)
 	{
-		PairData	pair;
+		VectorPair	pair;
 
-		if (_sortedDeque[i] >= _sortedDeque[i + 1])
+		if (items[i].value <= items[i + 1].value)
 		{
-			pair.larger = _sortedDeque[i];
-			pair.smaller = _sortedDeque[i + 1];
+			pair.smaller = items[i];
+			pair.larger = items[i + 1];
 		}
 		else
 		{
-			pair.larger = _sortedDeque[i + 1];
-			pair.smaller = _sortedDeque[i];
+			pair.smaller = items[i + 1];
+			pair.larger = items[i];
 		}
-		pair.id = pairId++;
 		pairs.push_back(pair);
-		i += 2;
 	}
-	sortDequePairs(pairs);
-	chain.push_back(OutputValue());
-	chain.back().value = pairs[0].smaller;
-	chain.back().pairId = pairs[0].id;
-	chain.back().isMainChain = false;
-	i = 0;
-	while (i < pairs.size())
+	if (items.size() % 2 != 0)
 	{
-		OutputValue	node;
-
-		node.value = pairs[i].larger;
-		node.pairId = pairs[i].id;
-		node.isMainChain = true;
-		chain.push_back(node);
-		if (i > 0)
-		{
-			PendingValue	entry;
-
-			entry.value = pairs[i].smaller;
-			entry.maxId = pairs[i].id;
-			pending.push_back(entry);
-		}
-		++i;
+		straggler = items[items.size() - 1];
+		hasStraggler = true;
 	}
-	insertDequePendingValues(chain, pending);
+	largers.reserve(pairs.size());
+	for (size_t i = 0; i < pairs.size(); ++i)
+		largers.push_back(pairs[i].larger);
+	fordJohnsonSortVector(largers);
+	used.assign(pairs.size(), false);
+	sortedPairs.reserve(pairs.size());
+	for (size_t i = 0; i < largers.size(); ++i)
+	{
+		size_t	matchIndex;
+
+		matchIndex = findVectorMatchIndex(pairs, used, largers[i].id);
+		used[matchIndex] = true;
+		sortedPairs.push_back(pairs[matchIndex]);
+	}
+	mainChain.reserve(items.size());
+	mainChain.push_back(sortedPairs[0].smaller);
+	mainChain.push_back(sortedPairs[0].larger);
+	for (size_t i = 1; i < sortedPairs.size(); ++i)
+		mainChain.push_back(sortedPairs[i].larger);
+	order = buildVectorInsertionOrder(sortedPairs.size());
+	for (size_t i = 0; i < order.size(); ++i)
+	{
+		const VectorPair	&pair = sortedPairs[order[i] - 1];
+		size_t				boundIndex;
+		size_t				insertIndex;
+
+		boundIndex = findVectorItemIndex(mainChain, pair.larger.id);
+		insertIndex = findVectorInsertionIndex(
+				mainChain,
+				pair.smaller.value,
+				boundIndex);
+		mainChain.insert(mainChain.begin() + insertIndex, pair.smaller);
+	}
 	if (hasStraggler)
 	{
-		OutputValue						node;
-		std::deque<OutputValue>::iterator	position;
+		size_t	insertIndex;
 
-		node.value = straggler;
-		node.pairId = 0;
-		node.isMainChain = false;
-		position = upperBoundDequeValues(chain, straggler, chain.end());
-		chain.insert(position, node);
+		insertIndex = findVectorInsertionIndex(
+				mainChain,
+				straggler.value,
+				mainChain.size());
+		mainChain.insert(mainChain.begin() + insertIndex, straggler);
 	}
-	_sortedDeque.clear();
-	i = 0;
-	while (i < chain.size())
-	{
-		_sortedDeque.push_back(chain[i].value);
-		++i;
-	}
+	items.swap(mainChain);
 }
 
-void	PmergeMe::printSequence(void) const
+void	PmergeMe::fordJohnsonSortDeque(std::deque<DequeItem> &items)
 {
-	std::size_t	i;
+	std::deque<DequePair>	pairs;
+	DequeItem				straggler;
+	bool					hasStraggler;
+	std::deque<DequeItem>	largers;
+	std::deque<DequePair>	sortedPairs;
+	std::deque<bool>		used;
+	std::deque<DequeItem>	mainChain;
+	std::deque<size_t>		order;
 
-	std::cout << "Before:";
-	i = 0;
-	while (i < _vectorInput.size())
+	if (items.size() <= 1)
+		return ;
+	hasStraggler = false;
+	for (size_t i = 0; i + 1 < items.size(); i += 2)
 	{
-		std::cout << " " << _vectorInput[i];
-		++i;
+		DequePair	pair;
+
+		if (items[i].value <= items[i + 1].value)
+		{
+			pair.smaller = items[i];
+			pair.larger = items[i + 1];
+		}
+		else
+		{
+			pair.smaller = items[i + 1];
+			pair.larger = items[i];
+		}
+		pairs.push_back(pair);
 	}
-	std::cout << std::endl;
-	std::cout << "After:";
-	i = 0;
-	while (i < _sortedVector.size())
+	if (items.size() % 2 != 0)
 	{
-		std::cout << " " << _sortedVector[i];
-		++i;
+		straggler = items[items.size() - 1];
+		hasStraggler = true;
 	}
-	std::cout << std::endl;
+	for (size_t i = 0; i < pairs.size(); ++i)
+		largers.push_back(pairs[i].larger);
+	fordJohnsonSortDeque(largers);
+	used.assign(pairs.size(), false);
+	for (size_t i = 0; i < largers.size(); ++i)
+	{
+		size_t	matchIndex;
+
+		matchIndex = findDequeMatchIndex(pairs, used, largers[i].id);
+		used[matchIndex] = true;
+		sortedPairs.push_back(pairs[matchIndex]);
+	}
+	mainChain.push_back(sortedPairs[0].smaller);
+	mainChain.push_back(sortedPairs[0].larger);
+	for (size_t i = 1; i < sortedPairs.size(); ++i)
+		mainChain.push_back(sortedPairs[i].larger);
+	order = buildDequeInsertionOrder(sortedPairs.size());
+	for (size_t i = 0; i < order.size(); ++i)
+	{
+		const DequePair	&pair = sortedPairs[order[i] - 1];
+		size_t			boundIndex;
+		size_t			insertIndex;
+
+		boundIndex = findDequeItemIndex(mainChain, pair.larger.id);
+		insertIndex = findDequeInsertionIndex(
+				mainChain,
+				pair.smaller.value,
+				boundIndex);
+		mainChain.insert(mainChain.begin() + insertIndex, pair.smaller);
+	}
+	if (hasStraggler)
+	{
+		size_t	insertIndex;
+
+		insertIndex = findDequeInsertionIndex(
+				mainChain,
+				straggler.value,
+				mainChain.size());
+		mainChain.insert(mainChain.begin() + insertIndex, straggler);
+	}
+	items.swap(mainChain);
+}
+
+std::vector<int>	PmergeMe::extractVectorValues(
+	const std::vector<VectorItem> &items)
+{
+	std::vector<int>	values;
+
+	values.reserve(items.size());
+	for (size_t i = 0; i < items.size(); ++i)
+		values.push_back(items[i].value);
+	return (values);
+}
+
+std::deque<int>	PmergeMe::extractDequeValues(const std::deque<DequeItem> &items)
+{
+	std::deque<int>	values;
+
+	for (size_t i = 0; i < items.size(); ++i)
+		values.push_back(items[i].value);
+	return (values);
+}
+
+double	PmergeMe::sortVector(std::vector<int> &values)
+{
+	std::vector<VectorItem>	items;
+	clock_t					start;
+	clock_t					finish;
+
+	start = std::clock();
+	items.reserve(values.size());
+	for (size_t i = 0; i < values.size(); ++i)
+	{
+		VectorItem	item;
+
+		item.value = values[i];
+		item.id = static_cast<int>(i);
+		items.push_back(item);
+	}
+	fordJohnsonSortVector(items);
+	values = extractVectorValues(items);
+	finish = std::clock();
+	return (static_cast<double>(finish - start) * 1000000.0 / CLOCKS_PER_SEC);
+}
+
+double	PmergeMe::sortDeque(std::deque<int> &values)
+{
+	std::deque<DequeItem>	items;
+	clock_t					start;
+	clock_t					finish;
+
+	start = std::clock();
+	for (size_t i = 0; i < values.size(); ++i)
+	{
+		DequeItem	item;
+
+		item.value = values[i];
+		item.id = static_cast<int>(i);
+		items.push_back(item);
+	}
+	fordJohnsonSortDeque(items);
+	values = extractDequeValues(items);
+	finish = std::clock();
+	return (static_cast<double>(finish - start) * 1000000.0 / CLOCKS_PER_SEC);
+}
+
+void	PmergeMe::run(int argc, char **argv) const
+{
+	std::vector<int>	before;
+	std::vector<int>	vectorValues;
+	std::deque<int>	dequeValues;
+	double				vectorTime;
+	double				dequeTime;
+
+	before = parseInput(argc, argv);
+	vectorValues = before;
+	dequeValues.assign(before.begin(), before.end());
+	printSequence("Before:", before);
+	vectorTime = sortVector(vectorValues);
+	dequeTime = sortDeque(dequeValues);
+	validateSameResult(vectorValues, dequeValues);
+	printSequence("After:", vectorValues);
 	std::cout << std::fixed << std::setprecision(5);
-	std::cout << "Time to process a range of " << _vectorInput.size()
-		<< " elements with std::vector : " << _vectorTimeUs << " us" << std::endl;
-	std::cout << "Time to process a range of " << _dequeInput.size()
-		<< " elements with std::deque : " << _dequeTimeUs << " us" << std::endl;
-}
-
-void	PmergeMe::process(void)
-{
-	std::clock_t	start;
-	std::clock_t	end;
-
-	start = std::clock();
-	sortVector();
-	end = std::clock();
-	_vectorTimeUs = static_cast<double>(end - start) * 1000000.0 / CLOCKS_PER_SEC;
-	start = std::clock();
-	sortDeque();
-	end = std::clock();
-	_dequeTimeUs = static_cast<double>(end - start) * 1000000.0 / CLOCKS_PER_SEC;
-	printSequence();
+	std::cout << "Time to process a range of " << before.size()
+		<< " elements with std::vector : " << vectorTime << " us" << std::endl;
+	std::cout << "Time to process a range of " << before.size()
+		<< " elements with std::deque : " << dequeTime << " us" << std::endl;
 }

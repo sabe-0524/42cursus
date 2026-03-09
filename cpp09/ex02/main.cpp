@@ -5,11 +5,11 @@
 
 int	main(int argc, char **argv)
 {
+	PmergeMe	pmergeMe;
+
 	try
 	{
-		PmergeMe	sorter(argc, argv);
-
-		sorter.process();
+		pmergeMe.run(argc, argv);
 	}
 	catch (const std::exception &e)
 	{

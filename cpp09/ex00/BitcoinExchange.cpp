@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <limits>
 #include <sstream>
 #include <stdexcept>
 
@@ -83,6 +84,11 @@ bool	BitcoinExchange::parseValue(const std::string &token, double &value)
 
 	stream >> value;
 	if (stream.fail() || !stream.eof())
+		return (false);
+	if (value != value)
+		return (false);
+	if (value == std::numeric_limits<double>::infinity()
+		|| value == -std::numeric_limits<double>::infinity())
 		return (false);
 	return (true);
 }
