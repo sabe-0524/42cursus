@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_bonus_utils.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/05 14:10:23 by sabe              #+#    #+#             */
-/*   Updated: 2024/05/20 16:01:45 by sabe             ###   ########.fr       */
+/*   Created: 2026/03/10 00:00:00 by sabe              #+#    #+#             */
+/*   Updated: 2026/03/10 00:00:00 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static size_t	copy_str(char *dst, const char *src, size_t start)
 {

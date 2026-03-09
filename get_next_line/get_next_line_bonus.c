@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabe <sabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/05 12:14:32 by sabe              #+#    #+#             */
+/*   Created: 2026/03/10 00:00:00 by sabe              #+#    #+#             */
 /*   Updated: 2026/03/10 00:00:00 by sabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static int	read_and_store(int fd, char **save)
 {
@@ -87,22 +87,22 @@ static char	*trim_save(char *save)
 
 char	*get_next_line(int fd)
 {
-	static char	*save;
+	static char	*save[OPEN_MAX];
 	char		*line;
 	int			status;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
-	status = read_and_store(fd, &save);
+	status = read_and_store(fd, &save[fd]);
 	if (status < 0)
 		return (NULL);
-	line = extract_line(save);
+	line = extract_line(save[fd]);
 	if (!line)
 	{
-		free(save);
-		save = NULL;
+		free(save[fd]);
+		save[fd] = NULL;
 		return (NULL);
 	}
-	save = trim_save(save);
+	save[fd] = trim_save(save[fd]);
 	return (line);
 }
