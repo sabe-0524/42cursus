@@ -47,10 +47,15 @@ start_temp_server
 
 if [ "$initialized" -eq 1 ]; then
 	mariadb --socket=/run/mysqld/mysqld.sock <<-SQL
-		ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
+		ALTER USER 'root'@'localhost' IDENTIFIED VIA mysql_native_password USING PASSWORD('${MYSQL_ROOT_PASSWORD}');
 		DELETE FROM mysql.user WHERE User='';
 		DROP DATABASE IF EXISTS test;
 		DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';
+		FLUSH PRIVILEGES;
+	SQL
+else
+	mariadb --socket=/run/mysqld/mysqld.sock -uroot -p"${MYSQL_ROOT_PASSWORD}" <<-SQL
+		ALTER USER 'root'@'localhost' IDENTIFIED VIA mysql_native_password USING PASSWORD('${MYSQL_ROOT_PASSWORD}');
 		FLUSH PRIVILEGES;
 	SQL
 fi
