@@ -35,6 +35,31 @@ The Compose file is `srcs/docker-compose.yml`, and the corresponding environment
 - List Docker volumes: `docker volume ls`
 - Inspect the project network: `docker network inspect inception`
 
+## Connecting To MariaDB
+
+The MariaDB service runs in the `mariadb` container. The database name and
+application user are defined in `srcs/.env`, while the passwords are generated
+locally under `secrets/`.
+
+- Application password: `secrets/db_password.txt`
+- Root password: `secrets/db_root_password.txt`
+
+Open a shell inside the MariaDB container:
+
+`docker exec -it mariadb sh`
+
+Then connect as the application user:
+
+`mariadb -u"$MYSQL_USER" -p"$(cat /run/secrets/db_password)" "$MYSQL_DATABASE"`
+
+Connect as root:
+
+`mariadb -uroot -p"$(cat /run/secrets/db_root_password)"`
+
+To verify that root access without a password is rejected:
+
+`mariadb -uroot`
+
 ## Persistence Layout
 
 Two named volumes are declared in Compose:
