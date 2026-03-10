@@ -50,15 +50,15 @@ Open a shell inside the MariaDB container:
 
 Then connect as the application user:
 
-`mariadb -u"$MYSQL_USER" -p"$(cat /run/secrets/db_password)" "$MYSQL_DATABASE"`
+`mysql -u"$MYSQL_USER" -p"$(cat /run/secrets/db_password)" "$MYSQL_DATABASE"`
 
 Connect as root:
 
-`mariadb -uroot -p"$(cat /run/secrets/db_root_password)"`
+`mysql -uroot -p"$(cat /run/secrets/db_root_password)"`
 
 To verify that root access without a password is rejected:
 
-`mariadb -uroot`
+`mysql -uroot`
 
 ## Persistence Layout
 
