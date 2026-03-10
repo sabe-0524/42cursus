@@ -4,16 +4,17 @@
 
 - Linux virtual machine with Docker Engine and Docker Compose plugin installed
 - Rootful Docker, or a host configured to allow binding privileged port `443` when using rootless Docker
-- A user account named `sabe` or an updated `HOST_LOGIN` value inside `srcs/.env`
+- A user account named `sabe` or an updated `HOST_LOGIN` value inside the local `srcs/.env`
 - Permission to create `/home/sabe/data`
 - DNS or `/etc/hosts` mapping for `sabe.42.fr`
 
 ## Setup From Scratch
 
-1. Review `srcs/.env` and update the non-secret values if needed.
-2. Run `make`.
-3. The Makefile creates `/home/sabe/data/mariadb` and `/home/sabe/data/wordpress`.
-4. The Makefile also generates missing files inside `secrets/` and keeps them outside version control.
+1. Copy `srcs/.env.example` to `srcs/.env`.
+2. Replace the placeholder values in `srcs/.env` with the local login, domain, and email addresses.
+3. Run `make`.
+4. The Makefile creates `/home/sabe/data/mariadb` and `/home/sabe/data/wordpress`.
+5. The Makefile also generates missing files inside `secrets/` and keeps them outside version control.
 
 If you are using rootless Docker, the host may refuse the mandatory `443:443` port mapping. In that case, adjust the host configuration for privileged ports or run a rootful Docker daemon. The Compose file should stay on port `443`, because changing the public port would violate the subject.
 
@@ -24,7 +25,7 @@ If you are using rootless Docker, the host may refuse the mandatory `443:443` po
 - `make down`: stops and removes the running containers
 - `make re`: recreates the stack
 
-The Compose file is `srcs/docker-compose.yml`, and the corresponding environment file is `srcs/.env`.
+The Compose file is `srcs/docker-compose.yml`. Keep a local `srcs/.env` file created from `srcs/.env.example`.
 
 ## Managing Containers And Volumes
 

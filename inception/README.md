@@ -11,7 +11,7 @@ The project exists to demonstrate service isolation, container networking, persi
 The repository contains:
 
 - `srcs/docker-compose.yml`: the service topology, network, named volumes, and secrets wiring.
-- `srcs/.env`: non-secret environment values such as domain, usernames, and site metadata.
+- `srcs/.env.example`: template for local non-secret environment values such as domain, usernames, and site metadata.
 - `srcs/requirements/mariadb`: MariaDB image, configuration, and initialization entrypoint.
 - `srcs/requirements/wordpress`: WordPress + PHP-FPM image with a build-time WordPress source bundle and a local PHP bootstrap.
 - `srcs/requirements/nginx`: NGINX image, TLS bootstrap script, and reverse-proxy configuration.
@@ -22,17 +22,18 @@ The repository contains:
 
 - Debian Bookworm was chosen over Alpine to keep package names, PHP modules, and service tooling straightforward during defense and maintenance.
 - WordPress installation is automated with a local PHP bootstrap so the site is reproducible without browser-side setup, while the WordPress core files are baked into the image at build time to avoid a first-boot network dependency.
-- Sensitive values are generated into ignored files under `secrets/` and injected through Docker secrets, while `.env` keeps only non-secret configuration.
+- Sensitive values are generated into ignored files under `secrets/` and injected through Docker secrets, while the local `srcs/.env` keeps only non-secret configuration copied from `srcs/.env.example`.
 - The two persistent storages are declared as Docker named volumes and use the local driver so their data lives under `/home/sabe/data`, matching the subject requirement.
 - NGINX generates a local self-signed certificate on container start because the project targets a local VM domain and must expose HTTPS only.
 
 ## Instructions
 
 1. Ensure `sabe.42.fr` resolves to the machine hosting Docker. On a local VM this usually means adding the VM IP to `/etc/hosts` on the client machine.
-2. Run `make` from the repository root. The Makefile creates host data directories and generates local secret files if they do not exist yet.
-3. Open `https://sabe.42.fr` in a browser and accept the self-signed certificate warning.
-4. Use `make logs` or `make ps` to inspect the stack.
-5. Stop the project with `make down`.
+2. Copy `srcs/.env.example` to `srcs/.env`, then replace the placeholder values with the local login, domain, and email addresses.
+3. Run `make` from the repository root. The Makefile creates host data directories and generates local secret files if they do not exist yet.
+4. Open `https://sabe.42.fr` in a browser and accept the self-signed certificate warning.
+5. Use `make logs` or `make ps` to inspect the stack.
+6. Stop the project with `make down`.
 
 ## Comparisons
 

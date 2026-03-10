@@ -32,7 +32,8 @@ Credentials are generated locally under `secrets/` the first time `make` runs.
 - `secrets/db_root_password.txt`: MariaDB root password
 - `secrets/credentials.txt`: summary of usernames, domain, and the password file locations
 
-Usernames and non-secret configuration values are stored in `srcs/.env`.
+Create `srcs/.env` by copying `srcs/.env.example`, then replace the placeholder values with the local login, domain, and email addresses.
+Usernames and non-secret configuration values are stored in the local `srcs/.env`.
 
 ## Health Checks
 
@@ -45,4 +46,3 @@ You can verify the stack with the following commands:
 - `curl -kI https://sabe.42.fr`
 
 If the website is unavailable, check that `sabe.42.fr` resolves to the correct machine and that Docker is running.
-
