@@ -73,7 +73,7 @@ long	RPN::evaluate(const std::string &expression) const
 {
 	std::istringstream					stream(expression);
 	std::string							token;
-	std::stack<long, std::list<long> >	values;
+	std::stack<long>					values;
 
 	while (stream >> token)
 	{
