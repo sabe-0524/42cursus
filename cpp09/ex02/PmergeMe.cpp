@@ -1,5 +1,6 @@
 #include "PmergeMe.hpp"
 
+#include <cerrno>
 #include <climits>
 #include <cstdlib>
 #include <ctime>
@@ -39,8 +40,9 @@ std::vector<int>	PmergeMe::parseInput(int argc, char **argv)
 		char	*end;
 		long	value;
 
+		errno = 0;
 		value = std::strtol(argv[i], &end, 10);
-		if (argv[i][0] == '\0' || *end != '\0'
+		if (errno == ERANGE || argv[i][0] == '\0' || *end != '\0'
 			|| value <= 0 || value > INT_MAX)
 			throw std::runtime_error("Error");
 		values.push_back(static_cast<int>(value));
